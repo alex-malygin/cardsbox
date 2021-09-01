@@ -8,5 +8,6 @@ target 'CardsBox' do
   # Pods for CardsBox
 
 pod 'SwiftGen'
+pod 'Introspect'
 
 end

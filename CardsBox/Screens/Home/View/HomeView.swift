@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct HomeView: View {
     @State private var searchText = ""
@@ -33,8 +34,8 @@ struct HomeView: View {
             }
             .onDelete(perform: viewModel.delete)
         }
-        .toolbar {
-            EditButton()
+        .introspectTableView { tableView in
+            tableView.separatorStyle = .none
         }
         .listStyle(PlainListStyle())
         .navigationBarTitle(Strings.mainTitle)

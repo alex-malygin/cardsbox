@@ -13,6 +13,7 @@ enum CardDetailMode {
 }
 
 struct CardDetailView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State private var userName: String = ""
     @State private var cardNumber: String = ""
     @Binding var viewMode: CardDetailMode
@@ -33,11 +34,18 @@ struct CardDetailView: View {
 
                     VStack(spacing: 15) {
                         TextFieldView("Card Number", text: $cardNumber, maxLenth: 16)
+                            .onAppear() {
+                                cardNumber = (viewMode == .create ? "" : cardModel.cardNumber) ?? ""
+                            }
                             .onChange(of: cardNumber, perform: { value in
                                 cardNumber = value
                             })
                             .keyboardType(.numberPad)
+                        
                         TextFieldView("Enter name", text: $userName, maxLenth: 25)
+                            .onAppear() {
+                                userName = (viewMode == .create ? "" : cardModel.userName) ?? ""
+                            }
                             .onChange(of: userName, perform: { value in
                                 userName = value
                             })
@@ -46,6 +54,7 @@ struct CardDetailView: View {
                     Button(action: {
                         let card = CardModel(userName: userName, cardNumber: cardNumber)
                         viewMode == .create ? viewModel.addNewCard(card) : viewModel.updateCard(card)
+                        presentationMode.wrappedValue.dismiss()
                     },
                     label: {
                         Text( viewMode == .create ? "Add" : "Save")
@@ -61,20 +70,10 @@ struct CardDetailView: View {
                 hideKeyboard()
             }
         }
-        .onAppear() {
-            cardNumber = (viewMode == .create ? "" : cardModel.cardNumber) ?? ""
-            userName = (viewMode == .create ? "" : cardModel.userName) ?? ""
-        }
         .background(grayBackgroundView)
         .ignoresSafeArea(.all, edges: .bottom)
     }
 }
-
-//struct CardDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CardDetailView(viewMode: .constant(.create), cardModel: .constant(""))
-//    }
-//}
 
 struct HeaderCardDetailView: View {
     @Environment(\.presentationMode) var presentationMode
