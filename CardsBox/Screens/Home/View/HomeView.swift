@@ -10,49 +10,48 @@ import SwiftUI
 struct HomeView: View {
     @State private var searchText = ""
     @State private var isShowingDetails = false
-    @State private var mode: CardDetailMode = .create
-    @State private var selectedCardModel: CardModel?
     @ObservedObject private var viewModel = HomeViewModel()
     
     var body: some View {
-        List {
-            ForEach(viewModel.cardList, id: \.id) { card in
-                Button(action: {
-                    mode = .edit
-                    isShowingDetails = true
-                    selectedCardModel = card
-                }) {
-                    CardView(cardType: "VISA",
-                             cardNumber: card.cardNumber,
-                             cardHolderName: card.userName,
-                             backgroundCard: defaultCardBackground)
-                        .listRowInsets(.init(top: 5, leading: 0, bottom: 5, trailing: 0))
-                        .listRowBackground(grayBackgroundView)
+        NavigationView {
+            ScrollView(showsIndicators: false) {
+                LazyVStack {
+                    ForEach(viewModel.cardList, id: \.id) { card in
+                        Button(action: {
+                            viewModel.selectedCard = card
+                            viewModel.mode = .edit
+                            isShowingDetails = true
+                        }) {
+                            CardView(cardType: .constant(card.cardType),
+                                     cardNumber: .constant(card.cardNumber),
+                                     cardHolderName: .constant(card.userName),
+                                     backgroundType: .constant(card.bgType))
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .padding([.top, .bottom], 0)
+                        .padding([.trailing, .leading], 8)
+                    }
                 }
-                .buttonStyle(PlainButtonStyle())
             }
-//            .onDelete(perform: viewModel.delete)
+            .navigationBarTitle(Strings.mainTitle)
+            .navigationBarItems(trailing:
+                                    Button(action: {
+                                    viewModel.mode = .create
+                                    isShowingDetails = true
+                                }, label: {
+                                    Image(systemName: "plus")
+                                        .font(.system(size: 22.0, weight: .medium))
+                                }))
+            .sheet(isPresented: $isShowingDetails) {
+                CardDetailView(viewMode: $viewModel.mode, cardModel: $viewModel.selectedCard)
+            }
         }
-        .toolbar {
-            EditButton()
-        }
-        .listStyle(PlainListStyle())
-        .navigationBarTitle(Strings.mainTitle)
-        .navigationBarItems(trailing: Button(action: {
-                                mode = .create
-                                isShowingDetails = true
-                            }, label: {
-                                Image(systemName: "plus")
-                                    .font(.system(size: 24.0, weight: .medium))
-                            }))
-        .sheet(isPresented: $isShowingDetails) {
-            CardDetailView(viewMode: $mode, cardModel: $selectedCardModel)
-        }
+        .navigationViewStyle(.stack)
     }
 }
 
-//struct HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeView()
-//    }
-//}
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+    }
+}

@@ -12,21 +12,23 @@ import CoreData
 final class HomeViewModel: ObservableObject {
     // MARK: - Properties
     @Published private(set) var cardList: [CardModel] = []
-    private let context = PersistenceController.shared.context
+    @Published var mode: CardDetailMode = .create
+    @Published var selectedCard: CardModel
     
     // MARK: - Init
     init() {
         cardList = [
-            CardModel(id: UUID(), userName: "Alex Malygin",  cardNumber: "1234122333365554"),
-            CardModel(id: UUID(), userName: "Alex Malygin1", cardNumber: "1234122333365554"),
-            CardModel(id: UUID(), userName: "Alex Malygin2", cardNumber: "1234122333365554"),
-            CardModel(id: UUID(), userName: "Alex Malygin3", cardNumber: "1234122333365254"),
-            CardModel(id: UUID(), userName: "Alex Malygin4", cardNumber: "1234122333365554"),
-            CardModel(id: UUID(), userName: "Alex Malygin5", cardNumber: "1234122333365554"),
-            CardModel(id: UUID(), userName: "Alex Malygin6", cardNumber: "1234122333365554"),
-            CardModel(id: UUID(), userName: "Alex Malygin7", cardNumber: "1234122333361312"),
-            CardModel(id: UUID(), userName: "Alex Malygin8", cardNumber: "1234122333365554"),
-            CardModel(id: UUID(), userName: "Alex Malygin9", cardNumber: "1234122333365545"),
+            CardModel(id: UUID(), cardType: "VISA", userName: "Test User", cardNumber: "1234122333365554", bgType: .default),
+            CardModel(id: UUID(), cardType: "Master Card", userName: "Test User", cardNumber: "1234122333365554", bgType: .flare),
+            CardModel(id: UUID(), cardType: "VISA", userName: "Test User", cardNumber: "1234122333365554", bgType: .ohhappiness),
+            CardModel(id: UUID(), cardType: "VISA", userName: "Test User", cardNumber: "1234122333365254", bgType: .flare),
+            CardModel(id: UUID(), cardType: "Master Card", userName: "Test User", cardNumber: "1234122333365554", bgType: .ohhappiness),
+            CardModel(id: UUID(), cardType: "Master Card", userName: "Test User", cardNumber: "1234122333365554", bgType: .default),
+            CardModel(id: UUID(), cardType: "VISA", userName: "Test User", cardNumber: "1234122333365554", bgType: .ohhappiness),
+            CardModel(id: UUID(), cardType: "Master Card", userName: "Test User", cardNumber: "1234122333361312", bgType: .flare),
+            CardModel(id: UUID(), cardType: "VISA", userName: "Test User", cardNumber: "1234122333365554", bgType: .default),
+            CardModel(id: UUID(), cardType: "Master Card", userName: "Test User", cardNumber: "1234122333365545", bgType: .default),
         ]
+        selectedCard = CardModel(id: UUID(), cardType: "Master Card", userName: "", cardNumber: "", bgType: .default)
     }
 }

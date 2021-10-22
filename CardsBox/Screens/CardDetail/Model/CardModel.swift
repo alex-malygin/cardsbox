@@ -9,6 +9,8 @@ import Foundation
 
 struct CardModel: Identifiable {
     var id: UUID
+    var cardType: String
     var userName: String
     var cardNumber: String
+    var bgType: BackgroundCardType
 }

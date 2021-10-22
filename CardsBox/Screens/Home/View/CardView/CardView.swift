@@ -8,18 +8,11 @@
 import SwiftUI
 
 struct CardView: View {
-    var cardType: String
-    var cardNumber: String
-    var cardHolderName: String
-    var backgroundCard: [Color]
-    
-    init(cardType: String, cardNumber: String,
-         cardHolderName: String, backgroundCard: [Color]) {
-        self.cardType = cardType
-        self.cardNumber = cardNumber
-        self.cardHolderName = cardHolderName
-        self.backgroundCard = backgroundCard
-    }
+    @Binding var cardType: String
+    @Binding var cardNumber: String
+    @Binding var cardHolderName: String
+    @Binding var backgroundType: BackgroundCardType
+    @State private var backgroundCard: [Color] = []
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -56,11 +49,22 @@ struct CardView: View {
             }
             Spacer()
         }
+        .onAppear(perform: {
+            switch backgroundType {
+            case .ohhappiness:
+                backgroundCard = Gradients().ohhappinessCardBackground
+            case .flare:
+                backgroundCard = Gradients().flareCardBackground
+            case .default:
+                backgroundCard = Gradients().defaultCardBackground
+            }
+        })
         .padding([.top, .bottom], 5)
         .padding([.leading, .trailing], 25)
-        .background(LinearGradient(gradient: Gradient(colors: backgroundCard),
-                                   startPoint: .topLeading,
-                                   endPoint: .bottomTrailing))
+        .background(LinearGradient(gradient:
+                                    Gradient(colors: backgroundCard),
+                                   startPoint: .bottom,
+                                   endPoint: .top))
         .cornerRadius(20.0)
         .frame(height: 190)
     }
@@ -68,10 +72,10 @@ struct CardView: View {
 
 struct CardViewCell_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(cardType: "VISA",
-                 cardNumber: "",
-                 cardHolderName: "",
-                 backgroundCard: defaultCardBackground)
+        CardView(cardType: .constant("VISA"),
+                 cardNumber: .constant(""),
+                 cardHolderName: .constant(""),
+                 backgroundType: .constant(.default))
             .previewLayout(.fixed(width: 390, height: 190))
     }
 }

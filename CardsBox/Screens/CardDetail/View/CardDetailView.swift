@@ -13,11 +13,12 @@ enum CardDetailMode {
 }
 
 struct CardDetailView: View {
+    @ObservedObject private var viewModel = CardDetailViewModel()
+    
     @State private var userName: String = ""
     @State private var cardNumber: String = ""
     @Binding var viewMode: CardDetailMode
-    @Binding var cardModel: CardModel?
-    @ObservedObject private var viewModel = CardDetailViewModel()
+    @Binding var cardModel: CardModel
 
     var body: some View {
         VStack(alignment: .trailing) {
@@ -25,37 +26,30 @@ struct CardDetailView: View {
             ScrollView {
                 VStack(spacing: 25) {
                     Spacer()
-                    CardView(cardType: "VISA",
-                             cardNumber: cardNumber,
-                             cardHolderName: userName,
-                             backgroundCard: defaultCardBackground)
+                    CardView(cardType: .constant(cardModel.cardType),
+                             cardNumber: $cardNumber,
+                             cardHolderName: $userName,
+                             backgroundType: $cardModel.bgType)
                     Spacer()
 
                     VStack(spacing: 15) {
                         TextFieldView(Strings.cardDetailCardNumberPlaceholder, text: $cardNumber, maxLenth: 16)
                             .onAppear() {
-                                cardNumber = viewMode == .create ? "" : cardModel?.cardNumber ?? ""
+                                cardNumber = viewMode == .create ? "" : cardModel.cardNumber
                             }
-                            .onChange(of: cardNumber, perform: { value in
-                                cardNumber = value
-                            })
                             .keyboardType(.numberPad)
                         TextFieldView(Strings.cardDetailEnterNamePlaceholder, text: $userName, maxLenth: 25)
                             .onAppear() {
-                                userName = viewMode == .create ? "" : cardModel?.userName ?? ""
+                                userName = viewMode == .create ? "" : cardModel.userName
                             }
-                            .onChange(of: userName, perform: { value in
-                                userName = value
-                            })
                     }
                     
                     Button(action: {
                         
-                    },
-                    label: {
+                    }, label: {
                         Text( viewMode == .create ? Strings.actionAddTitle : Strings.actionSaveTitle)
                             .frame(width: 250, height: 50)
-                            .background(gradient1)
+                            .background(.black)
                             .foregroundColor(.white)
                             .cornerRadius(8.0)
                     })
