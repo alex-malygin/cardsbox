@@ -14,6 +14,7 @@ final class HomeViewModel: ObservableObject {
     @Published private(set) var cardList: [CardModel] = []
     @Published var mode: CardDetailMode = .create
     @Published var selectedCard: CardModel
+    @Published var isShowingDetails: Bool = false
     
     // MARK: - Init
     init() {

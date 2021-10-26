@@ -12,7 +12,7 @@ struct CardsBoxApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainContentView()
         }
     }
 }

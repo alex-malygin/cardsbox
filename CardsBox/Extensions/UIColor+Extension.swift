@@ -6,6 +6,17 @@
 //
 
 import UIKit
+import SwiftUI
+
+extension Color {
+    static let mainSkyBlue = Color(UIColor(hexString: "#86A8E7"))
+    static let imperialRed = Color(UIColor(hexString: "#e63946"))
+    static let honeydew = Color(UIColor(hexString: "#F1FAEE"))
+    static let powderBlue = Color(UIColor(hexString: "#A8DADC"))
+    static let celadonBlue = Color(UIColor(hexString: "#457B9D"))
+    static let prussianBlue = Color(UIColor(hexString: "#1D3557"))
+    static let grayBackgroundView = Color(.systemGray6)
+}
 
 extension UIColor {
     convenience init(hexString: String) {

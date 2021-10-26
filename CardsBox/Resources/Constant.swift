@@ -7,5 +7,3 @@
 
 import UIKit
 import SwiftUI
-
-let grayBackgroundView = Color(.systemGray6)
