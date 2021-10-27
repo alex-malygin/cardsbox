@@ -17,11 +17,12 @@ struct MainContentView: View {
                 MainTabView()
                     .navigationViewStyle(.stack)
                     .navigationBarTitleDisplayMode(.inline)
+                    .ignoresSafeArea(.keyboard)
             } else {
                 LoginView()
                     .navigationViewStyle(.stack)
                     .navigationBarTitleDisplayMode(.inline)
-                    .ignoresSafeArea(.keyboard, edges: .bottom)
+                    .ignoresSafeArea(.keyboard)
             }   
         }
         .navigationBarBackButtonHidden(true)

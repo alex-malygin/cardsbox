@@ -30,6 +30,7 @@ struct HomeView: View {
                     .padding([.top, .bottom], 0)
                     .padding([.trailing, .leading], 8)
                 }
+                .padding(.top, 10)
             }
         }
         .sheet(isPresented: $viewModel.isShowingDetails) {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 extension View {
+    
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
@@ -18,4 +19,12 @@ extension View {
                                     endPoint: .top))
             .mask(self)
     }
+}
+
+func changeNavigationBarAppearance(isOn: Bool) {
+    let appearance = UINavigationBarAppearance()
+    appearance.configureWithOpaqueBackground()
+    
+    UINavigationBar.appearance().isTranslucent = true
+    UINavigationBar.appearance().scrollEdgeAppearance = isOn ? appearance : nil
 }

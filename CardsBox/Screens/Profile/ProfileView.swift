@@ -11,11 +11,13 @@ struct ProfileView: View {
     
     var body: some View {
         VStack {
-            avatarImage
-                .padding()
+            ScrollView {
+                avatarImage
+                    .padding()
+                
+                settingsMenu
+            }
             
-            Spacer()
-
             NavigationLink(destination: MainContentView(auth: false)) {
                 Text("Logout")
                     .fontWeight(.semibold)
@@ -34,7 +36,7 @@ struct ProfileView: View {
                 .resizable()
             .frame(width: 150, height: 150, alignment: .center)
             .clipShape(Circle())
-            .shadow(radius: 20)
+            .shadow(radius: 8)
             .overlay(Circle()
                         .stroke(LinearGradient(gradient:
                                                 Gradient(colors: Gradients().defaultCardBackground),
@@ -47,6 +49,38 @@ struct ProfileView: View {
                 .font(Font.title2)
                 .fontWeight(.semibold)
         }
+    }
+    
+    private var settingsMenu: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            NavigationLink {
+                SignUpView()
+            } label: {
+                Label("About app", systemImage: "iphone")
+            }
+            Divider()
+            
+            NavigationLink {
+                
+            } label: {
+                Label("About app", systemImage: "iphone")
+            }
+            Divider()
+            
+            NavigationLink {
+                
+            } label: {
+                Label("About app", systemImage: "iphone")
+            }
+            
+        }
+        .padding()
+        .background(.white)
+        .overlay(RoundedRectangle(cornerRadius: 10.0)
+                    .stroke(.clear))
+        .cornerRadius(10.0)
+        .padding()
+        .shadow(color: .secondary ,radius: 5)
     }
 }
 
