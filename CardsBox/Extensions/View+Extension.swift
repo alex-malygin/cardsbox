@@ -21,10 +21,10 @@ extension View {
     }
 }
 
-func changeNavigationBarAppearance(isOn: Bool) {
+func updateNavigationAppearance() {
     let appearance = UINavigationBarAppearance()
     appearance.configureWithOpaqueBackground()
     
     UINavigationBar.appearance().isTranslucent = true
-    UINavigationBar.appearance().scrollEdgeAppearance = isOn ? appearance : nil
+    UINavigationBar.appearance().scrollEdgeAppearance = appearance
 }

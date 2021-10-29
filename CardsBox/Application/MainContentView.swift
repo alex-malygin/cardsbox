@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct MainContentView: View {
+    @State var auth: Bool = false
     
-    @State var auth: Bool = true
+    init() {
+        debugPrint(Auth.auth().currentUser?.displayName)
+    }
     
     var body: some View {
         NavigationView {
             if auth {
                 MainTabView()
                     .navigationViewStyle(.stack)
-                    .navigationBarTitleDisplayMode(.inline)
                     .ignoresSafeArea(.keyboard)
             } else {
                 LoginView()
@@ -25,8 +28,6 @@ struct MainContentView: View {
                     .ignoresSafeArea(.keyboard)
             }   
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
     }
 }
 

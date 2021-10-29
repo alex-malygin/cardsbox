@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProfileView: View {
     
+    @State var isActive: Bool = false
+    
     var body: some View {
         VStack {
             ScrollView {
@@ -18,15 +20,19 @@ struct ProfileView: View {
                 settingsMenu
             }
             
-            NavigationLink(destination: MainContentView(auth: false)) {
+            Button {
+                isActive = true
+            } label: {
                 Text("Logout")
                     .fontWeight(.semibold)
                     .foregroundColor(Color.white)
+                    .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50, alignment: .center)
             }
-            .frame(width: 300, height: 50, alignment: .center)
             .background(Color.imperialRed)
             .cornerRadius(10.0)
             .padding()
+
+            NavigationLink(destination: LoginView(), isActive: $isActive) { }
         }
     }
     
@@ -42,7 +48,7 @@ struct ProfileView: View {
                                                 Gradient(colors: Gradients().defaultCardBackground),
                                                startPoint: .bottom,
                                                endPoint: .top),
-                                lineWidth: 7))
+                                lineWidth: 8))
             .padding()
             
             Text("Alexander Malygin")
@@ -56,7 +62,7 @@ struct ProfileView: View {
             NavigationLink {
                 SignUpView()
             } label: {
-                Label("About app", systemImage: "iphone")
+                Label("Settings", systemImage: "gear")
             }
             Divider()
             
@@ -65,17 +71,9 @@ struct ProfileView: View {
             } label: {
                 Label("About app", systemImage: "iphone")
             }
-            Divider()
-            
-            NavigationLink {
-                
-            } label: {
-                Label("About app", systemImage: "iphone")
-            }
-            
         }
         .padding()
-        .background(.white)
+        .background(Color.formColor)
         .overlay(RoundedRectangle(cornerRadius: 10.0)
                     .stroke(.clear))
         .cornerRadius(10.0)

@@ -8,5 +8,10 @@ target 'CardsBox' do
   # Pods for CardsBox
 
 pod 'SwiftGen'
+pod 'Firebase/Core' 
+pod 'Firebase/Storage'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
+pod 'SDWebImageSwiftUI'
 
 end

@@ -36,6 +36,9 @@ struct MainTabView: View {
                     Label("Profile", systemImage: "person.fill")
                 }
         }
+        .onAppear(perform: {
+            updateNavigationAppearance()
+        })
         .toolbar(content: {
             ToolbarItem(placement: .navigationBarTrailing) {
                 switch selectedTab {
@@ -46,8 +49,10 @@ struct MainTabView: View {
                 }
             }
         })
+        .navigationBarHidden(false)
         .navigationTitle($title.wrappedValue)
         .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     private var trailingButton: some View {

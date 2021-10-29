@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,6 +35,10 @@
 		F2DA622326D7FB320080C72B /* Card+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA622126D7FB320080C72B /* Card+CoreDataClass.swift */; };
 		F2DA622426D7FB320080C72B /* Card+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA622226D7FB320080C72B /* Card+CoreDataProperties.swift */; };
 		F2DA622626D804A80080C72B /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA622526D804A80080C72B /* CardModel.swift */; };
+		F2E87B38272AB70800B029BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2E87B37272AB70800B029BB /* GoogleService-Info.plist */; };
+		F2E87B3D272AC91400B029BB /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E87B3C272AC91400B029BB /* UserProfileModel.swift */; };
+		F2E87B41272AC97F00B029BB /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E87B40272AC97F00B029BB /* FirebaseManager.swift */; };
+		F2E87B45272AE31700B029BB /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E87B44272AE31700B029BB /* SignUpViewModel.swift */; };
 		F2FD36F627285EFA00A3DEC6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FD36F527285EFA00A3DEC6 /* SignUpView.swift */; };
 		F2FD36F82728655700A3DEC6 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FD36F72728655700A3DEC6 /* MainContentView.swift */; };
 /* End PBXBuildFile section */
@@ -72,6 +76,10 @@
 		F2DA622126D7FB320080C72B /* Card+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F2DA622226D7FB320080C72B /* Card+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F2DA622526D804A80080C72B /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		F2E87B37272AB70800B029BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F2E87B3C272AC91400B029BB /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
+		F2E87B40272AC97F00B029BB /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		F2E87B44272AE31700B029BB /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		F2FD36F527285EFA00A3DEC6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		F2FD36F72728655700A3DEC6 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,9 +138,10 @@
 				F26F1945267913EA0070C148 /* CustomViews */,
 				F29A47E12677CD32009BCDD1 /* Resources */,
 				F2B6C1412667EC3D00EC9025 /* Application */,
-				F29A47D32677B2A9009BCDD1 /* CoreData */,
+				F2E87B3E272AC93500B029BB /* Managers */,
 				F2B6C13F2667EC2500EC9025 /* Screens */,
 				F2029D3826660EE800B2293B /* Info.plist */,
+				F2E87B37272AB70800B029BB /* GoogleService-Info.plist */,
 				F2029D3526660EE800B2293B /* CardsBox.xcdatamodeld */,
 				F27C097C2726D44500989B1B /* Assets.xcassets */,
 				F2029D3026660EE800B2293B /* Preview Content */,
@@ -336,10 +345,53 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		F2FD36F427285ECF00A3DEC6 /* SignUp */ = {
+		F2E87B39272AC8D900B029BB /* View */ = {
 			isa = PBXGroup;
 			children = (
 				F2FD36F527285EFA00A3DEC6 /* SignUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F2E87B3A272AC8E300B029BB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F2E87B44272AE31700B029BB /* SignUpViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F2E87B3B272AC90300B029BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F2E87B3C272AC91400B029BB /* UserProfileModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F2E87B3E272AC93500B029BB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F2E87B3F272AC94600B029BB /* Firebase */,
+				F29A47D32677B2A9009BCDD1 /* CoreData */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		F2E87B3F272AC94600B029BB /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				F2E87B40272AC97F00B029BB /* FirebaseManager.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		F2FD36F427285ECF00A3DEC6 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				F2E87B3B272AC90300B029BB /* Model */,
+				F2E87B39272AC8D900B029BB /* View */,
+				F2E87B3A272AC8E300B029BB /* ViewModel */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -356,6 +408,7 @@
 				F2029D2326660EE600B2293B /* Sources */,
 				F2029D2426660EE600B2293B /* Frameworks */,
 				F2029D2526660EE600B2293B /* Resources */,
+				1D834F1B1329F0C5D97D7755 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -405,6 +458,7 @@
 			files = (
 				F2029D3226660EE800B2293B /* Preview Assets.xcassets in Resources */,
 				F27C097D2726D44500989B1B /* Assets.xcassets in Resources */,
+				F2E87B38272AB70800B029BB /* GoogleService-Info.plist in Resources */,
 				F278DE692678DFFD00042F38 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +486,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1D834F1B1329F0C5D97D7755 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CardsBox/Pods-CardsBox-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CardsBox/Pods-CardsBox-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CardsBox/Pods-CardsBox-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F2C874CD26C272AD00BEC696 /* SwiftGen */ = {
@@ -462,6 +533,7 @@
 				F278DE6B2678E0A800042F38 /* Localization.swift in Sources */,
 				F2DA622326D7FB320080C72B /* Card+CoreDataClass.swift in Sources */,
 				F22915212722C1A4000370E2 /* BackgroundCardView.swift in Sources */,
+				F2E87B3D272AC91400B029BB /* UserProfileModel.swift in Sources */,
 				F2948C6126C6BB6600F6881C /* View+Extension.swift in Sources */,
 				F27C09802726D72C00989B1B /* LoginView.swift in Sources */,
 				F2948C5F26C6B8FD00F6881C /* Constant.swift in Sources */,
@@ -474,6 +546,8 @@
 				F22915232722C211000370E2 /* Gradients.swift in Sources */,
 				F2029D2D26660EE600B2293B /* HomeView.swift in Sources */,
 				F2DA622026D7FA330080C72B /* CardDetailViewModel.swift in Sources */,
+				F2E87B45272AE31700B029BB /* SignUpViewModel.swift in Sources */,
+				F2E87B41272AC97F00B029BB /* FirebaseManager.swift in Sources */,
 				F2FD36F82728655700A3DEC6 /* MainContentView.swift in Sources */,
 				F229151E2722AFE8000370E2 /* ProfileView.swift in Sources */,
 				F2FD36F627285EFA00A3DEC6 /* SignUpView.swift in Sources */,

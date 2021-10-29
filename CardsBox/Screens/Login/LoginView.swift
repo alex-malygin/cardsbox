@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var userName: String = ""
-    @State var auth: Bool = false
+    @State private var isActive: Bool = false
+    @State var email = ""
+    @State var password = ""
     
     var body: some View {
         ZStack {
             circleBackground
+                .clipped()
+                .ignoresSafeArea()
             
             VStack {
                 Spacer()
@@ -22,6 +25,11 @@ struct LoginView: View {
                 registerButton
             }
         }
+        .onAppear(perform: {
+            updateNavigationAppearance()
+        })
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
         .onTapGesture {
             hideKeyboard()
         }
@@ -34,15 +42,17 @@ struct LoginView: View {
                 .font(.title2)
                 .padding([.top, .bottom], 20)
             
-            TextFieldView("Email", text: $userName)
+            TextFieldView("Email", text: $email)
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
             
-            TextFieldView("Password", text: $userName)
+            TextFieldView("Password", text: $password)
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
             
-            NavigationLink(destination: MainTabView()) {
+            Button {
+                
+            } label: {
                 Text("Login")
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50, alignment: .center)
@@ -51,8 +61,11 @@ struct LoginView: View {
                     .cornerRadius(8.0)
             }
             .padding()
+            
+            NavigationLink(destination: MainTabView(), isActive: $isActive) { }
+
         }
-        .background(Color.white)
+        .background(Color.formColor)
         .cornerRadius(25.0)
         .shadow(radius: 10)
         .padding([.leading, .trailing], 30)
@@ -84,7 +97,7 @@ struct LoginView: View {
                    height: UIScreen.screenWidth * 2,
                    alignment: .center)
             .position(x: UIScreen.screenWidth / 2,
-                      y: -50)
+                      y: 0)
     }
 }
 
