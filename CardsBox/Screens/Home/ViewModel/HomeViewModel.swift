@@ -8,28 +8,28 @@
 import Foundation
 import Combine
 import CoreData
+import FirebaseAuth
 
 final class HomeViewModel: ObservableObject {
     // MARK: - Properties
     @Published private(set) var cardList: [CardModel] = []
     @Published var mode: CardDetailMode = .create
-    @Published var selectedCard: CardModel
+    @Published var selectedCard: CardModel?
     @Published var isShowingDetails: Bool = false
+    
+    private var cancellable = Set<AnyCancellable>()
+    private let dataManager = DataManager.shared
     
     // MARK: - Init
     init() {
-        cardList = [
-            CardModel(id: UUID(), cardType: "VISA", userName: "Test User", cardNumber: "1234122333365554", bgType: .default),
-            CardModel(id: UUID(), cardType: "Master Card", userName: "Test User", cardNumber: "1234122333365554", bgType: .flare),
-            CardModel(id: UUID(), cardType: "VISA", userName: "Test User", cardNumber: "1234122333365554", bgType: .ohhappiness),
-            CardModel(id: UUID(), cardType: "VISA", userName: "Test User", cardNumber: "1234122333365254", bgType: .flare),
-            CardModel(id: UUID(), cardType: "Master Card", userName: "Test User", cardNumber: "1234122333365554", bgType: .ohhappiness),
-            CardModel(id: UUID(), cardType: "Master Card", userName: "Test User", cardNumber: "1234122333365554", bgType: .default),
-            CardModel(id: UUID(), cardType: "VISA", userName: "Test User", cardNumber: "1234122333365554", bgType: .ohhappiness),
-            CardModel(id: UUID(), cardType: "Master Card", userName: "Test User", cardNumber: "1234122333361312", bgType: .flare),
-            CardModel(id: UUID(), cardType: "VISA", userName: "Test User", cardNumber: "1234122333365554", bgType: .default),
-            CardModel(id: UUID(), cardType: "Master Card", userName: "Test User", cardNumber: "1234122333365545", bgType: .default),
-        ]
-        selectedCard = CardModel(id: UUID(), cardType: "Master Card", userName: "", cardNumber: "", bgType: .default)
+        if let userID = Auth.auth().currentUser?.uid {
+            DatabaseManager.shared.getCards(userID: userID).sink { completion in
+                
+            } receiveValue: { [weak self] cardList in
+                self?.cardList = cardList
+            }.store(in: &cancellable)
+        } else {
+            
+        }
     }
 }

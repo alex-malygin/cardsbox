@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-enum BackgroundCardType {
+enum BackgroundCardType: String {
     case ohhappiness, flare, black, white, `default`
 }
 

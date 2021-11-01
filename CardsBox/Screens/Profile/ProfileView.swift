@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ProfileView: View {
-    
-    @State var isActive: Bool = false
+    @ObservedObject var viewModel = ProfileViewModel()
     
     var body: some View {
         VStack {
@@ -21,7 +21,7 @@ struct ProfileView: View {
             }
             
             Button {
-                isActive = true
+                viewModel.logout()
             } label: {
                 Text("Logout")
                     .fontWeight(.semibold)
@@ -32,12 +32,13 @@ struct ProfileView: View {
             .cornerRadius(10.0)
             .padding()
 
-            NavigationLink(destination: LoginView(), isActive: $isActive) { }
+            NavigationLink(destination: LoginView(), isActive: $viewModel.isActive) { }
         }
     }
     
     private var avatarImage: some View {
         VStack {
+            
             Image("avatar")
                 .resizable()
             .frame(width: 150, height: 150, alignment: .center)
@@ -51,7 +52,7 @@ struct ProfileView: View {
                                 lineWidth: 8))
             .padding()
             
-            Text("Alexander Malygin")
+            Text(viewModel.profile?.userName ?? "")
                 .font(Font.title2)
                 .fontWeight(.semibold)
         }
@@ -60,7 +61,7 @@ struct ProfileView: View {
     private var settingsMenu: some View {
         VStack(alignment: .leading, spacing: 20) {
             NavigationLink {
-                SignUpView()
+                
             } label: {
                 Label("Settings", systemImage: "gear")
             }

@@ -9,22 +9,22 @@ import SwiftUI
 import FirebaseAuth
 
 struct MainContentView: View {
-    @State var auth: Bool = false
+    private let databaseManager = DatabaseManager.shared
     
     init() {
-        debugPrint(Auth.auth().currentUser?.displayName)
+        databaseManager.getUserProfile(userID: Auth.auth().currentUser?.uid)
     }
     
     var body: some View {
         NavigationView {
-            if auth {
-                MainTabView()
-                    .navigationViewStyle(.stack)
-                    .ignoresSafeArea(.keyboard)
-            } else {
+            if Auth.auth().currentUser == nil {
                 LoginView()
                     .navigationViewStyle(.stack)
                     .navigationBarTitleDisplayMode(.inline)
+                    .ignoresSafeArea(.keyboard)
+            } else {
+                MainTabView()
+                    .navigationViewStyle(.stack)
                     .ignoresSafeArea(.keyboard)
             }   
         }

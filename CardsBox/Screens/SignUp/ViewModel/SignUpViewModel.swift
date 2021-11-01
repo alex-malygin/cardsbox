@@ -12,17 +12,44 @@ import UIKit
 class SignUpViewModel: ObservableObject {
     @Published var userModel = UserProfileModel()
     @Published var isActive = false
+    @Published var image = UIImage(named: "avatar") ?? UIImage()
+    @Published var selectedImage: UIImage?
+    @Published var showSheet = false
+    @Published var showLoader = false
+    @Published var showAlert = false
+    @Published var errorText = ""
     
     private var cancellable = Set<AnyCancellable>()
     
-    func registration() {
-        let image = UIImage(named: "avatar")
-        userModel.userName = "Alex"
-        userModel.email = "limanka92@gmail.com"
-        userModel.password = "qwerty1234"
-        userModel.avatarRef = image
+    init() {
         
-        FirebaseManager.shared.registration(user: userModel)
+    }
     
+    func setNewImage(image: UIImage) {
+        self.selectedImage = image
+        self.image = image
+    }
+    
+    func registration() {
+        if selectedImage != nil {
+            userModel.avatarRef = image
+        }
+        
+        showLoader = true
+        FirebaseManager.shared.registration(user: userModel)
+            .sink { completion in
+                switch completion {
+                case .finished: break
+                case let .failure(error):
+                    debugPrint("Error register", error)
+                    self.errorText = error.localizedDescription
+                    self.showAlert = true
+                    self.showLoader = false
+                }
+            } receiveValue: { [weak self] success in
+                self?.isActive = success
+                self?.showLoader = false
+            }
+            .store(in: &self.cancellable)
     }
 }

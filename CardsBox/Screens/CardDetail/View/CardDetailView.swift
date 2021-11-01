@@ -13,13 +13,12 @@ enum CardDetailMode {
 }
 
 struct CardDetailView: View {
-    @ObservedObject private var viewModel = CardDetailViewModel()
+    @ObservedObject var viewModel: CardDetailViewModel
     
     @State private var userName: String = ""
     @State private var cardNumber: String = ""
+    @State private var selectedBG: BackgroundCardType = .default
     @Binding var viewMode: CardDetailMode
-    @Binding var cardModel: CardModel
-    @State private var cardBG: [BackgroundCardType] = [.default, .ohhappiness, .flare, .black, .white]
 
     var body: some View {
         ZStack {
@@ -31,22 +30,29 @@ struct CardDetailView: View {
                 ScrollView() {
                     VStack(spacing: 25) {
                         Spacer()
-                        CardView(cardType: .constant(cardModel.cardType),
+                        CardView(cardType: .constant(viewModel.cardModel.cardType),
                                  cardNumber: $cardNumber,
                                  cardHolderName: $userName,
-                                 backgroundType: $cardModel.bgType)
+                                 backgroundType: $viewModel.cardModel.bgType)
                         Spacer()
 
                         VStack(spacing: 15) {
                             TextFieldView(Strings.cardDetailCardNumberPlaceholder, text: $cardNumber, maxLenth: 16)
                                 .onAppear() {
-                                    cardNumber = viewMode == .create ? "" : cardModel.cardNumber
+                                    cardNumber = viewMode == .create ? "" : viewModel.cardModel.cardNumber
                                 }
+                                .onChange(of: cardNumber, perform: { newValue in
+                                    viewModel.cardModel.cardNumber = newValue
+                                })
                                 .keyboardType(.numberPad)
+                            
                             TextFieldView(Strings.cardDetailEnterNamePlaceholder, text: $userName, maxLenth: 25)
                                 .onAppear() {
-                                    userName = viewMode == .create ? "" : cardModel.userName
+                                    userName = viewMode == .create ? "" : viewModel.cardModel.userName
                                 }
+                                .onChange(of: userName, perform: { newValue in
+                                    viewModel.cardModel.userName = newValue
+                                })
                                 .ignoresSafeArea(.keyboard)
                         }
        
@@ -59,12 +65,13 @@ struct CardDetailView: View {
                             .padding()
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack {
-                                    ForEach(cardBG, id: \.self) { type in
+                                    ForEach(viewModel.cardBG, id: \.self) { type in
                                         Spacer()
                                         BackgroundCardView(viewModel: BackgroundCardViewModel(backgroundType: type,
-                                                                                              isSelected: type == cardModel.bgType))
+                                                                                              isSelected: type == selectedBG))
                                             .onTapGesture {
-                                                cardModel.bgType = type
+                                                viewModel.cardModel.bgType = type
+                                                selectedBG = type
                                             }
                                         Spacer()
                                     }
@@ -73,7 +80,7 @@ struct CardDetailView: View {
                         }
                         
                         Button(action: {
-                            
+                            viewMode == .create ? viewModel.addCard() : viewModel.updateCard()
                         }, label: {
                             Text( viewMode == .create ? Strings.mainAddNewButton : Strings.actionSaveTitle)
                                 .fontWeight(.semibold)
@@ -89,20 +96,23 @@ struct CardDetailView: View {
                     hideKeyboard()
                 }
             }
+            .onAppear {
+                selectedBG = viewModel.cardModel.bgType
+            }
         }
     }
 }
 
-struct CardDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardDetailView(viewMode: .constant(.create),
-                       cardModel: .constant(CardModel(id: UUID(),
-                                                      cardType: "Master Card",
-                                                      userName: "Test User",
-                                                      cardNumber: "1234122333365545",
-                                                      bgType: .default)))
-    }
-}
+//struct CardDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardDetailView(viewMode: .constant(.create),
+//                       cardModel: .constant(CardModel(id: UUID().uuidString,
+//                                                      cardType: "Master Card",
+//                                                      userName: "Test User",
+//                                                      cardNumber: "1234122333365545",
+//                                                      bgType: BackgroundCardType(rawValue: "") ?? .default)))
+//    }
+//}
 
 struct HeaderCardDetailView: View {
     @Environment(\.presentationMode) var presentationMode

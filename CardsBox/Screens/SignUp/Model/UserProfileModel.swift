@@ -26,7 +26,7 @@ class UserProfileModel {
         self.avatarRef = nil
     }
     
-    init(id: String, userName: String, email: String, password: String, avatar: String, avatarRef: UIImage) {
+    init(id: String, userName: String, email: String, password: String?, avatar: String, avatarRef: UIImage?) {
         self.id = id
         self.userName = userName
         self.email = email
@@ -35,13 +35,12 @@ class UserProfileModel {
         self.avatarRef = avatarRef
     }
     
-    init(model: User) {
-        self.id = model.uid
-        self.userName = model.displayName
-        self.email = model.email
+    init(model: User?) {
+        self.id = model?.uid
+        self.userName = model?.displayName
+        self.email = model?.email
         self.password = nil
-        self.avatar = model.photoURL?.absoluteString
+        self.avatar = model?.photoURL?.absoluteString
         self.avatarRef = nil
     }
-    
 }

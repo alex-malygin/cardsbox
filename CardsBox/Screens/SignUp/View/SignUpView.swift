@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct SignUpView: View {
+    @ObservedObject private var viewModel = SignUpViewModel()
+    @Environment(\.presentationMode) var presentationMode
+    
     @State private var userName = ""
     @State private var email = ""
     @State private var password = ""
-    @ObservedObject private var viewModel = SignUpViewModel()
     
     var body: some View {
         ZStack {
@@ -20,13 +22,36 @@ struct SignUpView: View {
                 .ignoresSafeArea()
             
             VStack {
+                HStack {
+                    Button {
+                        self.presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "chevron.backward.circle.fill")
+                            .resizable()
+                            .foregroundColor(Color.powderBlue)
+                    }
+                    .frame(width: 35, height: 35, alignment: .center)
+                    Spacer()
+                }
+                .background(Color.clear)
+                .padding([.leading], 20)
+               
                 ScrollView {
                     avatarImage
                         .padding()
                     loginForm
                 }
             }
+            ActivityIndicator(shouldAnimate: $viewModel.showLoader)
         }
+        .sheet(isPresented: $viewModel.showSheet) {
+            ImagePicker(sourceType: .photoLibrary, selectedImage: { image in
+                viewModel.setNewImage(image: image)
+            })
+        }
+        .alert(isPresented: $viewModel.showAlert, content: {
+            Alert(title: Text("Error"), message: Text($viewModel.errorText.wrappedValue), dismissButton: .cancel())
+        })
         .navigationBarHidden(true)
         .onTapGesture {
             hideKeyboard()
@@ -35,9 +60,10 @@ struct SignUpView: View {
     
     var avatarImage: some View {
         VStack {
-            Image("avatar")
+            Image(uiImage: $viewModel.image.wrappedValue)
                 .resizable()
                 .frame(width: 150, height: 150, alignment: .center)
+                .cornerRadius(70)
                 .clipShape(Circle())
                 .shadow(radius: 8)
                 .overlay(Circle()
@@ -47,6 +73,9 @@ struct SignUpView: View {
                                                    endPoint: .topTrailing),
                                     lineWidth: 8))
                 .padding()
+                .onTapGesture {
+                    viewModel.showSheet = true
+                }
         }
     }
     

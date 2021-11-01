@@ -18,6 +18,11 @@
 		F229151E2722AFE8000370E2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F229151D2722AFE8000370E2 /* ProfileView.swift */; };
 		F22915212722C1A4000370E2 /* BackgroundCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22915202722C1A4000370E2 /* BackgroundCardView.swift */; };
 		F22915232722C211000370E2 /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22915222722C211000370E2 /* Gradients.swift */; };
+		F25177E8272C7B93005F105B /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25177E7272C7B93005F105B /* ImagePickerManager.swift */; };
+		F25177EC272C8152005F105B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25177EB272C8152005F105B /* LoginViewModel.swift */; };
+		F25177EF272C820B005F105B /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25177EE272C820B005F105B /* ActivityIndicator.swift */; };
+		F25177F1272C82F7005F105B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25177F0272C82F7005F105B /* ProfileViewModel.swift */; };
+		F25177F3272D3881005F105B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25177F2272D3881005F105B /* DataManager.swift */; };
 		F26F194926791A7F0070C148 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26F194826791A7F0070C148 /* CustomTextFieldView.swift */; };
 		F278DE692678DFFD00042F38 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F278DE682678DFFD00042F38 /* Localizable.strings */; };
 		F278DE6B2678E0A800042F38 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F278DE6A2678E0A800042F38 /* Localization.swift */; };
@@ -59,6 +64,11 @@
 		F229151D2722AFE8000370E2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F22915202722C1A4000370E2 /* BackgroundCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCardView.swift; sourceTree = "<group>"; };
 		F22915222722C211000370E2 /* Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradients.swift; sourceTree = "<group>"; };
+		F25177E7272C7B93005F105B /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
+		F25177EB272C8152005F105B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		F25177EE272C820B005F105B /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		F25177F0272C82F7005F105B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		F25177F2272D3881005F105B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F26F194826791A7F0070C148 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		F278DE682678DFFD00042F38 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		F278DE6A2678E0A800042F38 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
@@ -169,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				F229151D2722AFE8000370E2 /* ProfileView.swift */,
+				F25177F0272C82F7005F105B /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -181,9 +192,34 @@
 			path = BackgroundCard;
 			sourceTree = "<group>";
 		};
+		F25177E9272C8127005F105B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F27C097F2726D72C00989B1B /* LoginView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F25177EA272C8146005F105B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F25177EB272C8152005F105B /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F25177ED272C81F9005F105B /* ActivityView */ = {
+			isa = PBXGroup;
+			children = (
+				F25177EE272C820B005F105B /* ActivityIndicator.swift */,
+			);
+			path = ActivityView;
+			sourceTree = "<group>";
+		};
 		F26F1945267913EA0070C148 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				F25177ED272C81F9005F105B /* ActivityView */,
 				F229151F2722C175000370E2 /* BackgroundCard */,
 				F26F1946267913F40070C148 /* TextFields */,
 			);
@@ -243,7 +279,8 @@
 		F27C097E2726D71800989B1B /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				F27C097F2726D72C00989B1B /* LoginView.swift */,
+				F25177EA272C8146005F105B /* ViewModel */,
+				F25177E9272C8127005F105B /* View */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -374,6 +411,8 @@
 			children = (
 				F2E87B3F272AC94600B029BB /* Firebase */,
 				F29A47D32677B2A9009BCDD1 /* CoreData */,
+				F25177E7272C7B93005F105B /* ImagePickerManager.swift */,
+				F25177F2272D3881005F105B /* DataManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -539,13 +578,17 @@
 				F2948C5F26C6B8FD00F6881C /* Constant.swift in Sources */,
 				F26F194926791A7F0070C148 /* CustomTextFieldView.swift in Sources */,
 				F229151B2722AEDD000370E2 /* MainTabView.swift in Sources */,
+				F25177F3272D3881005F105B /* DataManager.swift in Sources */,
 				F2DA622626D804A80080C72B /* CardModel.swift in Sources */,
 				F2029D3426660EE800B2293B /* Persistence.swift in Sources */,
+				F25177E8272C7B93005F105B /* ImagePickerManager.swift in Sources */,
 				F29A47D22677B0D8009BCDD1 /* HomeViewModel.swift in Sources */,
 				F29A47DF2677C562009BCDD1 /* ObservableCoreData.swift in Sources */,
 				F22915232722C211000370E2 /* Gradients.swift in Sources */,
 				F2029D2D26660EE600B2293B /* HomeView.swift in Sources */,
 				F2DA622026D7FA330080C72B /* CardDetailViewModel.swift in Sources */,
+				F25177EC272C8152005F105B /* LoginViewModel.swift in Sources */,
+				F25177F1272C82F7005F105B /* ProfileViewModel.swift in Sources */,
 				F2E87B45272AE31700B029BB /* SignUpViewModel.swift in Sources */,
 				F2E87B41272AC97F00B029BB /* FirebaseManager.swift in Sources */,
 				F2FD36F82728655700A3DEC6 /* MainContentView.swift in Sources */,
@@ -556,6 +599,7 @@
 				F2242FBB26D5604200ED980E /* String+Extension.swift in Sources */,
 				F2948C5D26C6B67700F6881C /* UIColor+Extension.swift in Sources */,
 				F298567D267280DA00488327 /* CardView.swift in Sources */,
+				F25177EF272C820B005F105B /* ActivityIndicator.swift in Sources */,
 				F2029D2B26660EE600B2293B /* CardsBoxApp.swift in Sources */,
 				F278DE742678F94B00042F38 /* CardDetailView.swift in Sources */,
 				F2029D3726660EE800B2293B /* CardsBox.xcdatamodeld in Sources */,

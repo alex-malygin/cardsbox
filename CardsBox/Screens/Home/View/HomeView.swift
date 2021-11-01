@@ -35,7 +35,8 @@ struct HomeView: View {
             }
         }
         .sheet(isPresented: $viewModel.isShowingDetails) {
-            CardDetailView(viewMode: $viewModel.mode, cardModel: $viewModel.selectedCard)
+            let detailViewModel = CardDetailViewModel(cardModel: $viewModel.selectedCard.wrappedValue)
+            CardDetailView(viewModel: detailViewModel, viewMode: $viewModel.mode)
         }
     }
 }

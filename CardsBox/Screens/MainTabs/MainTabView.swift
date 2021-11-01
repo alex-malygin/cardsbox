@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct MainTabView: View {
     enum Tab {
@@ -58,7 +59,7 @@ struct MainTabView: View {
     private var trailingButton: some View {
         Button(action: {
             viewModel.mode = .create
-            viewModel.selectedCard = CardModel(id: UUID(), cardType: "Master Card", userName: "", cardNumber: "", bgType: .default)
+            viewModel.selectedCard = CardModel(id: UUID().uuidString, cardType: "Master Card", userName: "", cardNumber: "", bgType: BackgroundCardType(rawValue: "") ?? .default)
             viewModel.isShowingDetails = true
         }, label: {
             Image(systemName: "plus")

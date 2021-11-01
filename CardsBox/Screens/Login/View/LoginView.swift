@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var isActive: Bool = false
+    @ObservedObject private var viewModel = LoginViewModel()
+    
     @State var email = ""
     @State var password = ""
     
@@ -24,6 +25,7 @@ struct LoginView: View {
                 Spacer()
                 registerButton
             }
+            ActivityIndicator(shouldAnimate: $viewModel.showLoader)
         }
         .onAppear(perform: {
             updateNavigationAppearance()
@@ -43,15 +45,21 @@ struct LoginView: View {
                 .padding([.top, .bottom], 20)
             
             TextFieldView("Email", text: $email)
+                .onChange(of: email, perform: { newValue in
+                    viewModel.userModel.email = newValue
+                })
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
             
             TextFieldView("Password", text: $password)
+                .onChange(of: password, perform: { newValue in
+                    viewModel.userModel.password = newValue
+                })
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
             
             Button {
-                
+                viewModel.login()
             } label: {
                 Text("Login")
                     .fontWeight(.semibold)
@@ -62,7 +70,7 @@ struct LoginView: View {
             }
             .padding()
             
-            NavigationLink(destination: MainTabView(), isActive: $isActive) { }
+            NavigationLink(destination: MainTabView(), isActive: $viewModel.isActive) { }
 
         }
         .background(Color.formColor)
