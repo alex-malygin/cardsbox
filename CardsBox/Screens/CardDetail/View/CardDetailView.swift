@@ -19,86 +19,87 @@ struct CardDetailView: View {
     @State private var cardNumber: String = ""
     @State private var selectedBG: BackgroundCardType = .default
     @Binding var viewMode: CardDetailMode
-
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-        ZStack {
-            Color.grayBackgroundView
-                .ignoresSafeArea()
-            
-            VStack(alignment: .leading) {
-                HeaderCardDetailView(title: viewMode == .create ? Strings.createModeTitle : Strings.editModeTitle)
-                ScrollView() {
-                    VStack(spacing: 25) {
-                        Spacer()
-                        CardView(cardType: .constant(viewModel.cardModel.cardType),
-                                 cardNumber: $cardNumber,
-                                 cardHolderName: $userName,
-                                 backgroundType: $viewModel.cardModel.bgType)
-                        Spacer()
-
-                        VStack(spacing: 15) {
-                            TextFieldView(Strings.cardDetailCardNumberPlaceholder, text: $cardNumber, maxLenth: 16)
-                                .onAppear() {
-                                    cardNumber = viewMode == .create ? "" : viewModel.cardModel.cardNumber
-                                }
-                                .onChange(of: cardNumber, perform: { newValue in
-                                    viewModel.cardModel.cardNumber = newValue
-                                })
-                                .keyboardType(.numberPad)
-                            
-                            TextFieldView(Strings.cardDetailEnterNamePlaceholder, text: $userName, maxLenth: 25)
-                                .onAppear() {
-                                    userName = viewMode == .create ? "" : viewModel.cardModel.userName
-                                }
-                                .onChange(of: userName, perform: { newValue in
-                                    viewModel.cardModel.userName = newValue
-                                })
-                                .ignoresSafeArea(.keyboard)
-                        }
-       
-                        VStack() {
-                            HStack {
-                                Text("Select background card:")
-                                    .fontWeight(.semibold)
-                                Spacer()
+        VStack(alignment: .leading) {
+            HeaderCardDetailView(title: viewMode == .create ? Strings.createModeTitle : Strings.editModeTitle)
+            ScrollView() {
+                VStack(spacing: 25) {
+                    Spacer()
+                    CardView(cardType: .constant(viewModel.cardModel.cardType),
+                             cardNumber: $cardNumber,
+                             cardHolderName: $userName,
+                             backgroundType: $viewModel.cardModel.bgType)
+                    Spacer()
+                    
+                    VStack(spacing: 15) {
+                        TextFieldView(Strings.cardDetailCardNumberPlaceholder, text: $cardNumber, maxLenth: 16)
+                            .onAppear() {
+                                cardNumber = viewMode == .create ? "" : viewModel.cardModel.cardNumber
                             }
-                            .padding()
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack {
-                                    ForEach(viewModel.cardBG, id: \.self) { type in
-                                        Spacer()
-                                        BackgroundCardView(viewModel: BackgroundCardViewModel(backgroundType: type,
-                                                                                              isSelected: type == selectedBG))
-                                            .onTapGesture {
-                                                viewModel.cardModel.bgType = type
-                                                selectedBG = type
-                                            }
-                                        Spacer()
-                                    }
-                                }
-                            }
-                        }
+                            .onChange(of: cardNumber, perform: { newValue in
+                                viewModel.cardModel.cardNumber = newValue
+                            })
+                            .keyboardType(.numberPad)
                         
-                        Button(action: {
-                            viewMode == .create ? viewModel.addCard() : viewModel.updateCard()
-                        }, label: {
-                            Text( viewMode == .create ? Strings.mainAddNewButton : Strings.actionSaveTitle)
-                                .fontWeight(.semibold)
-                                .frame(width: 250, height: 50)
-                                .background(Color.mainSkyBlue)
-                                .foregroundColor(.white)
-                                .cornerRadius(8.0)
-                        })
+                        TextFieldView(Strings.cardDetailEnterNamePlaceholder, text: $userName, maxLenth: 25)
+                            .onAppear() {
+                                userName = viewMode == .create ? "" : viewModel.cardModel.userName
+                            }
+                            .onChange(of: userName, perform: { newValue in
+                                viewModel.cardModel.userName = newValue
+                            })
+                            .ignoresSafeArea(.keyboard)
                     }
-                    .padding()
+                    
+                    VStack() {
+                        HStack {
+                            Text("Select background card:")
+                                .fontWeight(.semibold)
+                            Spacer()
+                        }
+                        .padding()
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(viewModel.cardBG, id: \.self) { type in
+                                    Spacer()
+                                    BackgroundCardView(viewModel: BackgroundCardViewModel(backgroundType: type,
+                                                                                          isSelected: type == selectedBG))
+                                        .onTapGesture {
+                                            viewModel.cardModel.bgType = type
+                                            selectedBG = type
+                                        }
+                                    Spacer()
+                                }
+                            }
+                        }
+                    }
+                    
+                    Button(action: {
+                        viewMode == .create ? viewModel.addCard() : viewModel.updateCard()
+                        
+                        viewModel.$isPresented.sink { success in
+                            presentationMode.wrappedValue.dismiss()
+                        }.store(in: &viewModel.cancellable)
+                        
+                    }, label: {
+                        Text( viewMode == .create ? Strings.mainAddNewButton : Strings.actionSaveTitle)
+                            .fontWeight(.semibold)
+                            .frame(width: 250, height: 50)
+                            .background(Color.mainSkyBlue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8.0)
+                    })
                 }
-                .onTapGesture {
-                    hideKeyboard()
-                }
+                .padding()
             }
-            .onAppear {
-                selectedBG = viewModel.cardModel.bgType
+            .onTapGesture {
+                hideKeyboard()
             }
+        }
+        .onAppear {
+            selectedBG = viewModel.cardModel.bgType
         }
     }
 }

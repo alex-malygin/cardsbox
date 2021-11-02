@@ -19,14 +19,9 @@ struct MainContentView: View {
         NavigationView {
             if Auth.auth().currentUser == nil {
                 LoginView()
-                    .navigationViewStyle(.stack)
-                    .navigationBarTitleDisplayMode(.inline)
-                    .ignoresSafeArea(.keyboard)
             } else {
                 MainTabView()
-                    .navigationViewStyle(.stack)
-                    .ignoresSafeArea(.keyboard)
-            }   
+            }
         }
     }
 }

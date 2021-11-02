@@ -47,7 +47,7 @@ class SignUpViewModel: ObservableObject {
                     self.showLoader = false
                 }
             } receiveValue: { [weak self] success in
-                self?.isActive = success
+                self?.isActive = true
                 self?.showLoader = false
             }
             .store(in: &self.cancellable)

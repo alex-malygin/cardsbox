@@ -13,7 +13,7 @@ final class CardDetailViewModel: ObservableObject {
     @Published var cardBG: [BackgroundCardType] = [.default, .ohhappiness, .flare, .black, .white]
     @Published var isPresented = false
     
-    private var cancellable = Set<AnyCancellable>()
+    var cancellable = Set<AnyCancellable>()
     
     init(cardModel: CardModel?) {
         if let cardModel = cardModel {

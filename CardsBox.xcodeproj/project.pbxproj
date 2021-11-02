@@ -23,6 +23,8 @@
 		F25177EF272C820B005F105B /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25177EE272C820B005F105B /* ActivityIndicator.swift */; };
 		F25177F1272C82F7005F105B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25177F0272C82F7005F105B /* ProfileViewModel.swift */; };
 		F25177F3272D3881005F105B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25177F2272D3881005F105B /* DataManager.swift */; };
+		F254718A2731938A00AD90AB /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25471892731938A00AD90AB /* AboutView.swift */; };
+		F254718C2731955400AD90AB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254718B2731955400AD90AB /* SettingsView.swift */; };
 		F26F194926791A7F0070C148 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26F194826791A7F0070C148 /* CustomTextFieldView.swift */; };
 		F278DE692678DFFD00042F38 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F278DE682678DFFD00042F38 /* Localizable.strings */; };
 		F278DE6B2678E0A800042F38 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F278DE6A2678E0A800042F38 /* Localization.swift */; };
@@ -69,6 +71,8 @@
 		F25177EE272C820B005F105B /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		F25177F0272C82F7005F105B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		F25177F2272D3881005F105B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		F25471892731938A00AD90AB /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		F254718B2731955400AD90AB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F26F194826791A7F0070C148 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		F278DE682678DFFD00042F38 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		F278DE6A2678E0A800042F38 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
@@ -216,6 +220,22 @@
 			path = ActivityView;
 			sourceTree = "<group>";
 		};
+		F25471872731937100AD90AB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F254718B2731955400AD90AB /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		F25471882731937A00AD90AB /* About */ = {
+			isa = PBXGroup;
+			children = (
+				F25471892731938A00AD90AB /* AboutView.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		F26F1945267913EA0070C148 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +349,8 @@
 		F2B6C13F2667EC2500EC9025 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F25471882731937A00AD90AB /* About */,
+				F25471872731937100AD90AB /* Settings */,
 				F2FD36F427285ECF00A3DEC6 /* SignUp */,
 				F27C097E2726D71800989B1B /* Login */,
 				F229151C2722AFDA000370E2 /* Profile */,
@@ -590,6 +612,7 @@
 				F25177EC272C8152005F105B /* LoginViewModel.swift in Sources */,
 				F25177F1272C82F7005F105B /* ProfileViewModel.swift in Sources */,
 				F2E87B45272AE31700B029BB /* SignUpViewModel.swift in Sources */,
+				F254718C2731955400AD90AB /* SettingsView.swift in Sources */,
 				F2E87B41272AC97F00B029BB /* FirebaseManager.swift in Sources */,
 				F2FD36F82728655700A3DEC6 /* MainContentView.swift in Sources */,
 				F229151E2722AFE8000370E2 /* ProfileView.swift in Sources */,
@@ -598,6 +621,7 @@
 				F2DA622426D7FB320080C72B /* Card+CoreDataProperties.swift in Sources */,
 				F2242FBB26D5604200ED980E /* String+Extension.swift in Sources */,
 				F2948C5D26C6B67700F6881C /* UIColor+Extension.swift in Sources */,
+				F254718A2731938A00AD90AB /* AboutView.swift in Sources */,
 				F298567D267280DA00488327 /* CardView.swift in Sources */,
 				F25177EF272C820B005F105B /* ActivityIndicator.swift in Sources */,
 				F2029D2B26660EE600B2293B /* CardsBoxApp.swift in Sources */,
@@ -736,7 +760,7 @@
 				DEVELOPMENT_TEAM = ACK684Q2U7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CardsBox/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -759,7 +783,7 @@
 				DEVELOPMENT_TEAM = ACK684Q2U7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CardsBox/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

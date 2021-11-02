@@ -16,7 +16,6 @@ struct ProfileView: View {
             ScrollView {
                 avatarImage
                     .padding()
-                
                 settingsMenu
             }
             
@@ -59,32 +58,37 @@ struct ProfileView: View {
     }
     
     private var settingsMenu: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            NavigationLink {
-                
-            } label: {
-                Label("Settings", systemImage: "gear")
+        VStack(alignment: .leading, spacing: 10) {
+            GroupBox() {
+                SettingsMenuItemView(title: "Settings", image: "", destination: SettingsView())
+                Divider()
+                SettingsMenuItemView(title: "Settings", image: "", destination: SettingsView())
             }
-            Divider()
-            
-            NavigationLink {
-                
-            } label: {
-                Label("About app", systemImage: "iphone")
-            }
+            .padding()
         }
-        .padding()
-        .background(Color.formColor)
-        .overlay(RoundedRectangle(cornerRadius: 10.0)
-                    .stroke(.clear))
-        .cornerRadius(10.0)
-        .padding()
-        .shadow(color: .secondary ,radius: 5)
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+    }
+}
+
+struct SettingsMenuItemView<T: View>: View {
+    var title: String
+    var image: String
+    var destination: T
+    
+    var body: some View {
+        HStack {
+            NavigationLink {
+                destination
+            } label: {
+                Label(title, image: image)
+            }
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, minHeight: 30, maxHeight: 30, alignment: .center)
     }
 }

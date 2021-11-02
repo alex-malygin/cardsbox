@@ -25,11 +25,16 @@ struct LoginView: View {
                 Spacer()
                 registerButton
             }
+            
             ActivityIndicator(shouldAnimate: $viewModel.showLoader)
         }
-        .onAppear(perform: {
-            updateNavigationAppearance()
+        .alert(isPresented: $viewModel.showAlert, content: {
+            Alert(title: Text("Error"), message: Text($viewModel.errorText.wrappedValue), dismissButton: .cancel())
         })
+        .onAppear(perform: {
+            updateNavigationAppearance(main: false)
+        })
+        .ignoresSafeArea(.keyboard)
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
         .onTapGesture {

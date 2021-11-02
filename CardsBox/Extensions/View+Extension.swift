@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 extension View {
     
@@ -21,10 +22,27 @@ extension View {
     }
 }
 
-func updateNavigationAppearance() {
+func updateNavigationAppearance(main: Bool) {
+    if #available(iOS 15.0, *) {
+        let appearance = main ? opaqueAppearance(backgroundColor: .systemGray6) : opaqueAppearance()
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+    }
+    
+    if #available(iOS 15.0, *) {
+        let appearance = UITabBarAppearance()
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+    }
+}
+
+func opaqueAppearance(backgroundColor: UIColor = .clear) -> UINavigationBarAppearance {
     let appearance = UINavigationBarAppearance()
     appearance.configureWithOpaqueBackground()
-    
-    UINavigationBar.appearance().isTranslucent = true
-    UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    appearance.backgroundColor = backgroundColor
+    appearance.shadowColor = .clear
+    appearance.shadowImage = nil
+    return appearance
 }

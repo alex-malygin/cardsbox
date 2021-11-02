@@ -16,6 +16,9 @@ final class HomeViewModel: ObservableObject {
     @Published var mode: CardDetailMode = .create
     @Published var selectedCard: CardModel?
     @Published var isShowingDetails: Bool = false
+    @Published var showLoader = false
+    @Published var showAlert = false
+    @Published var errorText = ""
     
     private var cancellable = Set<AnyCancellable>()
     private let dataManager = DataManager.shared
@@ -23,13 +26,22 @@ final class HomeViewModel: ObservableObject {
     // MARK: - Init
     init() {
         if let userID = Auth.auth().currentUser?.uid {
+            showLoader = true
             DatabaseManager.shared.getCards(userID: userID).sink { completion in
-                
+                switch completion {
+                case .finished: break
+                case let .failure(error):
+                    debugPrint("Error login", error)
+                    self.errorText = error.localizedDescription
+                    self.showAlert = true
+                    self.showLoader = false
+                }
             } receiveValue: { [weak self] cardList in
+                self?.showLoader = false
                 self?.cardList = cardList
             }.store(in: &cancellable)
         } else {
-            
+            errorText = "UserID not found!"
         }
     }
 }

@@ -9,8 +9,9 @@ import SwiftUI
 import FirebaseAuth
 
 struct MainTabView: View {
-    enum Tab {
-        case home, profile
+    enum Tab: String {
+        case home = "Cards"
+        case profile = "Profile"
     }
     @ObservedObject var viewModel = HomeViewModel()
     
@@ -18,27 +19,25 @@ struct MainTabView: View {
     @State private var title: String = ""
     
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             HomeView(viewModel: viewModel)
-                .onAppear(perform: {
-                    selectedTab = .home
-                    title = Strings.mainTitle
-                })
                 .tabItem {
                     Label("Cards", systemImage: "creditcard.fill")
                 }
+                .tag(Tab.home)
             
             ProfileView()
-                .onAppear(perform: {
-                    selectedTab = .profile
-                    title = "Profile"
-                })
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")
                 }
+                .tag(Tab.profile)
         }
         .onAppear(perform: {
-            updateNavigationAppearance()
+            title = selectedTab.rawValue
+            updateNavigationAppearance(main: true)
+        })
+        .onChange(of: selectedTab, perform: { newValue in
+            title = newValue.rawValue
         })
         .toolbar(content: {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -50,6 +49,7 @@ struct MainTabView: View {
                 }
             }
         })
+        .ignoresSafeArea(.keyboard)
         .navigationBarHidden(false)
         .navigationTitle($title.wrappedValue)
         .navigationBarBackButtonHidden(true)

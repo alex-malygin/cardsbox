@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SignUpView: View {
     @ObservedObject private var viewModel = SignUpViewModel()
-    @Environment(\.presentationMode) var presentationMode
     
     @State private var userName = ""
     @State private var email = ""
@@ -22,20 +21,6 @@ struct SignUpView: View {
                 .ignoresSafeArea()
             
             VStack {
-                HStack {
-                    Button {
-                        self.presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "chevron.backward.circle.fill")
-                            .resizable()
-                            .foregroundColor(Color.powderBlue)
-                    }
-                    .frame(width: 35, height: 35, alignment: .center)
-                    Spacer()
-                }
-                .background(Color.clear)
-                .padding([.leading], 20)
-               
                 ScrollView {
                     avatarImage
                         .padding()
@@ -49,10 +34,13 @@ struct SignUpView: View {
                 viewModel.setNewImage(image: image)
             })
         }
+        .onAppear(perform: {
+            updateNavigationAppearance(main: false)
+        })
         .alert(isPresented: $viewModel.showAlert, content: {
             Alert(title: Text("Error"), message: Text($viewModel.errorText.wrappedValue), dismissButton: .cancel())
         })
-        .navigationBarHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
         .onTapGesture {
             hideKeyboard()
         }
@@ -81,7 +69,7 @@ struct SignUpView: View {
     
     var loginForm: some View {
         VStack(spacing: 3) {
-            Text("Login account")
+            Text("Create new account")
                 .fontWeight(.semibold)
                 .font(.title2)
                 .padding([.top, .bottom], 20)

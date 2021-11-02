@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CardModel: Hashable {
+struct CardModel: Hashable {
     var id: String
     var cardType: String
     var userName: String
