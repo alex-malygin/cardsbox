@@ -42,7 +42,7 @@ func opaqueAppearance(backgroundColor: UIColor = .clear) -> UINavigationBarAppea
     let appearance = UINavigationBarAppearance()
     appearance.configureWithOpaqueBackground()
     appearance.backgroundColor = backgroundColor
-    appearance.shadowColor = .clear
+    appearance.shadowColor = backgroundColor == .clear ? .clear : .systemGray
     appearance.shadowImage = nil
     return appearance
 }
