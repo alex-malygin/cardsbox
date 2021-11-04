@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 extension View {
     
@@ -20,29 +19,4 @@ extension View {
                                     endPoint: .top))
             .mask(self)
     }
-}
-
-func updateNavigationAppearance(main: Bool) {
-    if #available(iOS 15.0, *) {
-        let appearance = main ? opaqueAppearance(backgroundColor: .systemGray6) : opaqueAppearance()
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().compactAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-    }
-    
-    if #available(iOS 15.0, *) {
-        let appearance = UITabBarAppearance()
-        UITabBar.appearance().scrollEdgeAppearance = appearance
-    }
-}
-
-func opaqueAppearance(backgroundColor: UIColor = .clear) -> UINavigationBarAppearance {
-    let appearance = UINavigationBarAppearance()
-    appearance.configureWithOpaqueBackground()
-    appearance.backgroundColor = backgroundColor
-    appearance.shadowColor = backgroundColor == .clear ? .clear : .systemGray
-    appearance.shadowImage = nil
-    return appearance
 }

@@ -9,13 +9,20 @@ import Foundation
 import UIKit
 import Firebase
 
-class UserProfileModel {
+class UserProfileModel: Codable {
     var id: String?
     var userName: String?
     var email: String?
     var password: String?
-    var avatar: String?
-    var avatarRef: UIImage?
+    var avatar: URL?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case userName = "user_name"
+        case email = "email"
+        case password = "password"
+        case avatar = "avatar"
+    }
     
     init() {
         self.id = nil
@@ -23,24 +30,13 @@ class UserProfileModel {
         self.email = nil
         self.password = nil
         self.avatar = nil
-        self.avatarRef = nil
     }
     
-    init(id: String, userName: String, email: String, password: String?, avatar: String, avatarRef: UIImage?) {
-        self.id = id
-        self.userName = userName
-        self.email = email
-        self.password = password
-        self.avatar = avatar
-        self.avatarRef = avatarRef
-    }
-    
-    init(model: User?) {
+    init?(model: User?) {
         self.id = model?.uid
         self.userName = model?.displayName
         self.email = model?.email
         self.password = nil
-        self.avatar = model?.photoURL?.absoluteString
-        self.avatarRef = nil
+        self.avatar = model?.photoURL
     }
 }

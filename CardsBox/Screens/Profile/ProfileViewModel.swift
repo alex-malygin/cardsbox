@@ -19,7 +19,6 @@ class ProfileViewModel: ObservableObject {
     
     func logout() {
         try? Auth.auth().signOut()
-        isActive = true
         DataManager.shared.userProfile = nil
     }
 }

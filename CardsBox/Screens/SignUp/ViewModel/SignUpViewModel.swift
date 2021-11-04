@@ -31,12 +31,9 @@ class SignUpViewModel: ObservableObject {
     }
     
     func registration() {
-        if selectedImage != nil {
-            userModel.avatarRef = image
-        }
-        
+
         showLoader = true
-        FirebaseManager.shared.registration(user: userModel)
+        FirebaseManager.shared.registration(user: userModel, avatar: selectedImage)
             .sink { completion in
                 switch completion {
                 case .finished: break

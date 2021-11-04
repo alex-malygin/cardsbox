@@ -31,7 +31,7 @@ struct ProfileView: View {
             .cornerRadius(10.0)
             .padding()
 
-            NavigationLink(destination: LoginView(), isActive: $viewModel.isActive) { }
+//            NavigationLink(destination: LoginView(), isActive: $viewModel.isActive) { }
         }
     }
     
@@ -59,10 +59,10 @@ struct ProfileView: View {
     
     private var settingsMenu: some View {
         VStack(alignment: .leading, spacing: 10) {
-            GroupBox() {
-                SettingsMenuItemView(title: "Settings", image: "", destination: SettingsView())
+            GroupBox {
+                SettingsMenuItemView(title: "Settings", image: nil, destination: SettingsView())
                 Divider()
-                SettingsMenuItemView(title: "Settings", image: "", destination: SettingsView())
+                SettingsMenuItemView(title: "About app", image: nil, destination: AboutView())
             }
             .padding()
         }
@@ -77,7 +77,7 @@ struct ProfileView_Previews: PreviewProvider {
 
 struct SettingsMenuItemView<T: View>: View {
     var title: String
-    var image: String
+    var image: UIImage?
     var destination: T
     
     var body: some View {
@@ -85,10 +85,15 @@ struct SettingsMenuItemView<T: View>: View {
             NavigationLink {
                 destination
             } label: {
-                Label(title, image: image)
+                HStack {
+                    if image != nil, let image = image {
+                        Image(uiImage: image)
+                    }
+                    Text(title)
+                        .foregroundColor(.black)
+                }
             }
             Spacer()
         }
-        .frame(maxWidth: .infinity, minHeight: 30, maxHeight: 30, alignment: .center)
     }
 }

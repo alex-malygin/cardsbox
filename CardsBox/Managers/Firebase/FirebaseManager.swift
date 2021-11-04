@@ -19,7 +19,7 @@ final class FirebaseManager {
     private let dataManager = DataManager.shared
     private var cancellable = Set<AnyCancellable>()
     
-    func registration(user: UserProfileModel) -> Future<Bool, StorageError> {
+    func registration(user: UserProfileModel, avatar: UIImage?) -> Future<Bool, StorageError> {
         return Future<Bool, StorageError> { [weak self] promise in
             guard let self = self,
                   let email = user.email,
@@ -30,7 +30,7 @@ final class FirebaseManager {
                 guard error == nil else { return promise(.failure(.message(error?.localizedDescription ?? ""))) }
                 user.id = Auth.auth().currentUser?.uid
                 
-                if user.avatarRef != nil, let avatar = user.avatarRef {
+                if avatar != nil, let avatar = avatar {
                     StorageManager.shared.uploadUserAvatar(image: avatar, path: "avatars/\(user.id ?? "")").sink { completion in
                         switch completion {
                         case .finished: break
@@ -38,7 +38,7 @@ final class FirebaseManager {
                             return promise(.failure(error))
                         }
                     } receiveValue: { avatar in
-                        user.avatar = avatar.absoluteString
+                        user.avatar = avatar
                         self.dataManager.userProfile = user
                         self.dataManager.userID = user.id
                         
@@ -177,7 +177,7 @@ final class DatabaseManager {
             let email = value?["email"] as? String ?? ""
             let avatar = value?["avatar"] as? String ?? ""
             
-            let user = UserProfileModel(id: userID, userName: username, email: email, password: nil, avatar: avatar, avatarRef: nil)
+            let user = UserProfileModel()
             
             self?.dataManager.userProfile = user
             self?.dataManager.userID = userID

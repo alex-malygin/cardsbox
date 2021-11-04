@@ -10,9 +10,6 @@ import SwiftUI
 struct LoginView: View {
     @ObservedObject private var viewModel = LoginViewModel()
     
-    @State var email = ""
-    @State var password = ""
-    
     var body: some View {
         ZStack {
             circleBackground
@@ -49,17 +46,11 @@ struct LoginView: View {
                 .font(.title2)
                 .padding([.top, .bottom], 20)
             
-            TextFieldView("Email", text: $email)
-                .onChange(of: email, perform: { newValue in
-                    viewModel.userModel.email = newValue
-                })
+            TextFieldView("Email", text: $viewModel.userModel.email.bound)
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
             
-            TextFieldView("Password", text: $password)
-                .onChange(of: password, perform: { newValue in
-                    viewModel.userModel.password = newValue
-                })
+            TextFieldView("Password", text: $viewModel.userModel.password.bound)
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
             

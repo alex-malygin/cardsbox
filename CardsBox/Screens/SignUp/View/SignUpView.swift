@@ -10,10 +10,6 @@ import SwiftUI
 struct SignUpView: View {
     @ObservedObject private var viewModel = SignUpViewModel()
     
-    @State private var userName = ""
-    @State private var email = ""
-    @State private var password = ""
-    
     var body: some View {
         ZStack {
             circleBackground
@@ -74,31 +70,21 @@ struct SignUpView: View {
                 .font(.title2)
                 .padding([.top, .bottom], 20)
             
-            TextFieldView("Username", text: $userName)
-                .onChange(of: userName, perform: { newValue in
-                    viewModel.userModel.userName = newValue
-                })
+            TextFieldView("Username", text: $viewModel.userModel.userName.bound)
+                .padding([.top, .bottom], 5)
+
+            TextFieldView("Email", text: $viewModel.userModel.email.bound)
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
 
-            TextFieldView("Email", text: $email)
-                .onChange(of: email, perform: { newValue in
-                    viewModel.userModel.email = newValue
-                })
-                .keyboardType(.emailAddress)
-                .padding([.top, .bottom], 5)
-
-            TextFieldView("Password", text: $password)
-                .onChange(of: password, perform: { newValue in
-                    viewModel.userModel.password = newValue
-                })
+            TextFieldView("Password", text: $viewModel.userModel.password.bound)
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
             
             Button {
                 viewModel.registration()
             } label: {
-                Text("Register")
+                Text("Sign Up")
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50, alignment: .center)
                     .background(Color.mainSkyBlue)

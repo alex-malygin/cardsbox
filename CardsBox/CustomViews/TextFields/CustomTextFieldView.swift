@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct TextFieldView: View {
     @Binding var text: String
@@ -25,8 +26,10 @@ struct TextFieldView: View {
             .textFieldStyle(PlainTextFieldStyle())
             .cornerRadius(16)
             .padding([.horizontal], 24)
-            .onReceive(text.publisher.collect()) {
-                text = String($0.prefix(maxLenth))
+            .onReceive(Just(self.text)) { inputValue in
+                if inputValue.count > maxLenth {
+                    self.text.removeLast()
+                }
             }
         Rectangle()
             .frame(height: 2)
