@@ -44,4 +44,12 @@ final class HomeViewModel: ObservableObject {
             errorText = "UserID not found!"
         }
     }
+    
+    func deleteCard(cardID: String) {
+        DatabaseManager.shared.deleteCard(cardID: cardID).sink { completion in
+            
+        } receiveValue: { success in
+            
+        }.store(in: &cancellable)
+    }
 }

@@ -18,9 +18,4 @@ class DataManager {
     }
     
     var userProfile: UserProfileModel?
-    
-    var userID: String? {
-        get { defaults.string(forKey: Keys.userID) }
-        set { defaults.set(newValue, forKey: Keys.userID) }
-    }
 }

@@ -10,7 +10,6 @@ import FirebaseAuth
 
 struct MainContentView: View {
     private let databaseManager = DatabaseManager.shared
-    @State private var isActive = false
     
     init() {
         databaseManager.getUserProfile(userID: Auth.auth().currentUser?.uid)

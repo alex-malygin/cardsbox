@@ -19,6 +19,10 @@ extension Color {
     static var formColor: Color {
         return Color(UIColor{ $0.userInterfaceStyle == .dark ? .systemGray6 : .white } )
     }
+    static var label: Color {
+        return Color(UIColor{ $0.userInterfaceStyle == .dark ? .white : .black } )
+    }
+    static let mainGrayColor = Color(.systemGroupedBackground)
 }
 
 extension UIColor {
@@ -44,5 +48,9 @@ extension UIColor {
         let alpha = CGFloat(a) / 255
 
         self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+    
+    static var navBarColor: UIColor {
+        return UIColor { $0.userInterfaceStyle == .dark ? .systemGray6 : UIColor(hexString: "fafafa") }
     }
 }

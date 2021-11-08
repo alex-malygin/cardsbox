@@ -98,6 +98,8 @@ struct CardDetailView: View {
                 hideKeyboard()
             }
         }
+        .background(Color.mainGrayColor)
+        .ignoresSafeArea()
         .onAppear {
             selectedBG = viewModel.cardModel.bgType
         }

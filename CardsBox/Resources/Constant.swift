@@ -10,7 +10,7 @@ import SwiftUI
 
 func updateNavigationAppearance(main: Bool) {
     if #available(iOS 15.0, *) {
-        let appearance = main ? opaqueAppearance(backgroundColor: .systemGray6) : opaqueAppearance()
+        let appearance = main ? opaqueAppearance(backgroundColor: .navBarColor) : opaqueAppearance()
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
@@ -20,6 +20,7 @@ func updateNavigationAppearance(main: Bool) {
     
     if #available(iOS 15.0, *) {
         let appearance = UITabBarAppearance()
+        appearance.backgroundColor = .navBarColor
         UITabBar.appearance().scrollEdgeAppearance = appearance
     }
 }

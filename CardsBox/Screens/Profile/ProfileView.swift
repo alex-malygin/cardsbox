@@ -6,18 +6,24 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct ProfileView: View {
-    @ObservedObject var viewModel = ProfileViewModel()
+    @ObservedObject var viewModel: ProfileViewModel
     
     var body: some View {
         VStack {
-            ScrollView {
-                avatarImage
-                    .padding()
-                settingsMenu
+            List {
+                Section {
+                    avatarImage
+                }
+                .listRowBackground(Color.clear)
+                
+                Section {
+                    SettingsMenuItemView(title: "Settings", image: nil, destination: SettingsView())
+                    SettingsMenuItemView(title: "About app", image: nil, destination: AboutView())
+                }
             }
+            .listStyle(.insetGrouped)
             
             Button {
                 viewModel.logout()
@@ -30,48 +36,31 @@ struct ProfileView: View {
             .background(Color.imperialRed)
             .cornerRadius(10.0)
             .padding()
-
-//            NavigationLink(destination: LoginView(), isActive: $viewModel.isActive) { }
         }
+        .onAppear(perform: {
+            viewModel.setUserProfile()
+        })
+        .background(Color.mainGrayColor)
     }
     
     private var avatarImage: some View {
-        VStack {
-            
-            Image("avatar")
-                .resizable()
-            .frame(width: 150, height: 150, alignment: .center)
-            .clipShape(Circle())
-            .shadow(radius: 8)
-            .overlay(Circle()
-                        .stroke(LinearGradient(gradient:
-                                                Gradient(colors: Gradients().defaultCardBackground),
-                                               startPoint: .bottom,
-                                               endPoint: .top),
-                                lineWidth: 8))
-            .padding()
-            
-            Text(viewModel.profile?.userName ?? "")
-                .font(Font.title2)
-                .fontWeight(.semibold)
-        }
-    }
-    
-    private var settingsMenu: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            GroupBox {
-                SettingsMenuItemView(title: "Settings", image: nil, destination: SettingsView())
-                Divider()
-                SettingsMenuItemView(title: "About app", image: nil, destination: AboutView())
+        HStack {
+            Spacer()
+            VStack {
+                WebImageView(imageURL: viewModel.profile?.avatar, placeholder: viewModel.image)
+                
+                Text(viewModel.profile?.userName ?? "")
+                    .font(Font.title2)
+                    .fontWeight(.semibold)
             }
-            .padding()
+            Spacer()
         }
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(viewModel: ProfileViewModel())
     }
 }
 
@@ -90,10 +79,9 @@ struct SettingsMenuItemView<T: View>: View {
                         Image(uiImage: image)
                     }
                     Text(title)
-                        .foregroundColor(.black)
+                        .foregroundColor(.label)
                 }
             }
-            Spacer()
         }
     }
 }

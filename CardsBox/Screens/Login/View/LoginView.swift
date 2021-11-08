@@ -25,6 +25,7 @@ struct LoginView: View {
             
             ActivityIndicator(shouldAnimate: $viewModel.showLoader)
         }
+        .disabled(viewModel.showLoader)
         .alert(isPresented: $viewModel.showAlert, content: {
             Alert(title: Text("Error"), message: Text($viewModel.errorText.wrappedValue), dismissButton: .cancel())
         })

@@ -42,6 +42,12 @@
 		F2DA622326D7FB320080C72B /* Card+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA622126D7FB320080C72B /* Card+CoreDataClass.swift */; };
 		F2DA622426D7FB320080C72B /* Card+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA622226D7FB320080C72B /* Card+CoreDataProperties.swift */; };
 		F2DA622626D804A80080C72B /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA622526D804A80080C72B /* CardModel.swift */; };
+		F2E57A7627342B27001FEEB9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E57A7527342B27001FEEB9 /* Router.swift */; };
+		F2E57A7827355B83001FEEB9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E57A7727355B83001FEEB9 /* SettingsViewModel.swift */; };
+		F2E57A7A2736E6D8001FEEB9 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E57A792736E6D8001FEEB9 /* StorageManager.swift */; };
+		F2E57A7C2736E705001FEEB9 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E57A7B2736E705001FEEB9 /* DatabaseManager.swift */; };
+		F2E57A9A2736F478001FEEB9 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E57A992736F478001FEEB9 /* AvatarView.swift */; };
+		F2E57A9C2736F4EE001FEEB9 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E57A9B2736F4EE001FEEB9 /* WebImageView.swift */; };
 		F2E87B38272AB70800B029BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2E87B37272AB70800B029BB /* GoogleService-Info.plist */; };
 		F2E87B3D272AC91400B029BB /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E87B3C272AC91400B029BB /* UserProfileModel.swift */; };
 		F2E87B41272AC97F00B029BB /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E87B40272AC97F00B029BB /* FirebaseManager.swift */; };
@@ -90,6 +96,12 @@
 		F2DA622126D7FB320080C72B /* Card+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F2DA622226D7FB320080C72B /* Card+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F2DA622526D804A80080C72B /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		F2E57A7527342B27001FEEB9 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		F2E57A7727355B83001FEEB9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		F2E57A792736E6D8001FEEB9 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		F2E57A7B2736E705001FEEB9 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		F2E57A992736F478001FEEB9 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		F2E57A9B2736F4EE001FEEB9 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		F2E87B37272AB70800B029BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F2E87B3C272AC91400B029BB /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		F2E87B40272AC97F00B029BB /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -224,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				F254718B2731955400AD90AB /* SettingsView.swift */,
+				F2E57A7727355B83001FEEB9 /* SettingsViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -242,6 +255,8 @@
 				F25177ED272C81F9005F105B /* ActivityView */,
 				F229151F2722C175000370E2 /* BackgroundCard */,
 				F26F1946267913F40070C148 /* TextFields */,
+				F2E57A992736F478001FEEB9 /* AvatarView.swift */,
+				F2E57A9B2736F4EE001FEEB9 /* WebImageView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -341,6 +356,7 @@
 				F278DE672678DDA100042F38 /* SwiftGen */,
 				F278DE682678DFFD00042F38 /* Localizable.strings */,
 				F2948C5E26C6B8FD00F6881C /* Constant.swift */,
+				F2E57A7527342B27001FEEB9 /* Router.swift */,
 				F22915222722C211000370E2 /* Gradients.swift */,
 			);
 			path = Resources;
@@ -443,6 +459,8 @@
 			isa = PBXGroup;
 			children = (
 				F2E87B40272AC97F00B029BB /* FirebaseManager.swift */,
+				F2E57A792736E6D8001FEEB9 /* StorageManager.swift */,
+				F2E57A7B2736E705001FEEB9 /* DatabaseManager.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -596,11 +614,15 @@
 				F22915212722C1A4000370E2 /* BackgroundCardView.swift in Sources */,
 				F2E87B3D272AC91400B029BB /* UserProfileModel.swift in Sources */,
 				F2948C6126C6BB6600F6881C /* View+Extension.swift in Sources */,
+				F2E57A7827355B83001FEEB9 /* SettingsViewModel.swift in Sources */,
 				F27C09802726D72C00989B1B /* LoginView.swift in Sources */,
 				F2948C5F26C6B8FD00F6881C /* Constant.swift in Sources */,
 				F26F194926791A7F0070C148 /* CustomTextFieldView.swift in Sources */,
+				F2E57A7627342B27001FEEB9 /* Router.swift in Sources */,
 				F229151B2722AEDD000370E2 /* MainTabView.swift in Sources */,
 				F25177F3272D3881005F105B /* DataManager.swift in Sources */,
+				F2E57A9A2736F478001FEEB9 /* AvatarView.swift in Sources */,
+				F2E57A7A2736E6D8001FEEB9 /* StorageManager.swift in Sources */,
 				F2DA622626D804A80080C72B /* CardModel.swift in Sources */,
 				F2029D3426660EE800B2293B /* Persistence.swift in Sources */,
 				F25177E8272C7B93005F105B /* ImagePickerManager.swift in Sources */,
@@ -618,8 +640,10 @@
 				F229151E2722AFE8000370E2 /* ProfileView.swift in Sources */,
 				F2FD36F627285EFA00A3DEC6 /* SignUpView.swift in Sources */,
 				F27C09822726D91700989B1B /* ScreenSize+Extension.swift in Sources */,
+				F2E57A9C2736F4EE001FEEB9 /* WebImageView.swift in Sources */,
 				F2DA622426D7FB320080C72B /* Card+CoreDataProperties.swift in Sources */,
 				F2242FBB26D5604200ED980E /* String+Extension.swift in Sources */,
+				F2E57A7C2736E705001FEEB9 /* DatabaseManager.swift in Sources */,
 				F2948C5D26C6B67700F6881C /* UIColor+Extension.swift in Sources */,
 				F254718A2731938A00AD90AB /* AboutView.swift in Sources */,
 				F298567D267280DA00488327 /* CardView.swift in Sources */,

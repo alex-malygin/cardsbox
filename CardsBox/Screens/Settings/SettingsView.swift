@@ -8,8 +8,57 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @ObservedObject var viewModel = SettingsViewModel()
+    @State var showSheet = false
+    
     var body: some View {
-        Text("Hello, World!")
+        ZStack {
+            VStack {
+                ScrollView {
+                    avatarImage
+                        .onTapGesture {
+                            showSheet.toggle()
+                        }
+                    
+                    TextFieldView("Username", text: $viewModel.profile.userName.bound)
+                    
+                    Button {
+                        viewModel.save()
+                    } label: {
+                        Text("SAVE")
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color.white)
+                            .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50, alignment: .center)
+                    }
+                    .background(Color.imperialRed)
+                    .cornerRadius(10.0)
+                    .padding()
+                }
+            }
+            
+            ActivityIndicator(shouldAnimate: $viewModel.showLoader)
+        }
+        .onTapGesture {
+            hideKeyboard()
+        }
+        .sheet(isPresented: $showSheet) {
+            ImagePicker(sourceType: .photoLibrary, selectedImage: { image in
+                viewModel.setNewImage(image: image)
+            })
+        }
+        .alert(isPresented: $viewModel.showAlert, content: {
+            Alert(title: Text("Error"), message: Text($viewModel.errorText.wrappedValue), dismissButton: .cancel())
+        })
+    }
+    
+    private var avatarImage: some View {
+        VStack {
+            if viewModel.selectedImage == nil {
+                WebImageView(imageURL: viewModel.profile.avatar, placeholder: viewModel.image)
+            } else {
+                AvatarView(image: viewModel.image)
+            }
+        }
     }
 }
 

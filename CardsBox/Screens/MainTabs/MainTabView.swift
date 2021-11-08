@@ -13,20 +13,21 @@ struct MainTabView: View {
         case home = "Cards"
         case profile = "Profile"
     }
-    @ObservedObject var viewModel = HomeViewModel()
+    @ObservedObject var homeViewModel = HomeViewModel()
+    @ObservedObject var profileViewModel = ProfileViewModel()
     
     @State private var selectedTab: Tab = .home
     @State private var title: String = ""
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            HomeView(viewModel: viewModel)
+            HomeView(viewModel: homeViewModel)
                 .tabItem {
                     Label("Cards", systemImage: "creditcard.fill")
                 }
                 .tag(Tab.home)
             
-            ProfileView()
+            ProfileView(viewModel: profileViewModel)
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")
                 }
@@ -58,12 +59,12 @@ struct MainTabView: View {
     
     private var trailingButton: some View {
         Button(action: {
-            viewModel.mode = .create
-            viewModel.selectedCard = CardModel(id: UUID().uuidString, cardType: "Master Card", userName: "", cardNumber: "", bgType: BackgroundCardType(rawValue: "") ?? .default)
-            viewModel.isShowingDetails = true
+            homeViewModel.mode = .create
+            homeViewModel.selectedCard = CardModel(id: UUID().uuidString, cardType: "Master Card", userName: "", cardNumber: "", bgType: BackgroundCardType(rawValue: "") ?? .default)
+            homeViewModel.isShowingDetails = true
         }, label: {
             Image(systemName: "plus")
-                .font(.system(size: 22.0, weight: .medium))
+                .font(.system(size: 20.0, weight: .medium))
         })
     }
 }

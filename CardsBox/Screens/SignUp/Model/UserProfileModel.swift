@@ -32,6 +32,14 @@ class UserProfileModel: Codable {
         self.avatar = nil
     }
     
+    init(id: String?, userName: String?, email: String?, avatar: URL?) {
+        self.id = id
+        self.userName = userName
+        self.email = email
+        self.password = nil
+        self.avatar = avatar
+    }
+    
     init?(model: User?) {
         self.id = model?.uid
         self.userName = model?.displayName

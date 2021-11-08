@@ -31,7 +31,6 @@ class SignUpViewModel: ObservableObject {
     }
     
     func registration() {
-
         showLoader = true
         FirebaseManager.shared.registration(user: userModel, avatar: selectedImage)
             .sink { completion in

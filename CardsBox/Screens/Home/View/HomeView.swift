@@ -27,6 +27,13 @@ struct HomeView: View {
                                      cardNumber: .constant(card.cardNumber),
                                      cardHolderName: .constant(card.userName),
                                      backgroundType: .constant(card.bgType))
+                                .contextMenu {
+                                    Button {
+                                        viewModel.deleteCard(cardID: card.id)
+                                    } label: {
+                                        Text("Delete")
+                                    }
+                                }
                         }
                         .buttonStyle(PlainButtonStyle())
                         .padding([.top, .bottom], 0)
@@ -38,6 +45,7 @@ struct HomeView: View {
             
             ActivityIndicator(shouldAnimate: $viewModel.showLoader)
         }
+        .background(Color.mainGrayColor)
         .alert(isPresented: $viewModel.showAlert, content: {
             Alert(title: Text("Error"), message: Text($viewModel.errorText.wrappedValue), dismissButton: .cancel())
         })

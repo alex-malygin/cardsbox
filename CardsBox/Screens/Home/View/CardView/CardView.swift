@@ -19,7 +19,7 @@ struct CardView: View {
         VStack(alignment: .leading) {
             Spacer()
             HStack {
-                Text(cardType)
+                Text("")
                     .foregroundColor(textColor)
                     .font(.system(size: 15))
                     .fontWeight(.semibold)
@@ -105,8 +105,8 @@ struct CardViewCell_Previews: PreviewProvider {
         CardView(cardType: .constant("VISA"),
                  cardNumber: .constant(""),
                  cardHolderName: .constant(""),
-                 backgroundType: .constant(.white))
-            .previewLayout(.fixed(width: 390, height: 190))
+                 backgroundType: .constant(.ohhappiness))
+            .previewLayout(.fixed(width: 390, height: 210))
     }
 }
 

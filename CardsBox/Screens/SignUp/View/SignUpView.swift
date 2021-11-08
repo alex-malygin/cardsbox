@@ -19,12 +19,15 @@ struct SignUpView: View {
             VStack {
                 ScrollView {
                     avatarImage
-                        .padding()
+                        .onTapGesture {
+                            viewModel.showSheet = true
+                        }
                     loginForm
                 }
             }
             ActivityIndicator(shouldAnimate: $viewModel.showLoader)
         }
+        .disabled(viewModel.showLoader)
         .sheet(isPresented: $viewModel.showSheet) {
             ImagePicker(sourceType: .photoLibrary, selectedImage: { image in
                 viewModel.setNewImage(image: image)
@@ -44,23 +47,9 @@ struct SignUpView: View {
     
     var avatarImage: some View {
         VStack {
-            Image(uiImage: $viewModel.image.wrappedValue)
-                .resizable()
-                .frame(width: 150, height: 150, alignment: .center)
-                .cornerRadius(70)
-                .clipShape(Circle())
-                .shadow(radius: 8)
-                .overlay(Circle()
-                            .stroke(LinearGradient(gradient:
-                                                    Gradient(colors: Gradients().defaultCardBackground),
-                                                   startPoint: .bottomLeading,
-                                                   endPoint: .topTrailing),
-                                    lineWidth: 8))
-                .padding()
-                .onTapGesture {
-                    viewModel.showSheet = true
-                }
+            AvatarView(image: viewModel.image)
         }
+        .padding()
     }
     
     var loginForm: some View {
