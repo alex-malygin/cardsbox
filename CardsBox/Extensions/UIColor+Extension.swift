@@ -6,6 +6,24 @@
 //
 
 import UIKit
+import SwiftUI
+
+extension Color {
+    static let mainSkyBlue = Color(UIColor(hexString: "#86A8E7"))
+    static let imperialRed = Color(UIColor(hexString: "#e63946"))
+    static let honeydew = Color(UIColor(hexString: "#F1FAEE"))
+    static let powderBlue = Color(UIColor(hexString: "#A8DADC"))
+    static let celadonBlue = Color(UIColor(hexString: "#457B9D"))
+    static let prussianBlue = Color(UIColor(hexString: "#1D3557"))
+    static let grayBackgroundView = Color(.systemGray6)
+    static var formColor: Color {
+        return Color(UIColor{ $0.userInterfaceStyle == .dark ? .systemGray6 : .white } )
+    }
+    static var label: Color {
+        return Color(UIColor{ $0.userInterfaceStyle == .dark ? .white : .black } )
+    }
+    static let mainGrayColor = Color(.systemGroupedBackground)
+}
 
 extension UIColor {
     convenience init(hexString: String) {
@@ -30,5 +48,9 @@ extension UIColor {
         let alpha = CGFloat(a) / 255
 
         self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+    
+    static var navBarColor: UIColor {
+        return UIColor { $0.userInterfaceStyle == .dark ? .systemGray6 : UIColor(hexString: "fafafa") }
     }
 }

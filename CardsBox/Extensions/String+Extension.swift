@@ -12,3 +12,22 @@ extension String {
         return String(enumerated().map { $0 > 0 && $0 % stride == 0 ? [separator, $1] : [$1]}.joined())
     }
 }
+
+extension Optional where Wrapped == String {
+    var _bound: String? {
+        get {
+            return self
+        }
+        set {
+            self = newValue
+        }
+    }
+    public var bound: String {
+        get {
+            return _bound ?? ""
+        }
+        set {
+            _bound = newValue.isEmpty ? nil : newValue
+        }
+    }
+}

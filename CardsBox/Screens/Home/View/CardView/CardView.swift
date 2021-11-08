@@ -13,13 +13,14 @@ struct CardView: View {
     @Binding var cardHolderName: String
     @Binding var backgroundType: BackgroundCardType
     @State private var backgroundCard: [Color] = []
+    @State private var textColor: Color = .white
     
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
             HStack {
-                Text(cardType)
-                    .foregroundColor(.white)
+                Text("")
+                    .foregroundColor(textColor)
                     .font(.system(size: 15))
                     .fontWeight(.semibold)
                 Spacer()
@@ -27,14 +28,14 @@ struct CardView: View {
             Spacer()
             ZStack(alignment: .leading) {
                 Text("1234 5678 9876 5432")
-                    .foregroundColor(.black)
+                    .foregroundColor(textColor)
                     .font(.system(size: 17))
                     .fontWeight(.bold)
                     .padding([.top, .bottom])
                     .frame(height: 50)
                     .opacity(cardNumber.isEmpty ? 0.2 : 0)
                 Text(cardNumber.separate(every: 4, with: " "))
-                    .foregroundColor(.white)
+                    .foregroundColor(textColor)
                     .font(.system(size: 17))
                     .fontWeight(.bold)
                     .padding([.top, .bottom])
@@ -44,18 +45,47 @@ struct CardView: View {
             HStack {
                 CardBottomInfo(title: "Card Holder Name",
                                detail: cardHolderName,
-                               placeholder: "Ivanon Ivan")
+                               placeholder: "Ivanon Ivan",
+                               textColor: $textColor)
                 Spacer()
             }
             Spacer()
         }
+        .onChange(of: backgroundType, perform: { newValue in
+            switch newValue {
+            case .ohhappiness:
+                textColor = .white
+                backgroundCard = Gradients().ohhappinessCardBackground
+            case .flare:
+                textColor = .white
+                backgroundCard = Gradients().flareCardBackground
+            case .black:
+                textColor = .white
+                backgroundCard = [Color.black]
+            case .white:
+                textColor = .black
+                backgroundCard = [Color.white]
+            case .default:
+                textColor = .white
+                backgroundCard = Gradients().defaultCardBackground
+            }
+        })
         .onAppear(perform: {
             switch backgroundType {
             case .ohhappiness:
+                textColor = .white
                 backgroundCard = Gradients().ohhappinessCardBackground
             case .flare:
+                textColor = .white
                 backgroundCard = Gradients().flareCardBackground
+            case .black:
+                textColor = .white
+                backgroundCard = [Color.black]
+            case .white:
+                textColor = .black
+                backgroundCard = [Color.white]
             case .default:
+                textColor = .white
                 backgroundCard = Gradients().defaultCardBackground
             }
         })
@@ -75,8 +105,8 @@ struct CardViewCell_Previews: PreviewProvider {
         CardView(cardType: .constant("VISA"),
                  cardNumber: .constant(""),
                  cardHolderName: .constant(""),
-                 backgroundType: .constant(.default))
-            .previewLayout(.fixed(width: 390, height: 190))
+                 backgroundType: .constant(.ohhappiness))
+            .previewLayout(.fixed(width: 390, height: 210))
     }
 }
 
@@ -84,23 +114,24 @@ struct CardBottomInfo: View {
     var title: String
     var detail: String
     var placeholder: String
+    @Binding var textColor: Color
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
                 .font(.system(size: 10))
                 .fontWeight(.regular)
-                .foregroundColor(.white)
+                .foregroundColor(textColor)
             ZStack(alignment: .leading) {
                 Text(placeholder)
                     .font(.system(size: 15))
                     .fontWeight(.medium)
-                    .foregroundColor(.black)
+                    .foregroundColor(textColor)
                     .opacity(detail.isEmpty ? 0.2 : 0)
                 Text(detail)
                     .font(.system(size: 15))
                     .fontWeight(.medium)
-                    .foregroundColor(.white)
+                    .foregroundColor(textColor)
                     .opacity(detail.isEmpty ? 0 : 1)
             }
         }
