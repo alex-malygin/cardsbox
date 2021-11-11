@@ -35,6 +35,8 @@ struct TextFieldView: View {
                     } label: {
                         Image(uiImage: buttonImage ?? UIImage())
                             .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(.label)
                             .frame(width: 30, height: 30, alignment: .center)
                             .padding([.trailing], 20)
                     }

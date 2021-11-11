@@ -37,7 +37,20 @@ struct SignUpView: View {
             updateNavigationAppearance(main: false)
         })
         .alert(isPresented: $viewModel.showAlert, content: {
-            Alert(title: Text("Error"), message: Text($viewModel.errorText.wrappedValue), dismissButton: .cancel())
+            Alert(title: Text("Error"),
+                  message: Text(viewModel.errorText),
+                  dismissButton: .cancel())
+        })
+        .alert(isPresented: $viewModel.showBiometricalAlert, content: {
+            Alert(title: Text(""),
+                  message: Text(viewModel.errorText),
+                  primaryButton: .cancel({
+                viewModel.isActive = true
+            }),
+                  secondaryButton: .default(Text(Strings.actionOkTitle),
+                                            action: {
+                viewModel.saveUserData()
+            }))
         })
         .navigationBarTitleDisplayMode(.inline)
         .onTapGesture {
@@ -66,8 +79,8 @@ struct SignUpView: View {
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
 
-            TextFieldView(placeholder: "Password", text: $viewModel.userModel.password.bound)
-                .keyboardType(.emailAddress)
+            SecureFieldView(placeholder: "Password", text: $viewModel.userModel.password.bound)
+                .keyboardType(.default)
                 .padding([.top, .bottom], 5)
             
             Button {

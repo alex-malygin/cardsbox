@@ -28,7 +28,6 @@ class LoginViewModel: ObservableObject {
     }
     
     init() {
-        debugPrint(isBiomericAvailable)
     }
     
     func login() {

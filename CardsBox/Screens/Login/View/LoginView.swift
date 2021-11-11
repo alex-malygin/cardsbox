@@ -60,7 +60,7 @@ struct LoginView: View {
                 .padding([.top, .bottom], 5)
             
             
-            TextFieldView(placeholder: "Password", text: $viewModel.userModel.password.bound)
+            SecureFieldView(placeholder: "Password", text: $viewModel.userModel.password.bound)
                 .keyboardType(.default)
                 .padding([.top, .bottom], 5)
             

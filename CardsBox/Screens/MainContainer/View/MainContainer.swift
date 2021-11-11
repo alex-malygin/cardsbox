@@ -26,25 +26,26 @@ struct MainContainer: View {
                 HomeView(viewModel: homeViewModel)
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .disabled(showMenu ? true : false)
-                    .onTapGesture {
-                        withAnimation {
-                            showMenu = false
-                        }
-                    }
                 
-                if showMenu {
                     LeftMenu(viewModel: leftMenuViewModel)
                         .frame(width: geometry.size.width / 1.3)
-                }
+                        .offset(x: showMenu ? 0 : -geometry.size.width / 1.3,
+                                y: 0)
             }
-            .gesture(DragGesture()
-                        .onEnded {
-                if $0.translation.width < -100 {
-                    withAnimation {
-                        showMenu = false
-                    }
-                }
-            })
+            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                                .onEnded({ value in
+                                    if value.translation.width < 0 {
+                                        withAnimation(.spring(response: 0.3)) {
+                                            showMenu = false
+                                        }
+                                    }
+
+                                    if value.translation.width > 0 {
+                                        withAnimation(.spring(response: 0.3)) {
+                                            showMenu = true
+                                        }
+                                    }
+                                }))
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     trailingButton
@@ -76,12 +77,18 @@ struct MainContainer: View {
     
     private var leadingButton: some View {
         Button(action: {
-            withAnimation {
+            withAnimation(.spring(response: 0.3)) {
                 showMenu.toggle()
             }
         }, label: {
             Image(systemName: "line.3.horizontal")
                 .font(.system(size: 20.0, weight: .medium))
         })
+    }
+}
+
+struct MainContainer_Previews: PreviewProvider {
+    static var previews: some View {
+        MainContainer()
     }
 }

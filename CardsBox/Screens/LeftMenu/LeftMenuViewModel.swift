@@ -16,7 +16,9 @@ final class LeftMenuViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     
     init() {
- 
+        DataManager.shared.subject.sink { [weak self] profile in
+            self?.profile = profile
+        }.store(in: &cancellable) 
     }
     
     func setUserProfile() {

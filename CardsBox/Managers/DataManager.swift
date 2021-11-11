@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class DataManager {
     static let shared = DataManager()
@@ -17,9 +18,12 @@ class DataManager {
         static let userID = "userID"
     }
     
+    let subject = PassthroughSubject<UserProfileModel?, Never>()
+    
     var userProfile: UserProfileModel? {
         didSet {
             debugPrint("[😁]", userProfile?.email as Any)
+            subject.send(userProfile)
         }
     }
     

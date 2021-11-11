@@ -15,11 +15,13 @@ class SignUpViewModel: ObservableObject {
     @Published var image = UIImage(named: "avatar") ?? UIImage()
     @Published var selectedImage: UIImage?
     @Published var showSheet = false
+    @Published var showBiometricalAlert = false
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var errorText = ""
     
     private var cancellable = Set<AnyCancellable>()
+    private let keychain = KeychainManager()
     
     init() {
         
@@ -34,18 +36,25 @@ class SignUpViewModel: ObservableObject {
     func registration() {
         showLoader = true
         AuthManager.shared.registration(user: userModel)
-            .sink { completion in
+            .sink { [weak self] completion in
                 switch completion {
                 case .finished: break
                 case let .failure(error):
                     debugPrint("Error register", error)
-                    self.errorText = error.localizedDescription
-                    self.showAlert = true
-                    self.showLoader = false
+                    self?.errorText = error.localizedDescription
+                    self?.showAlert = true
+                    self?.showLoader = false
                 }
             } receiveValue: { [weak self] _ in
-                self?.isActive = true
                 self?.showLoader = false
+                self?.showBiometricalAlert = true
+                self?.errorText = self?.keychain.biometricType.localized ?? ""
             }.store(in: &self.cancellable)
+    }
+    
+    func saveUserData() {
+        keychain.saveCredentials(email: userModel.email, pass: userModel.password)
+        DataManager.shared.isBiometriAvialable = true
+        isActive = true
     }
 }

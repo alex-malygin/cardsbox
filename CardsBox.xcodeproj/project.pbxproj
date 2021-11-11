@@ -18,6 +18,7 @@
 		F225E8ED273AEA7F00904C81 /* MainContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225E8EC273AEA7F00904C81 /* MainContainerViewModel.swift */; };
 		F225E8EF273BADB400904C81 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225E8EE273BADB400904C81 /* RegisterModel.swift */; };
 		F225E8F1273C192000904C81 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225E8F0273C191F00904C81 /* KeychainManager.swift */; };
+		F225E8F3273D0EA600904C81 /* SecureFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225E8F2273D0EA600904C81 /* SecureFieldView.swift */; };
 		F229151B2722AEDD000370E2 /* MainContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F229151A2722AEDD000370E2 /* MainContainer.swift */; };
 		F22915212722C1A4000370E2 /* BackgroundCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22915202722C1A4000370E2 /* BackgroundCardView.swift */; };
 		F22915232722C211000370E2 /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22915222722C211000370E2 /* Gradients.swift */; };
@@ -76,6 +77,7 @@
 		F225E8EC273AEA7F00904C81 /* MainContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerViewModel.swift; sourceTree = "<group>"; };
 		F225E8EE273BADB400904C81 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		F225E8F0273C191F00904C81 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		F225E8F2273D0EA600904C81 /* SecureFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFieldView.swift; sourceTree = "<group>"; };
 		F229151A2722AEDD000370E2 /* MainContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainer.swift; sourceTree = "<group>"; };
 		F22915202722C1A4000370E2 /* BackgroundCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCardView.swift; sourceTree = "<group>"; };
 		F22915222722C211000370E2 /* Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradients.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				F26F194826791A7F0070C148 /* CustomTextFieldView.swift */,
+				F225E8F2273D0EA600904C81 /* SecureFieldView.swift */,
 			);
 			path = TextFields;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				F2948C5D26C6B67700F6881C /* UIColor+Extension.swift in Sources */,
 				F254718A2731938A00AD90AB /* AboutView.swift in Sources */,
 				F298567D267280DA00488327 /* CardView.swift in Sources */,
+				F225E8F3273D0EA600904C81 /* SecureFieldView.swift in Sources */,
 				F25177EF272C820B005F105B /* ActivityIndicator.swift in Sources */,
 				F2029D2B26660EE600B2293B /* CardsBoxApp.swift in Sources */,
 				F225E8EA273ABAE900904C81 /* AuthManager.swift in Sources */,
