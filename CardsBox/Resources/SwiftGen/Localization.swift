@@ -26,7 +26,7 @@ internal enum Strings {
   internal static let editModeTitle = Strings.tr("Localizable", "editModeTitle")
   /// Add New
   internal static let mainAddNewButton = Strings.tr("Localizable", "mainAddNewButton")
-  /// Cards Box
+  /// Home
   internal static let mainTitle = Strings.tr("Localizable", "mainTitle")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

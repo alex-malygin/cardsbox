@@ -1,7 +1,7 @@
 
 // MARK: - Main
 
-"mainTitle" = "Cards Box";
+"mainTitle" = "Home";
 "mainAddNewButton" = "Add New";
 "cardDetailCardNumberPlaceholder" = "Card Number";
 "cardDetailEnterNamePlaceholder" = "Enter name";

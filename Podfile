@@ -14,5 +14,6 @@ pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Firebase/Firestore'
 pod 'SDWebImageSwiftUI'
+pod 'FirebaseFirestoreSwift', '> 7.0-beta'
 
 end

@@ -17,12 +17,13 @@ struct WebImageView: View {
             .placeholder(content: {
                 Image(uiImage: placeholder)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
+                    .aspectRatio(contentMode: .fit)
             })
             .resizable()
             .frame(width: 150, height: 150, alignment: .center)
             .clipShape(Circle())
             .shadow(radius: 8)
+            .scaledToFit()
             .overlay(Circle()
                         .stroke(LinearGradient(gradient:
                                                 Gradient(colors: Gradients().defaultCardBackground),

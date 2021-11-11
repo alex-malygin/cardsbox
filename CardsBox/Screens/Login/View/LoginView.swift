@@ -35,6 +35,7 @@ struct LoginView: View {
         .ignoresSafeArea(.keyboard)
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
+        .navigationViewStyle(.stack)
         .onTapGesture {
             hideKeyboard()
         }
@@ -47,12 +48,20 @@ struct LoginView: View {
                 .font(.title2)
                 .padding([.top, .bottom], 20)
             
-            TextFieldView("Email", text: $viewModel.userModel.email.bound)
+            
+            TextFieldView(placeholder: "Email",
+                          text: $viewModel.userModel.email.bound,
+                          showButton: viewModel.isBiomericAvailable,
+                          buttonImage: viewModel.emailIcon,
+                          buttonAction: {
+                viewModel.startBiomeric()
+            })
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
             
-            TextFieldView("Password", text: $viewModel.userModel.password.bound)
-                .keyboardType(.emailAddress)
+            
+            TextFieldView(placeholder: "Password", text: $viewModel.userModel.password.bound)
+                .keyboardType(.default)
                 .padding([.top, .bottom], 5)
             
             Button {
@@ -67,7 +76,7 @@ struct LoginView: View {
             }
             .padding()
             
-            NavigationLink(destination: MainTabView(), isActive: $viewModel.isActive) { }
+            NavigationLink(destination: MainContainer(), isActive: $viewModel.isActive) { }
 
         }
         .background(Color.formColor)

@@ -20,7 +20,7 @@ struct SettingsView: View {
                             showSheet.toggle()
                         }
                     
-                    TextFieldView("Username", text: $viewModel.profile.userName.bound)
+                    TextFieldView(placeholder: "Username", text: $viewModel.profileInfo.userName.bound)
                     
                     Button {
                         viewModel.save()
@@ -53,8 +53,8 @@ struct SettingsView: View {
     
     private var avatarImage: some View {
         VStack {
-            if viewModel.selectedImage == nil {
-                WebImageView(imageURL: viewModel.profile.avatar, placeholder: viewModel.image)
+            if viewModel.profileInfo.selectedImage == nil {
+                WebImageView(imageURL: viewModel.profileInfo.url, placeholder: viewModel.image)
             } else {
                 AvatarView(image: viewModel.image)
             }

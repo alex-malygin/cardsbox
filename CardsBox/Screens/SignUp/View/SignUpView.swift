@@ -59,14 +59,14 @@ struct SignUpView: View {
                 .font(.title2)
                 .padding([.top, .bottom], 20)
             
-            TextFieldView("Username", text: $viewModel.userModel.userName.bound)
+            TextFieldView(placeholder: "Username", text: $viewModel.userModel.userName.bound)
                 .padding([.top, .bottom], 5)
 
-            TextFieldView("Email", text: $viewModel.userModel.email.bound)
+            TextFieldView(placeholder: "Email", text: $viewModel.userModel.email.bound)
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
 
-            TextFieldView("Password", text: $viewModel.userModel.password.bound)
+            TextFieldView(placeholder: "Password", text: $viewModel.userModel.password.bound)
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
             
@@ -82,7 +82,7 @@ struct SignUpView: View {
             }
             .padding()
             
-            NavigationLink(destination: MainTabView(), isActive: $viewModel.isActive) { }
+            NavigationLink(destination: MainContainer(), isActive: $viewModel.isActive) { }
         }
         .background(Color.formColor)
         .cornerRadius(25.0)

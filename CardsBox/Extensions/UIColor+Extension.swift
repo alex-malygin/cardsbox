@@ -16,13 +16,18 @@ extension Color {
     static let celadonBlue = Color(UIColor(hexString: "#457B9D"))
     static let prussianBlue = Color(UIColor(hexString: "#1D3557"))
     static let grayBackgroundView = Color(.systemGray6)
+    
     static var formColor: Color {
         return Color(UIColor{ $0.userInterfaceStyle == .dark ? .systemGray6 : .white } )
     }
+    
     static var label: Color {
         return Color(UIColor{ $0.userInterfaceStyle == .dark ? .white : .black } )
     }
+
     static let mainGrayColor = Color(.systemGroupedBackground)
+    static let opaqueSeparator = Color(.opaqueSeparator)
+    static let systemBackground = Color(.systemBackground)
 }
 
 extension UIColor {

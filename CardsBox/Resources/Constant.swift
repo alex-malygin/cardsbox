@@ -17,12 +17,6 @@ func updateNavigationAppearance(main: Bool) {
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
     }
-    
-    if #available(iOS 15.0, *) {
-        let appearance = UITabBarAppearance()
-        appearance.backgroundColor = .navBarColor
-        UITabBar.appearance().scrollEdgeAppearance = appearance
-    }
 }
 
 func opaqueAppearance(backgroundColor: UIColor = .clear) -> UINavigationBarAppearance {

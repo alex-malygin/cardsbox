@@ -9,18 +9,13 @@ import SwiftUI
 import FirebaseAuth
 
 struct MainContentView: View {
-    private let databaseManager = DatabaseManager.shared
-    
-    init() {
-        databaseManager.getUserProfile(userID: Auth.auth().currentUser?.uid)
-    }
-    
+ 
     var body: some View {
         NavigationView {
             if Auth.auth().currentUser == nil {
                 LoginView()
             } else {
-                MainTabView()
+                MainContainer()
             }
         }
     }

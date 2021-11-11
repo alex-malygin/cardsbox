@@ -1,20 +1,22 @@
 //
-//  ProfileViewModel.swift
+//  LeftMenuViewModel.swift
 //  CardsBox
 //
-//  Created by Alexander Malygin on 10/29/21.
+//  Created by Alexander Malygin on 11/8/21.
 //
 
 import Foundation
+import Combine
 import FirebaseAuth
-import SwiftUI
 
-class ProfileViewModel: ObservableObject {
+final class LeftMenuViewModel: ObservableObject {
     @Published var profile: UserProfileModel?
     @Published var image = UIImage(named: "avatar") ?? UIImage()
     
+    private var cancellable = Set<AnyCancellable>()
+    
     init() {
-        profile = DataManager.shared.userProfile
+ 
     }
     
     func setUserProfile() {

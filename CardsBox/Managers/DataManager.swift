@@ -17,5 +17,14 @@ class DataManager {
         static let userID = "userID"
     }
     
-    var userProfile: UserProfileModel?
+    var userProfile: UserProfileModel? {
+        didSet {
+            debugPrint("[😁]", userProfile?.email as Any)
+        }
+    }
+    
+    var isBiometriAvialable: Bool {
+        get { defaults.bool(forKey: Keys.loginByBiometric) }
+        set { defaults.set(newValue, forKey: Keys.loginByBiometric) }
+    }
 }

@@ -10,7 +10,7 @@ import Combine
 import UIKit
 
 class SignUpViewModel: ObservableObject {
-    @Published var userModel = UserProfileModel()
+    @Published var userModel = RegisterModel()
     @Published var isActive = false
     @Published var image = UIImage(named: "avatar") ?? UIImage()
     @Published var selectedImage: UIImage?
@@ -28,11 +28,12 @@ class SignUpViewModel: ObservableObject {
     func setNewImage(image: UIImage) {
         self.selectedImage = image
         self.image = image
+        self.userModel.avatar = image
     }
     
     func registration() {
         showLoader = true
-        FirebaseManager.shared.registration(user: userModel, avatar: selectedImage)
+        AuthManager.shared.registration(user: userModel)
             .sink { completion in
                 switch completion {
                 case .finished: break
@@ -42,10 +43,9 @@ class SignUpViewModel: ObservableObject {
                     self.showAlert = true
                     self.showLoader = false
                 }
-            } receiveValue: { [weak self] success in
+            } receiveValue: { [weak self] _ in
                 self?.isActive = true
                 self?.showLoader = false
-            }
-            .store(in: &self.cancellable)
+            }.store(in: &self.cancellable)
     }
 }
