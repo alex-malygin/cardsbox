@@ -34,7 +34,7 @@ final class HomeViewModel: ObservableObject {
                 case let .failure(error):
                     self?.showLoader = false
                     self?.showAlert = true
-                    self?.errorText = error.localizedDescription
+                    self?.errorText = error.errorMessage ?? ""
                 }
             } receiveValue: { [weak self] cards in
                 self?.showLoader = false

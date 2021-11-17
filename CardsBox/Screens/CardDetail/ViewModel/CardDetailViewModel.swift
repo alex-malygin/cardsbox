@@ -34,7 +34,7 @@ final class CardDetailViewModel: ObservableObject {
                 case let .failure(error):
                     self?.showLoader = false
                     self?.showAlert = false
-                    self?.errorText = error.localizedDescription
+                    self?.errorText = error.errorMessage ?? ""
                 }
             } receiveValue: { [weak self] _ in
                 self?.isPresented = false
@@ -48,7 +48,7 @@ final class CardDetailViewModel: ObservableObject {
                 case .finished: break
                 case let .failure(error):
                     self?.showLoader = false
-                    self?.errorText = error.localizedDescription
+                    self?.errorText = error.errorMessage ?? ""
                 }
             } receiveValue: { [weak self] _ in
                 self?.isPresented = false

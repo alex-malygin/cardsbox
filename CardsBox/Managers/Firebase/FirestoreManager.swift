@@ -173,4 +173,30 @@ enum StorageError: Error {
     case idNotFound
     case emailNotUpdate
     case message(String)
+    
+    var errorMessage: String? {
+        switch self {
+        case .uploadAvatarError:
+            return "Failed to upload avatar 😔"
+        case .userNotFound:
+            return "This user will not find 😔"
+        case .downloadImageError:
+            return "Failed to download image 😔"
+        case .errorWithUserData:
+            return "Some error with user data 😔"
+        case .profileNotSave:
+            return "Failed to save this profile 😔"
+        case .cardNotSave:
+            return "Failed to save card 😔"
+        case .cardNotParse:
+            return "Failed to get data 😔"
+        case .cardsNotFound:
+            return "Failed to get data for this card 😔"
+        case .idNotFound:
+            return "Id was not found 😔"
+        case .emailNotUpdate:
+            return "Email has not been updated 😔"
+        case let .message(error): return error
+        }
+    }
 }

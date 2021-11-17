@@ -36,8 +36,8 @@ class LoginViewModel: ObservableObject {
             switch completion {
             case .finished: break
             case let .failure(error):
-                debugPrint("Error login", error)
-                self?.errorText = error.localizedDescription
+                debugPrint("Error login", error.errorMessage ?? "")
+                self?.errorText = error.errorMessage ?? ""
                 self?.showAlert = true
                 self?.showLoader = false
             }

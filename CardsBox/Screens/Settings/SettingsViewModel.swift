@@ -35,8 +35,8 @@ final class SettingsViewModel: ObservableObject {
                 switch completion {
                 case .finished: break
                 case let .failure(error):
-                    debugPrint("Error register", error)
-                    self?.errorText = error.localizedDescription
+                    debugPrint("Error register", error.errorMessage ?? "")
+                    self?.errorText = error.errorMessage ?? ""
                     self?.showAlert = true
                     self?.showLoader = false
                 }
