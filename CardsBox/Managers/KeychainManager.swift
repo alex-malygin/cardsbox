@@ -7,6 +7,8 @@
 
 import Foundation
 import LocalAuthentication
+import Security
+import UIKit
 
 enum BiometricType {
     case none
@@ -25,6 +27,8 @@ enum BiometricType {
 class KeychainManager {
     private let keychain = Keychain()
     private let bundle = Bundle.main.bundleIdentifier ?? "some.string.instead.bundle"
+    private let service = "LastActiveDate"
+    let account = UIDevice().identifierForVendor?.uuidString ?? ""
 
     var biometricType: BiometricType {
         let authContext = LAContext()

@@ -15,3 +15,9 @@ final class MainContainerViewModel: ObservableObject {
         FirestoreManager.shared.getProfile()
     }
 }
+
+class MainContentViewModel: ObservableObject {
+    @Published var isLogin = Auth.auth().currentUser != nil
+    
+    init() { }
+}

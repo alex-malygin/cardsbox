@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject var settings: MainContentViewModel
     @ObservedObject private var viewModel = LoginViewModel()
     
     var body: some View {
@@ -32,10 +33,14 @@ struct LoginView: View {
         .onAppear(perform: {
             updateNavigationAppearance(main: false)
         })
+        .onChange(of: viewModel.isActive, perform: { newValue in
+            withAnimation(.spring(response: 0.3)) {
+                settings.isLogin = newValue
+            }
+        })
         .ignoresSafeArea(.keyboard)
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-        .navigationViewStyle(.stack)
         .onTapGesture {
             hideKeyboard()
         }
@@ -43,13 +48,13 @@ struct LoginView: View {
     
     private var loginForm: some View {
         VStack(spacing: 3) {
-            Text("Login account")
+            Text(Strings.loginTitle)
                 .fontWeight(.semibold)
                 .font(.title2)
                 .padding([.top, .bottom], 20)
             
             
-            TextFieldView(placeholder: "Email",
+            TextFieldView(placeholder: Strings.placeholderEmail,
                           text: $viewModel.userModel.email.bound,
                           showButton: viewModel.isBiomericAvailable,
                           buttonImage: viewModel.emailIcon,
@@ -60,14 +65,15 @@ struct LoginView: View {
                 .padding([.top, .bottom], 5)
             
             
-            SecureFieldView(placeholder: "Password", text: $viewModel.userModel.password.bound)
+            SecureFieldView(placeholder: Strings.placeholderPassword,
+                            text: $viewModel.userModel.password.bound)
                 .keyboardType(.default)
                 .padding([.top, .bottom], 5)
             
             Button {
                 viewModel.login()
             } label: {
-                Text("Login")
+                Text(Strings.loginButton)
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50, alignment: .center)
                     .background(Color.mainSkyBlue)
@@ -75,9 +81,6 @@ struct LoginView: View {
                     .cornerRadius(8.0)
             }
             .padding()
-            
-            NavigationLink(destination: MainContainer(), isActive: $viewModel.isActive) { }
-
         }
         .background(Color.formColor)
         .cornerRadius(25.0)
@@ -87,11 +90,11 @@ struct LoginView: View {
     
     private var registerButton: some View {
         VStack {
-            Text("Don't have an account?")
+            Text(Strings.loginSubtitle)
                 .fontWeight(.semibold)
             
             NavigationLink(destination: SignUpView()) {
-                Text("Register")
+                Text(Strings.registrationButton)
                     .fontWeight(.semibold)
                     .gradientForeground(colors: Gradients().flareCardBackground)
                     .cornerRadius(8.0)

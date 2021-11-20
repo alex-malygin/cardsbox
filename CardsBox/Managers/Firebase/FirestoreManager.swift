@@ -39,7 +39,7 @@ extension FirestoreManager {
     
     func getProfile() {
         guard let userID = Auth.auth().currentUser?.uid else { return }
-        db.collection(Keys.users.rawValue).document("\(userID)").getDocument(completion: { [weak self] document, error in
+        db.collection(Keys.users.rawValue).document("\(userID)").getDocument(completion: { document, error in
             if let document = document, document.exists, let userData = document.data() {
                 do {
                     let user = try? JSONDecoder().decode(UserProfileModel.self, from: JSONSerialization.data(withJSONObject: userData))

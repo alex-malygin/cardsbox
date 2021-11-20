@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LeftMenu: View {
+    @EnvironmentObject var settings: MainContentViewModel
     @ObservedObject var viewModel: LeftMenuViewModel
     
     var body: some View {
@@ -18,17 +19,18 @@ struct LeftMenu: View {
                 .fontWeight(.semibold)
             
             List {
-                SettingsMenuItemView(title: "Change profile", image: nil, destination: SettingsView())
+                SettingsMenuItemView(title: Strings.leftMenuChangeProfile, image: nil, destination: SettingsView())
                     .listRowBackground(Color.grayBackgroundView)
-                SettingsMenuItemView(title: "About app", image: nil, destination: AboutView())
+                SettingsMenuItemView(title: Strings.leftMenuAboutApp, image: nil, destination: AboutView())
                     .listRowBackground(Color.grayBackgroundView)
             }
             .listStyle(.insetGrouped)
             
             Button {
                 viewModel.logout()
+                settings.isLogin = false
             } label: { }
-            .buttonStyle(LogoutButtonStyle(text: "Logout"))
+            .buttonStyle(LogoutButtonStyle(text: Strings.logoutButton))
             .padding(.bottom, 40)
         }
         .onAppear(perform: {

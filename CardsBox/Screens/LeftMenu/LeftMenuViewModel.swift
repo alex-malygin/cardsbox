@@ -28,6 +28,6 @@ final class LeftMenuViewModel: ObservableObject {
     func logout() {
         try? Auth.auth().signOut()
         DataManager.shared.userProfile = nil
-        Router.showMain()
+        DataManager.shared.lastActiveDate = 0
     }
 }

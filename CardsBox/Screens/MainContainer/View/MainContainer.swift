@@ -32,7 +32,7 @@ struct MainContainer: View {
                         .offset(x: showMenu ? 0 : -geometry.size.width / 1.3,
                                 y: 0)
             }
-            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+            .gesture(DragGesture()
                                 .onEnded({ value in
                                     if value.translation.width < 0 {
                                         withAnimation(.spring(response: 0.3)) {
@@ -60,7 +60,6 @@ struct MainContainer: View {
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationViewStyle(.stack)
         }
     }
     

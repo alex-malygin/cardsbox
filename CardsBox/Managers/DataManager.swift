@@ -16,6 +16,7 @@ class DataManager {
         static let loginByBiometric = "loginByBiometric"
         static let interfaceStyle = "interfaceStyle"
         static let userID = "userID"
+        static let lastActiveDate = "lastActiveDate"
     }
     
     let subject = PassthroughSubject<UserProfileModel?, Never>()
@@ -30,5 +31,10 @@ class DataManager {
     var isBiometriAvialable: Bool {
         get { defaults.bool(forKey: Keys.loginByBiometric) }
         set { defaults.set(newValue, forKey: Keys.loginByBiometric) }
+    }
+    
+    var lastActiveDate: Int {
+        get { defaults.integer(forKey: Keys.lastActiveDate) }
+        set { defaults.set(newValue, forKey: Keys.lastActiveDate) }
     }
 }

@@ -67,26 +67,26 @@ struct SignUpView: View {
     
     var loginForm: some View {
         VStack(spacing: 3) {
-            Text("Create new account")
+            Text(Strings.registerTitle)
                 .fontWeight(.semibold)
                 .font(.title2)
                 .padding([.top, .bottom], 20)
             
-            TextFieldView(placeholder: "Username", text: $viewModel.userModel.userName.bound)
+            TextFieldView(placeholder: Strings.placeholderUsername, text: $viewModel.userModel.userName.bound)
                 .padding([.top, .bottom], 5)
 
-            TextFieldView(placeholder: "Email", text: $viewModel.userModel.email.bound)
+            TextFieldView(placeholder: Strings.placeholderEmail, text: $viewModel.userModel.email.bound)
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
 
-            SecureFieldView(placeholder: "Password", text: $viewModel.userModel.password.bound)
+            SecureFieldView(placeholder: Strings.placeholderPassword, text: $viewModel.userModel.password.bound)
                 .keyboardType(.default)
                 .padding([.top, .bottom], 5)
             
             Button {
                 viewModel.registration()
             } label: {
-                Text("Sign Up")
+                Text(Strings.signUpButton)
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50, alignment: .center)
                     .background(Color.mainSkyBlue)
