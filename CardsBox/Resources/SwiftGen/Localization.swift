@@ -24,10 +24,34 @@ internal enum Strings {
   internal static let createModeTitle = Strings.tr("Localizable", "createModeTitle")
   /// Edit
   internal static let editModeTitle = Strings.tr("Localizable", "editModeTitle")
+  /// About app
+  internal static let leftMenuAboutApp = Strings.tr("Localizable", "leftMenuAboutApp")
+  /// Change profile
+  internal static let leftMenuChangeProfile = Strings.tr("Localizable", "leftMenuChangeProfile")
+  /// Login
+  internal static let loginButton = Strings.tr("Localizable", "loginButton")
+  /// Don't have an account?
+  internal static let loginSubtitle = Strings.tr("Localizable", "loginSubtitle")
+  /// Login account
+  internal static let loginTitle = Strings.tr("Localizable", "loginTitle")
+  /// Logout
+  internal static let logoutButton = Strings.tr("Localizable", "logoutButton")
   /// Add New
   internal static let mainAddNewButton = Strings.tr("Localizable", "mainAddNewButton")
-  /// Cards Box
+  /// Home
   internal static let mainTitle = Strings.tr("Localizable", "mainTitle")
+  /// Email
+  internal static let placeholderEmail = Strings.tr("Localizable", "placeholderEmail")
+  /// Password
+  internal static let placeholderPassword = Strings.tr("Localizable", "placeholderPassword")
+  /// Username
+  internal static let placeholderUsername = Strings.tr("Localizable", "placeholderUsername")
+  /// Create new account
+  internal static let registerTitle = Strings.tr("Localizable", "registerTitle")
+  /// Registration
+  internal static let registrationButton = Strings.tr("Localizable", "registrationButton")
+  /// Sign Up
+  internal static let signUpButton = Strings.tr("Localizable", "signUpButton")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

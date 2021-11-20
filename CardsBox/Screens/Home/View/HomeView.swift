@@ -12,7 +12,7 @@ struct HomeView: View {
     @State private var searchText = ""
     @State private var isShowingDetails = false
     @ObservedObject var viewModel: HomeViewModel
-    
+        
     var body: some View {
         ZStack {
             ScrollView(showsIndicators: false) {
@@ -45,6 +45,7 @@ struct HomeView: View {
             
             ActivityIndicator(shouldAnimate: $viewModel.showLoader)
         }
+        .navigationTitle(Strings.mainTitle)
         .background(Color.mainGrayColor)
         .alert(isPresented: $viewModel.showAlert, content: {
             Alert(title: Text("Error"), message: Text($viewModel.errorText.wrappedValue), dismissButton: .cancel())
@@ -53,6 +54,7 @@ struct HomeView: View {
             let detailViewModel = CardDetailViewModel(cardModel: $viewModel.selectedCard.wrappedValue)
             CardDetailView(viewModel: detailViewModel, viewMode: $viewModel.mode)
         }
+        .ignoresSafeArea(.container, edges: .bottom)
     }
 }
 

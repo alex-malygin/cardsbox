@@ -34,7 +34,7 @@ struct CardDetailView: View {
                     Spacer()
                     
                     VStack(spacing: 15) {
-                        TextFieldView(Strings.cardDetailCardNumberPlaceholder, text: $cardNumber, maxLenth: 16)
+                        TextFieldView(placeholder: Strings.cardDetailCardNumberPlaceholder, text: $cardNumber, maxLenth: 16)
                             .onAppear() {
                                 cardNumber = viewMode == .create ? "" : viewModel.cardModel.cardNumber
                             }
@@ -43,7 +43,7 @@ struct CardDetailView: View {
                             })
                             .keyboardType(.numberPad)
                         
-                        TextFieldView(Strings.cardDetailEnterNamePlaceholder, text: $userName, maxLenth: 25)
+                        TextFieldView(placeholder: Strings.cardDetailEnterNamePlaceholder, text: $userName, maxLenth: 25)
                             .onAppear() {
                                 userName = viewMode == .create ? "" : viewModel.cardModel.userName
                             }
@@ -99,7 +99,6 @@ struct CardDetailView: View {
             }
         }
         .background(Color.mainGrayColor)
-        .ignoresSafeArea()
         .onAppear {
             selectedBG = viewModel.cardModel.bgType
         }

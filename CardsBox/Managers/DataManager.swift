@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class DataManager {
     static let shared = DataManager()
@@ -15,7 +16,25 @@ class DataManager {
         static let loginByBiometric = "loginByBiometric"
         static let interfaceStyle = "interfaceStyle"
         static let userID = "userID"
+        static let lastActiveDate = "lastActiveDate"
     }
     
-    var userProfile: UserProfileModel?
+    let subject = PassthroughSubject<UserProfileModel?, Never>()
+    
+    var userProfile: UserProfileModel? {
+        didSet {
+            debugPrint("[😁]", userProfile?.email as Any)
+            subject.send(userProfile)
+        }
+    }
+    
+    var isBiometriAvialable: Bool {
+        get { defaults.bool(forKey: Keys.loginByBiometric) }
+        set { defaults.set(newValue, forKey: Keys.loginByBiometric) }
+    }
+    
+    var lastActiveDate: Int {
+        get { defaults.integer(forKey: Keys.lastActiveDate) }
+        set { defaults.set(newValue, forKey: Keys.lastActiveDate) }
+    }
 }

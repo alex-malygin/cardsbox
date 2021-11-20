@@ -15,9 +15,10 @@ final class StorageManager {
     private var cancellable = Set<AnyCancellable>()
     private let storage = Storage.storage().reference()
     
-    func uploadUserAvatar(image: UIImage, path: String) -> Future<URL, StorageError> {
+    func uploadImage(image: UIImage?, path: String) -> Future<URL, StorageError> {
         return Future<URL, StorageError> { [weak self] promise in
             guard let self = self,
+                  let image = image,
                   let imageData = image.jpegData(compressionQuality: 0.9)
             else { return promise(.failure(.userNotFound))}
             

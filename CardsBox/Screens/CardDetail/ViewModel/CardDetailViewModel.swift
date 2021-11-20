@@ -12,6 +12,9 @@ final class CardDetailViewModel: ObservableObject {
     @Published var cardModel: CardModel
     @Published var cardBG: [BackgroundCardType] = [.default, .ohhappiness, .flare, .black, .white]
     @Published var isPresented = false
+    @Published var showLoader = false
+    @Published var showAlert = false
+    @Published var errorText = ""
     
     var cancellable = Set<AnyCancellable>()
     
@@ -24,20 +27,31 @@ final class CardDetailViewModel: ObservableObject {
     }
     
     func addCard() {
-        DatabaseManager.shared.addCard(card: cardModel)
-            .sink { completion in
-                
-            } receiveValue: { [weak self] success in
+        FirestoreManager.shared.addCard(model: cardModel)
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished: break
+                case let .failure(error):
+                    self?.showLoader = false
+                    self?.showAlert = false
+                    self?.errorText = error.errorMessage ?? ""
+                }
+            } receiveValue: { [weak self] _ in
                 self?.isPresented = false
             }.store(in: &cancellable)
     }
     
     func updateCard() {
-        DatabaseManager.shared.updateCard(card: cardModel)
-            .sink { completion in
-                
-            } receiveValue: { [weak self] success in
-                self?.isPresented = true
+        FirestoreManager.shared.updateCard(model: cardModel)
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished: break
+                case let .failure(error):
+                    self?.showLoader = false
+                    self?.errorText = error.errorMessage ?? ""
+                }
+            } receiveValue: { [weak self] _ in
+                self?.isPresented = false
             }.store(in: &cancellable)
     }
 }

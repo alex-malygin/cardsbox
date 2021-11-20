@@ -1,7 +1,7 @@
 
 // MARK: - Main
 
-"mainTitle" = "Cards Box";
+"mainTitle" = "Home";
 "mainAddNewButton" = "Add New";
 "cardDetailCardNumberPlaceholder" = "Card Number";
 "cardDetailEnterNamePlaceholder" = "Enter name";
@@ -10,3 +10,17 @@
 "actionOkTitle" = "OK";
 "createModeTitle" = "Create";
 "editModeTitle" = "Edit";
+
+"logoutButton" = "Logout";
+"signUpButton" = "Sign Up";
+"loginButton" = "Login";
+"registrationButton" = "Registration";
+
+"leftMenuChangeProfile" = "Change profile";
+"leftMenuAboutApp" = "About app";
+"placeholderEmail" = "Email";
+"placeholderPassword" = "Password";
+"placeholderUsername" = "Username";
+"registerTitle" = "Create new account";
+"loginTitle" = "Login account";
+"loginSubtitle" = "Don't have an account?";

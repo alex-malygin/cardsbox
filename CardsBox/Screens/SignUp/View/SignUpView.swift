@@ -37,7 +37,20 @@ struct SignUpView: View {
             updateNavigationAppearance(main: false)
         })
         .alert(isPresented: $viewModel.showAlert, content: {
-            Alert(title: Text("Error"), message: Text($viewModel.errorText.wrappedValue), dismissButton: .cancel())
+            Alert(title: Text("Error"),
+                  message: Text(viewModel.errorText),
+                  dismissButton: .cancel())
+        })
+        .alert(isPresented: $viewModel.showBiometricalAlert, content: {
+            Alert(title: Text(""),
+                  message: Text(viewModel.errorText),
+                  primaryButton: .cancel({
+                viewModel.isActive = true
+            }),
+                  secondaryButton: .default(Text(Strings.actionOkTitle),
+                                            action: {
+                viewModel.saveUserData()
+            }))
         })
         .navigationBarTitleDisplayMode(.inline)
         .onTapGesture {
@@ -54,26 +67,26 @@ struct SignUpView: View {
     
     var loginForm: some View {
         VStack(spacing: 3) {
-            Text("Create new account")
+            Text(Strings.registerTitle)
                 .fontWeight(.semibold)
                 .font(.title2)
                 .padding([.top, .bottom], 20)
             
-            TextFieldView("Username", text: $viewModel.userModel.userName.bound)
+            TextFieldView(placeholder: Strings.placeholderUsername, text: $viewModel.userModel.userName.bound)
                 .padding([.top, .bottom], 5)
 
-            TextFieldView("Email", text: $viewModel.userModel.email.bound)
+            TextFieldView(placeholder: Strings.placeholderEmail, text: $viewModel.userModel.email.bound)
                 .keyboardType(.emailAddress)
                 .padding([.top, .bottom], 5)
 
-            TextFieldView("Password", text: $viewModel.userModel.password.bound)
-                .keyboardType(.emailAddress)
+            SecureFieldView(placeholder: Strings.placeholderPassword, text: $viewModel.userModel.password.bound)
+                .keyboardType(.default)
                 .padding([.top, .bottom], 5)
             
             Button {
                 viewModel.registration()
             } label: {
-                Text("Sign Up")
+                Text(Strings.signUpButton)
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50, alignment: .center)
                     .background(Color.mainSkyBlue)
@@ -82,7 +95,7 @@ struct SignUpView: View {
             }
             .padding()
             
-            NavigationLink(destination: MainTabView(), isActive: $viewModel.isActive) { }
+            NavigationLink(destination: MainContainer(), isActive: $viewModel.isActive) { }
         }
         .background(Color.formColor)
         .cornerRadius(25.0)

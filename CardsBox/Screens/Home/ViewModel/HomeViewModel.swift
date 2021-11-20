@@ -7,8 +7,6 @@
 
 import Foundation
 import Combine
-import CoreData
-import FirebaseAuth
 
 final class HomeViewModel: ObservableObject {
     // MARK: - Properties
@@ -21,35 +19,30 @@ final class HomeViewModel: ObservableObject {
     @Published var errorText = ""
     
     private var cancellable = Set<AnyCancellable>()
-    private let dataManager = DataManager.shared
     
     // MARK: - Init
     init() {
-        if let userID = Auth.auth().currentUser?.uid {
-            showLoader = true
-            DatabaseManager.shared.getCards(userID: userID).sink { completion in
+        getCards()
+    }
+    
+    func getCards() {
+        showLoader = true
+        FirestoreManager.shared.getCards()
+            .sink { [weak self] completion in
                 switch completion {
                 case .finished: break
                 case let .failure(error):
-                    debugPrint("Error login", error)
-                    self.errorText = error.localizedDescription
-                    self.showAlert = true
-                    self.showLoader = false
+                    self?.showLoader = false
+                    self?.showAlert = true
+                    self?.errorText = error.errorMessage ?? ""
                 }
-            } receiveValue: { [weak self] cardList in
+            } receiveValue: { [weak self] cards in
                 self?.showLoader = false
-                self?.cardList = cardList
+                self?.cardList = cards ?? []
             }.store(in: &cancellable)
-        } else {
-            errorText = "UserID not found!"
-        }
     }
     
     func deleteCard(cardID: String) {
-        DatabaseManager.shared.deleteCard(cardID: cardID).sink { completion in
-            
-        } receiveValue: { success in
-            
-        }.store(in: &cancellable)
+        FirestoreManager.shared.deleteCard(id: cardID)
     }
 }
