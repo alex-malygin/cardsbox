@@ -18,8 +18,16 @@ struct CardDetailView: View {
     @State private var userName: String = ""
     @State private var cardNumber: String = ""
     @State private var selectedBG: BackgroundCardType = .default
-    @Binding var viewMode: CardDetailMode
+    @State private var viewMode: CardDetailMode = .create
     @Environment(\.presentationMode) var presentationMode
+    
+    var selectedCard: CardModel?
+    
+    init(viewModel: CardDetailViewModel, selectedCard: CardModel?, viewMode: CardDetailMode) {
+        self.viewModel = viewModel
+        self.selectedCard = selectedCard
+        self.viewMode = viewMode
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -100,6 +108,7 @@ struct CardDetailView: View {
         }
         .background(Color.mainGrayColor)
         .onAppear {
+            viewModel.setCardModel(cardModel: selectedCard)
             selectedBG = viewModel.cardModel.bgType
         }
     }

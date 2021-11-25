@@ -10,13 +10,16 @@ import FirebaseAuth
 
 struct MainContentView: View {
     @EnvironmentObject var settings: MainContentViewModel
+    @EnvironmentObject var viewModels: ViewModelsFactory
  
     var body: some View {
         NavigationView {
             if settings.isLogin {
-                MainContainer()
+                MainContainer(viewModel: viewModels.makeMainContainerViewModel(),
+                              homeViewModel: viewModels.makeHomeViewModel(),
+                              leftMenuViewModel: viewModels.makeLeftMenuViewModel())
             } else {
-                LoginView()
+                LoginView(viewModel: viewModels.makeLoginViewModel())
             }
         }
         .navigationViewStyle(.stack)

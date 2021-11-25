@@ -6,12 +6,10 @@
 //
 
 import SwiftUI
-import FirebaseAuth
 
 struct HomeView: View {
-    @State private var searchText = ""
-    @State private var isShowingDetails = false
     @ObservedObject var viewModel: HomeViewModel
+    @EnvironmentObject var viewModels: ViewModelsFactory
         
     var body: some View {
         ZStack {
@@ -51,15 +49,11 @@ struct HomeView: View {
             Alert(title: Text("Error"), message: Text($viewModel.errorText.wrappedValue), dismissButton: .cancel())
         })
         .sheet(isPresented: $viewModel.isShowingDetails) {
-            let detailViewModel = CardDetailViewModel(cardModel: $viewModel.selectedCard.wrappedValue)
-            CardDetailView(viewModel: detailViewModel, viewMode: $viewModel.mode)
+            CardDetailView(viewModel: viewModels.makeCardDetailViewModel(),
+                           selectedCard: viewModel.selectedCard,
+                           viewMode: viewModel.mode)
         }
         .ignoresSafeArea(.container, edges: .bottom)
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView(viewModel: HomeViewModel())
-    }
-}

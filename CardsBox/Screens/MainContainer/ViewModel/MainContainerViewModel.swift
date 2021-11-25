@@ -10,14 +10,27 @@ import Combine
 import FirebaseAuth
 
 final class MainContainerViewModel: ObservableObject {
+    private var firestoreManager: FirestoreManagerProtocol
     
-    init() {
-        FirestoreManager.shared.getProfile()
+    init(firestoreManager: FirestoreManagerProtocol) {
+        self.firestoreManager = firestoreManager
+        firestoreManager.getProfile()
     }
 }
 
 class MainContentViewModel: ObservableObject {
     @Published var isLogin = Auth.auth().currentUser != nil
     
-    init() { }
+    private var dataManager: DataManagerProtocol
+    
+    init(dataManager: DataManagerProtocol) {
+        self.dataManager = dataManager
+    }
+    
+    func logout() {
+        try? Auth.auth().signOut()
+        dataManager.userProfile = nil
+        dataManager.lastActiveDate = 0
+        isLogin = false
+    }
 }

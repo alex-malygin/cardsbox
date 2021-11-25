@@ -12,22 +12,21 @@ import FirebaseAuth
 final class LeftMenuViewModel: ObservableObject {
     @Published var profile: UserProfileModel?
     @Published var image = UIImage(named: "avatar") ?? UIImage()
+    @Published var imageURL = URL(string: "")
     
     private var cancellable = Set<AnyCancellable>()
     
-    init() {
-        DataManager.shared.subject.sink { [weak self] profile in
-            self?.profile = profile
-        }.store(in: &cancellable) 
-    }
+    private var dataManager: DataManagerProtocol
     
-    func setUserProfile() {
-        profile = DataManager.shared.userProfile
+    init(dataManager: DataManagerProtocol) {
+        self.dataManager = dataManager
+        self.profile = dataManager.userProfile
+        self.imageURL = URL(string: profile?.avatar ?? "")
     }
     
     func logout() {
         try? Auth.auth().signOut()
-        DataManager.shared.userProfile = nil
-        DataManager.shared.lastActiveDate = 0
+        dataManager.userProfile = nil
+        dataManager.lastActiveDate = 0
     }
 }

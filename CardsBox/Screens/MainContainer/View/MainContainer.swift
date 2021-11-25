@@ -10,13 +10,16 @@ import FirebaseAuth
 import Combine
 
 struct MainContainer: View {
-    @ObservedObject private var viewModel = MainContainerViewModel()
-    @ObservedObject private var homeViewModel = HomeViewModel()
-    @ObservedObject private var leftMenuViewModel = LeftMenuViewModel()
+    @ObservedObject private var viewModel: MainContainerViewModel
+    @ObservedObject private var homeViewModel: HomeViewModel
+    @ObservedObject private var leftMenuViewModel: LeftMenuViewModel
     
     @State private var showMenu = false
     
-    init() {
+    init(viewModel: MainContainerViewModel, homeViewModel: HomeViewModel, leftMenuViewModel: LeftMenuViewModel) {
+        self.viewModel = viewModel
+        self.homeViewModel = homeViewModel
+        self.leftMenuViewModel = leftMenuViewModel
         UITableView.appearance().backgroundColor = .systemBackground
     }
     
@@ -86,8 +89,8 @@ struct MainContainer: View {
     }
 }
 
-struct MainContainer_Previews: PreviewProvider {
-    static var previews: some View {
-        MainContainer()
-    }
-}
+//struct MainContainer_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainContainer()
+//    }
+//}

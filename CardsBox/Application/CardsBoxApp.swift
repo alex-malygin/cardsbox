@@ -11,9 +11,10 @@ import FirebaseAuth
 
 @main
 struct CardsBoxApp: App {
-    @StateObject var mainViewModel = MainContentViewModel()
+    @StateObject var viewModelsFactory = ViewModelsFactory()
+    @StateObject var viewModel = MainContentViewModel(dataManager: DataManager.shared)
     @Environment(\.scenePhase) private var scenePhase
-    private var activeSessionManager = ActiveSessionManager()
+    private var activeSessionManager = ActiveSessionManager(dataManager: DataManager.shared)
     
     init() {
         FirebaseApp.configure()
@@ -22,18 +23,17 @@ struct CardsBoxApp: App {
     var body: some Scene {
         WindowGroup {
             MainContentView()
-                .environmentObject(mainViewModel)
+                .environmentObject(viewModel)
+                .environmentObject(viewModelsFactory)
                 .onChange(of: scenePhase) { phase in
                     switch phase {
                     case .background:
-                        debugPrint("background")
                         activeSessionManager.setNewLastSessionTime()
                     case .inactive:
                         debugPrint("inactive")
                     case .active:
-                        debugPrint("active")
                         if activeSessionManager.checkLastSessionTime() {
-                            logout()
+                            viewModel.logout()
                         }
                     @unknown default:
                         break
@@ -41,15 +41,8 @@ struct CardsBoxApp: App {
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willTerminateNotification),
                            perform: { output in
-                    logout()
+                    viewModel.logout()
                 })
         }
-    }
-    
-    private func logout() {
-        try? Auth.auth().signOut()
-        DataManager.shared.userProfile = nil
-        DataManager.shared.lastActiveDate = 0
-        mainViewModel.isLogin = false
     }
 }

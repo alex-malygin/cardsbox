@@ -10,16 +10,31 @@ import Combine
 import FirebaseFirestore
 import FirebaseAuth
 
-final class FirestoreManager {
-    static let shared = FirestoreManager()
-    private init() { }
+protocol FirestoreManagerProtocol {
+    func saveProfile(user: UserProfileModel) -> Future<Void, StorageError>
+    func getProfile()
+    func updateProfile(profileInfo: ProfileInfo?) -> Future<Void, StorageError>
+    func addCard(model: CardModel) -> Future<Void, StorageError>
+    func updateCard(model: CardModel) -> Future<Void, StorageError>
+    func deleteCard(id: String)
+    func getCards() -> AnyPublisher<[CardModel]?, StorageError>
+}
+
+final class FirestoreManager: FirestoreManagerProtocol {
+    //Properties
+    private let auth = Auth.auth()
+    private let firestore = Firestore.firestore()
     
     private var cancellable = Set<AnyCancellable>()
-    private let dataManager = DataManager.shared
-    private let auth = Auth.auth()
-    private let storageManager = StorageManager.shared
-    private let db = Firestore.firestore()
     
+    //Protocols
+    private var storageManager: StorageManagerProtocol
+    private var dataManager: DataManagerProtocol
+    
+    init(dataManager: DataManagerProtocol, storageManager: StorageManagerProtocol) {
+        self.storageManager = storageManager
+        self.dataManager = dataManager
+    }
 }
 
 //MARK: - Profile
@@ -27,7 +42,7 @@ extension FirestoreManager {
     func saveProfile(user: UserProfileModel) -> Future<Void, StorageError> {
         return Future<Void, StorageError> { [weak self] promise in
             guard let userID = user.id else { return promise(.failure(.idNotFound))}
-            self?.db.collection(Keys.users.rawValue).document("\(userID)").setData(user.userDictionary, completion: { error in
+            self?.firestore.collection(Keys.users.rawValue).document("\(userID)").setData(user.userDictionary, completion: { error in
                 if error == nil {
                     promise(.success(()))
                 } else {
@@ -39,11 +54,11 @@ extension FirestoreManager {
     
     func getProfile() {
         guard let userID = Auth.auth().currentUser?.uid else { return }
-        db.collection(Keys.users.rawValue).document("\(userID)").getDocument(completion: { document, error in
+        firestore.collection(Keys.users.rawValue).document("\(userID)").getDocument(completion: { [weak self] document, error in
             if let document = document, document.exists, let userData = document.data() {
                 do {
                     let user = try? JSONDecoder().decode(UserProfileModel.self, from: JSONSerialization.data(withJSONObject: userData))
-                    DataManager.shared.userProfile = user
+                    self?.dataManager.userProfile = user
                 }
             } else {
                 print("Document does not exist")
@@ -70,7 +85,7 @@ extension FirestoreManager {
             }
             
             group.notify(queue: .main) {
-                self.db.collection(Keys.users.rawValue).document(userID).updateData(profileInfo.userDictionary, completion: { error in
+                self.firestore.collection(Keys.users.rawValue).document(userID).updateData(profileInfo.userDictionary, completion: { error in
                     if error == nil {
                         promise(.success(()))
                         self.getProfile()
@@ -89,7 +104,7 @@ extension FirestoreManager {
         return Future<Void, StorageError> { [weak self] promise in
             guard let userID = Auth.auth().currentUser?.uid else { return  promise(.failure(.idNotFound)) }
             
-            self?.db.collection(Keys.cards.rawValue).document(userID)
+            self?.firestore.collection(Keys.cards.rawValue).document(userID)
                 .setData(model.cardDictionary, merge: true, completion: { error in
                     if error == nil {
                         promise(.success(()))
@@ -104,7 +119,7 @@ extension FirestoreManager {
         return Future<Void, StorageError> { [weak self] promise in
             guard let userID = Auth.auth().currentUser?.uid else { return  promise(.failure(.idNotFound)) }
             
-            self?.db.collection(Keys.cards.rawValue)
+            self?.firestore.collection(Keys.cards.rawValue)
                 .document(userID)
                 .updateData(model.cardDictionary, completion: { error in
                     if error == nil {
@@ -119,7 +134,7 @@ extension FirestoreManager {
     func deleteCard(id: String) {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         
-        db.collection(Keys.cards.rawValue)
+        firestore.collection(Keys.cards.rawValue)
             .document(userID)
             .updateData([id: FieldValue.delete()])
     }
@@ -133,7 +148,7 @@ extension FirestoreManager {
                 .eraseToAnyPublisher()
         }
         
-        db.collection(Keys.cards.rawValue)
+        firestore.collection(Keys.cards.rawValue)
             .document(userID)
             .addSnapshotListener({ documentSnapshot, error in
                 if error == nil, let snapshot = documentSnapshot {

@@ -9,7 +9,12 @@ import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var settings: MainContentViewModel
-    @ObservedObject private var viewModel = LoginViewModel()
+    @EnvironmentObject var viewModels: ViewModelsFactory
+    @ObservedObject private var viewModel: LoginViewModel
+    
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         ZStack {
@@ -93,7 +98,7 @@ struct LoginView: View {
             Text(Strings.loginSubtitle)
                 .fontWeight(.semibold)
             
-            NavigationLink(destination: SignUpView()) {
+            NavigationLink(destination: SignUpView(viewModel: viewModels.makeSignUpViewModel())) {
                 Text(Strings.registrationButton)
                     .fontWeight(.semibold)
                     .gradientForeground(colors: Gradients().flareCardBackground)
@@ -120,6 +125,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(viewModel: ViewModelsFactory().makeLoginViewModel())
     }
 }

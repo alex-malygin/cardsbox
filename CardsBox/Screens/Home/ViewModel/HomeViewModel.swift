@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 final class HomeViewModel: ObservableObject {
-    // MARK: - Properties
+    //Properties
     @Published private(set) var cardList: [CardModel] = []
     @Published var mode: CardDetailMode = .create
     @Published var selectedCard: CardModel?
@@ -20,14 +20,17 @@ final class HomeViewModel: ObservableObject {
     
     private var cancellable = Set<AnyCancellable>()
     
-    // MARK: - Init
-    init() {
+    //Protocols
+    private let firestoreManager: FirestoreManagerProtocol
+    
+    init(firestoreManager: FirestoreManagerProtocol) {
+        self.firestoreManager = firestoreManager
         getCards()
     }
     
     func getCards() {
         showLoader = true
-        FirestoreManager.shared.getCards()
+        firestoreManager.getCards()
             .sink { [weak self] completion in
                 switch completion {
                 case .finished: break
@@ -43,6 +46,6 @@ final class HomeViewModel: ObservableObject {
     }
     
     func deleteCard(cardID: String) {
-        FirestoreManager.shared.deleteCard(id: cardID)
+        firestoreManager.deleteCard(id: cardID)
     }
 }

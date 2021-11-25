@@ -30,6 +30,7 @@
 		F254718A2731938A00AD90AB /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25471892731938A00AD90AB /* AboutView.swift */; };
 		F254718C2731955400AD90AB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254718B2731955400AD90AB /* SettingsView.swift */; };
 		F26F194926791A7F0070C148 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26F194826791A7F0070C148 /* CustomTextFieldView.swift */; };
+		F278765E274F86E200B2D639 /* ViewModelsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F278765D274F86E200B2D639 /* ViewModelsFactory.swift */; };
 		F278DE692678DFFD00042F38 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F278DE682678DFFD00042F38 /* Localizable.strings */; };
 		F278DE6B2678E0A800042F38 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F278DE6A2678E0A800042F38 /* Localization.swift */; };
 		F278DE742678F94B00042F38 /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F278DE732678F94B00042F38 /* CardDetailView.swift */; };
@@ -49,7 +50,6 @@
 		F2DA622326D7FB320080C72B /* Card+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA622126D7FB320080C72B /* Card+CoreDataClass.swift */; };
 		F2DA622426D7FB320080C72B /* Card+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA622226D7FB320080C72B /* Card+CoreDataProperties.swift */; };
 		F2DA622626D804A80080C72B /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA622526D804A80080C72B /* CardModel.swift */; };
-		F2E57A7627342B27001FEEB9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E57A7527342B27001FEEB9 /* Router.swift */; };
 		F2E57A7827355B83001FEEB9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E57A7727355B83001FEEB9 /* SettingsViewModel.swift */; };
 		F2E57A7A2736E6D8001FEEB9 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E57A792736E6D8001FEEB9 /* StorageManager.swift */; };
 		F2E57A7C2736E705001FEEB9 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E57A7B2736E705001FEEB9 /* FirestoreManager.swift */; };
@@ -58,6 +58,7 @@
 		F2E87B38272AB70800B029BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2E87B37272AB70800B029BB /* GoogleService-Info.plist */; };
 		F2E87B3D272AC91400B029BB /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E87B3C272AC91400B029BB /* UserProfileModel.swift */; };
 		F2E87B45272AE31700B029BB /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E87B44272AE31700B029BB /* SignUpViewModel.swift */; };
+		F2F35E87274E8588002D8210 /* ProfileInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F35E86274E8588002D8210 /* ProfileInfoModel.swift */; };
 		F2FD36F627285EFA00A3DEC6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FD36F527285EFA00A3DEC6 /* SignUpView.swift */; };
 		F2FD36F82728655700A3DEC6 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FD36F72728655700A3DEC6 /* MainContentView.swift */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,7 @@
 		F25471892731938A00AD90AB /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		F254718B2731955400AD90AB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F26F194826791A7F0070C148 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
+		F278765D274F86E200B2D639 /* ViewModelsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelsFactory.swift; sourceTree = "<group>"; };
 		F278DE682678DFFD00042F38 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		F278DE6A2678E0A800042F38 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		F278DE732678F94B00042F38 /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
@@ -109,7 +111,6 @@
 		F2DA622126D7FB320080C72B /* Card+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F2DA622226D7FB320080C72B /* Card+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F2DA622526D804A80080C72B /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
-		F2E57A7527342B27001FEEB9 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		F2E57A7727355B83001FEEB9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		F2E57A792736E6D8001FEEB9 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		F2E57A7B2736E705001FEEB9 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
@@ -118,6 +119,7 @@
 		F2E87B37272AB70800B029BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F2E87B3C272AC91400B029BB /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		F2E87B44272AE31700B029BB /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		F2F35E86274E8588002D8210 /* ProfileInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoModel.swift; sourceTree = "<group>"; };
 		F2FD36F527285EFA00A3DEC6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		F2FD36F72728655700A3DEC6 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,12 +174,13 @@
 		F2029D2926660EE600B2293B /* CardsBox */ = {
 			isa = PBXGroup;
 			children = (
+				F2B6C1412667EC3D00EC9025 /* Application */,
+				F2B6C13F2667EC2500EC9025 /* Screens */,
+				F2E87B3E272AC93500B029BB /* Managers */,
+				F278765C274F86AD00B2D639 /* Helpers */,
 				F2948C5B26C6B66400F6881C /* Extensions */,
 				F26F1945267913EA0070C148 /* CustomViews */,
 				F29A47E12677CD32009BCDD1 /* Resources */,
-				F2B6C1412667EC3D00EC9025 /* Application */,
-				F2E87B3E272AC93500B029BB /* Managers */,
-				F2B6C13F2667EC2500EC9025 /* Screens */,
 				F2029D3826660EE800B2293B /* Info.plist */,
 				F2E87B37272AB70800B029BB /* GoogleService-Info.plist */,
 				F2029D3526660EE800B2293B /* CardsBox.xcdatamodeld */,
@@ -247,8 +250,9 @@
 		F25471872731937100AD90AB /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				F254718B2731955400AD90AB /* SettingsView.swift */,
-				F2E57A7727355B83001FEEB9 /* SettingsViewModel.swift */,
+				F2F35E85274E69F1002D8210 /* Model */,
+				F2F35E84274E69EA002D8210 /* ViewModel */,
+				F2F35E83274E69E5002D8210 /* View */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -256,7 +260,9 @@
 		F25471882731937A00AD90AB /* About */ = {
 			isa = PBXGroup;
 			children = (
-				F25471892731938A00AD90AB /* AboutView.swift */,
+				F2F35E82274E69D7002D8210 /* Model */,
+				F2F35E81274E69CF002D8210 /* ViewModel */,
+				F2F35E80274E69CA002D8210 /* View */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -281,6 +287,14 @@
 				F225E8F2273D0EA600904C81 /* SecureFieldView.swift */,
 			);
 			path = TextFields;
+			sourceTree = "<group>";
+		};
+		F278765C274F86AD00B2D639 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F278765D274F86E200B2D639 /* ViewModelsFactory.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		F278DE672678DDA100042F38 /* SwiftGen */ = {
@@ -370,7 +384,6 @@
 				F278DE672678DDA100042F38 /* SwiftGen */,
 				F278DE682678DFFD00042F38 /* Localizable.strings */,
 				F2948C5E26C6B8FD00F6881C /* Constant.swift */,
-				F2E57A7527342B27001FEEB9 /* Router.swift */,
 				F22915222722C211000370E2 /* Gradients.swift */,
 			);
 			path = Resources;
@@ -437,8 +450,9 @@
 		F2D8A2EE273911E6008F3861 /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
-				F2D8A2EF27391214008F3861 /* LeftMenu.swift */,
-				F2D8A2F127391492008F3861 /* LeftMenuViewModel.swift */,
+				F2F35E7F274E69B4002D8210 /* Model */,
+				F2F35E7E274E69AB002D8210 /* ViewModel */,
+				F2F35E7D274E69A3002D8210 /* View */,
 			);
 			path = LeftMenu;
 			sourceTree = "<group>";
@@ -497,6 +511,75 @@
 				F225E8E9273ABAE900904C81 /* AuthManager.swift */,
 			);
 			path = Firebase;
+			sourceTree = "<group>";
+		};
+		F2F35E7D274E69A3002D8210 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F2D8A2EF27391214008F3861 /* LeftMenu.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F2F35E7E274E69AB002D8210 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F2D8A2F127391492008F3861 /* LeftMenuViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F2F35E7F274E69B4002D8210 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F2F35E80274E69CA002D8210 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F25471892731938A00AD90AB /* AboutView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F2F35E81274E69CF002D8210 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F2F35E82274E69D7002D8210 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F2F35E83274E69E5002D8210 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F254718B2731955400AD90AB /* SettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F2F35E84274E69EA002D8210 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F2E57A7727355B83001FEEB9 /* SettingsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F2F35E85274E69F1002D8210 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F2F35E86274E8588002D8210 /* ProfileInfoModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F2FD36F427285ECF00A3DEC6 /* SignUp */ = {
@@ -652,7 +735,6 @@
 				F27C09802726D72C00989B1B /* LoginView.swift in Sources */,
 				F2948C5F26C6B8FD00F6881C /* Constant.swift in Sources */,
 				F26F194926791A7F0070C148 /* CustomTextFieldView.swift in Sources */,
-				F2E57A7627342B27001FEEB9 /* Router.swift in Sources */,
 				F229151B2722AEDD000370E2 /* MainContainer.swift in Sources */,
 				F2D8A2F4273917FA008F3861 /* LogoutButtonStyle.swift in Sources */,
 				F25177F3272D3881005F105B /* DataManager.swift in Sources */,
@@ -672,6 +754,7 @@
 				F2E87B45272AE31700B029BB /* SignUpViewModel.swift in Sources */,
 				F254718C2731955400AD90AB /* SettingsView.swift in Sources */,
 				F225E8EF273BADB400904C81 /* RegisterModel.swift in Sources */,
+				F278765E274F86E200B2D639 /* ViewModelsFactory.swift in Sources */,
 				F2D8A2F227391492008F3861 /* LeftMenuViewModel.swift in Sources */,
 				F2FD36F82728655700A3DEC6 /* MainContentView.swift in Sources */,
 				F2D8A2F027391214008F3861 /* LeftMenu.swift in Sources */,
@@ -680,6 +763,7 @@
 				F2E57A9C2736F4EE001FEEB9 /* WebImageView.swift in Sources */,
 				F2DA622426D7FB320080C72B /* Card+CoreDataProperties.swift in Sources */,
 				F2242FBB26D5604200ED980E /* String+Extension.swift in Sources */,
+				F2F35E87274E8588002D8210 /* ProfileInfoModel.swift in Sources */,
 				F2E57A7C2736E705001FEEB9 /* FirestoreManager.swift in Sources */,
 				F2948C5D26C6B67700F6881C /* UIColor+Extension.swift in Sources */,
 				F254718A2731938A00AD90AB /* AboutView.swift in Sources */,

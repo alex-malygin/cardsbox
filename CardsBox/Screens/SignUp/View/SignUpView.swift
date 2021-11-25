@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @ObservedObject private var viewModel = SignUpViewModel()
+    @EnvironmentObject var settings: MainContentViewModel
+    @ObservedObject private var viewModel: SignUpViewModel
+    
+    init(viewModel: SignUpViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         ZStack {
@@ -37,20 +42,7 @@ struct SignUpView: View {
             updateNavigationAppearance(main: false)
         })
         .alert(isPresented: $viewModel.showAlert, content: {
-            Alert(title: Text("Error"),
-                  message: Text(viewModel.errorText),
-                  dismissButton: .cancel())
-        })
-        .alert(isPresented: $viewModel.showBiometricalAlert, content: {
-            Alert(title: Text(""),
-                  message: Text(viewModel.errorText),
-                  primaryButton: .cancel({
-                viewModel.isActive = true
-            }),
-                  secondaryButton: .default(Text(Strings.actionOkTitle),
-                                            action: {
-                viewModel.saveUserData()
-            }))
+            showAlert()
         })
         .navigationBarTitleDisplayMode(.inline)
         .onTapGesture {
@@ -95,7 +87,6 @@ struct SignUpView: View {
             }
             .padding()
             
-            NavigationLink(destination: MainContainer(), isActive: $viewModel.isActive) { }
         }
         .background(Color.formColor)
         .cornerRadius(25.0)
@@ -115,10 +106,34 @@ struct SignUpView: View {
             .position(x: UIScreen.screenWidth / 2,
                       y: 0)
     }
+    
+    private func showAlert() -> Alert {
+        switch viewModel.alertType {
+        case .error:
+            return Alert(title: Text("Error"),
+                  message: Text(viewModel.errorText),
+                  dismissButton: .cancel())
+        case .biometrical:
+            return Alert(title: Text(""),
+                  message: Text(viewModel.errorText),
+                  primaryButton: .cancel({
+                withAnimation(.spring(response: 0.5)) {
+                    settings.isLogin = true
+                }
+            }),
+                  secondaryButton: .default(Text(Strings.actionOkTitle),
+                                            action: {
+                viewModel.saveUserData()
+                withAnimation(.spring(response: 0.5)) {
+                    settings.isLogin = true
+                }
+            }))
+        }
+    }
 }
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView()
+        SignUpView(viewModel: ViewModelsFactory().makeSignUpViewModel())
     }
 }

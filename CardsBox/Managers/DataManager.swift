@@ -8,23 +8,24 @@
 import Foundation
 import Combine
 
-class DataManager {
+protocol DataManagerProtocol {
+    var userProfile: UserProfileModel? { get set }
+    var isBiometriAvialable: Bool { get set }
+    var lastActiveDate: Int { get set }
+}
+
+final class DataManager: DataManagerProtocol {
     static let shared = DataManager()
     private let defaults = UserDefaults.standard
     
     struct Keys {
         static let loginByBiometric = "loginByBiometric"
-        static let interfaceStyle = "interfaceStyle"
-        static let userID = "userID"
         static let lastActiveDate = "lastActiveDate"
     }
-    
-    let subject = PassthroughSubject<UserProfileModel?, Never>()
     
     var userProfile: UserProfileModel? {
         didSet {
             debugPrint("[😁]", userProfile?.email as Any)
-            subject.send(userProfile)
         }
     }
     

@@ -7,13 +7,17 @@
 
 import Foundation
 import FirebaseStorage
-import FirebaseAuth
 import Combine
 
-final class StorageManager {
-    static let shared = StorageManager()
-    private var cancellable = Set<AnyCancellable>()
+protocol StorageManagerProtocol {
+    func uploadImage(image: UIImage?, path: String) -> Future<URL, StorageError>
+    func downloadImage(path: String) -> Future<URL, StorageError>
+}
+
+final class StorageManager: StorageManagerProtocol {
     private let storage = Storage.storage().reference()
+    
+    private var cancellable = Set<AnyCancellable>()
     
     func uploadImage(image: UIImage?, path: String) -> Future<URL, StorageError> {
         return Future<URL, StorageError> { [weak self] promise in

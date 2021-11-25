@@ -8,11 +8,12 @@
 import Foundation
 
 class ActiveSessionManager {
-    private let dataManager = DataManager.shared
+    private var dataManager: DataManagerProtocol
     let period = 600000
     
-    init() {
-        dataManager.lastActiveDate = 0
+    init(dataManager: DataManagerProtocol) {
+        self.dataManager = dataManager
+        self.dataManager.lastActiveDate = 0
     }
     
     func checkLastSessionTime() -> Bool {

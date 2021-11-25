@@ -10,17 +10,23 @@ import Combine
 import UIKit
 
 final class SettingsViewModel: ObservableObject {
-    @Published var profileInfo: ProfileInfo
+    //Properties
+    @Published var profileInfo = ProfileInfo(nil)
     @Published var image = UIImage(named: "avatar") ?? UIImage()
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var errorText = ""
     
     private var cancellable = Set<AnyCancellable>()
-    private let userProfile = DataManager.shared.userProfile
     
-    init() {
-        self.profileInfo = ProfileInfo(id: userProfile?.id, userName: userProfile?.userName, email: userProfile?.email, selectedImage: nil, url: userProfile?.avatar)
+    //Protocols
+    private var dataManager: DataManagerProtocol
+    private var firestoreManager: FirestoreManagerProtocol
+    
+    init(dataManager: DataManagerProtocol, firestoreManager: FirestoreManagerProtocol) {
+        self.dataManager = dataManager
+        self.firestoreManager = firestoreManager
+        self.profileInfo = ProfileInfo(dataManager.userProfile)
     }
     
     func setNewImage(image: UIImage) {
@@ -30,7 +36,7 @@ final class SettingsViewModel: ObservableObject {
     
     func save() {
         showLoader = true
-        FirestoreManager.shared.updateProfile(profileInfo: profileInfo)
+        firestoreManager.updateProfile(profileInfo: profileInfo)
             .sink { [weak self] completion in
                 switch completion {
                 case .finished: break
@@ -43,31 +49,5 @@ final class SettingsViewModel: ObservableObject {
         } receiveValue: { [weak self] _ in
             self?.showLoader = false
         }.store(in: &cancellable)
-    }
-}
-
-class ProfileInfo {
-    var id: String?
-    var userName: String?
-    var email: String?
-    var password: String?
-    var selectedImage: UIImage?
-    var url: URL?
-    
-    init(id: String?, userName: String?, email: String?, selectedImage: UIImage?, url: URL?) {
-        self.id = id
-        self.userName = userName
-        self.email = email
-        self.selectedImage = selectedImage
-        self.url = url
-    }
-    
-    var userDictionary: [String: Any]   {
-        return [
-            "id": id ?? "",
-            "user_name": userName ?? "",
-            "email": email ?? "",
-            "avatar": url?.absoluteString ?? ""
-        ]
     }
 }

@@ -12,7 +12,7 @@ class UserProfileModel: Codable {
     var id: String?
     var userName: String?
     var email: String?
-    var avatar: URL?
+    var avatar: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -21,7 +21,7 @@ class UserProfileModel: Codable {
         case avatar
     }
     
-    init(id: String?, userName: String?, email: String?, avatar: URL?) {
+    init(id: String?, userName: String?, email: String?, avatar: String?) {
         self.id = id
         self.userName = userName
         self.email = email
@@ -40,7 +40,7 @@ class UserProfileModel: Codable {
             "id": id ?? "",
             "user_name": userName ?? "",
             "email": email ?? "",
-            "avatar": avatar?.absoluteString ?? ""
+            "avatar": avatar ?? ""
         ]
     }
 }

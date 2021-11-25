@@ -9,7 +9,8 @@ import Foundation
 import Combine
 
 final class CardDetailViewModel: ObservableObject {
-    @Published var cardModel: CardModel
+    //Properties
+    @Published var cardModel = CardModel()
     @Published var cardBG: [BackgroundCardType] = [.default, .ohhappiness, .flare, .black, .white]
     @Published var isPresented = false
     @Published var showLoader = false
@@ -18,16 +19,21 @@ final class CardDetailViewModel: ObservableObject {
     
     var cancellable = Set<AnyCancellable>()
     
-    init(cardModel: CardModel?) {
+    //Protocols
+    private let firestoreManager: FirestoreManagerProtocol
+    
+    init(firestoreManager: FirestoreManagerProtocol) {
+        self.firestoreManager = firestoreManager
+    }
+    
+    func setCardModel(cardModel: CardModel?) {
         if let cardModel = cardModel {
             self.cardModel = cardModel
-        } else {
-            self.cardModel = CardModel()
         }
     }
     
     func addCard() {
-        FirestoreManager.shared.addCard(model: cardModel)
+        firestoreManager.addCard(model: cardModel)
             .sink { [weak self] completion in
                 switch completion {
                 case .finished: break
@@ -42,7 +48,7 @@ final class CardDetailViewModel: ObservableObject {
     }
     
     func updateCard() {
-        FirestoreManager.shared.updateCard(model: cardModel)
+        firestoreManager.updateCard(model: cardModel)
             .sink { [weak self] completion in
                 switch completion {
                 case .finished: break

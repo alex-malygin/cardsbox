@@ -9,15 +9,27 @@ import Foundation
 import Combine
 import FirebaseAuth
 
-final class AuthManager {
-    static let shared = AuthManager()
-    private init() { }
-    
+protocol AuthManagerProtocol {
+    func registration(user: RegisterModel) -> Future<Void, StorageError>
+    func login(user: RegisterModel) -> Future<Void, StorageError>
+}
+
+final class AuthManager: AuthManagerProtocol {
+    //Properties
     private let auth = Auth.auth()
-    private let firestore = FirestoreManager.shared
-    private let storage = StorageManager.shared
     private var cancellable = Set<AnyCancellable>()
     
+    //Protocols
+    private let storageManager: StorageManagerProtocol
+    private let firestoreManager: FirestoreManagerProtocol
+    private var dataManager: DataManagerProtocol
+    
+    init(storageManager: StorageManagerProtocol, firestoreManager: FirestoreManagerProtocol, dataManager: DataManagerProtocol) {
+        self.storageManager = storageManager
+        self.firestoreManager = firestoreManager
+        self.dataManager = dataManager
+    }
+
     func registration(user: RegisterModel) -> Future<Void, StorageError> {
         return Future<Void, StorageError> { [weak self] promise in
             guard let self = self,
@@ -28,7 +40,7 @@ final class AuthManager {
             let userProfile = UserProfileModel()
             let group = DispatchGroup()
             
-            Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            self.auth.createUser(withEmail: email, password: password) { result, error in
                 guard error == nil else { return promise(.failure(.message(error?.localizedDescription ?? ""))) }
                 if let id = self.auth.currentUser?.uid {
                     user.id = id
@@ -37,26 +49,28 @@ final class AuthManager {
                     userProfile.userName = user.userName
                 }
                 
-                group.enter()
-                self.storage.uploadImage(image: user.avatar, path: "avatars/\(user.id ?? "")")
-                    .sink { completion in
-                        switch completion {
-                        case .finished: break
-                            case let .failure(error): promise(.failure(error)) }
-                    } receiveValue: { url in
-                        userProfile.avatar = url
-                        group.leave()
-                    }.store(in: &self.cancellable)
+                if user.avatar != nil {
+                    group.enter()
+                    self.storageManager.uploadImage(image: user.avatar, path: "avatars/\(user.id ?? "")")
+                        .sink { completion in
+                            switch completion {
+                            case .finished: break
+                                case let .failure(error): promise(.failure(error)) }
+                        } receiveValue: { url in
+                            userProfile.avatar = url.absoluteString
+                            group.leave()
+                        }.store(in: &self.cancellable)
+                }
                 
                 group.notify(queue: .main) {
-                    self.firestore.saveProfile(user: userProfile)
+                    self.firestoreManager.saveProfile(user: userProfile)
                         .sink(receiveCompletion: { completion in
                             switch completion {
                             case .finished: break
                                 case let .failure(error): promise(.failure(error)) }
                         }, receiveValue: { _ in
                             promise(.success(()))
-                            DataManager.shared.userProfile = userProfile
+                            self.dataManager.userProfile = userProfile
                         }).store(in: &self.cancellable)
                 }
             }
@@ -72,7 +86,7 @@ final class AuthManager {
             
             self.auth.signIn(withEmail: email, password: password) { result, error in
                 if error == nil, let result = result {
-                    DataManager.shared.userProfile = UserProfileModel(id: result.user.uid, userName: nil, email: email, avatar: nil)
+                    self.dataManager.userProfile = UserProfileModel(id: result.user.uid, userName: nil, email: email, avatar: nil)
                     promise(.success(()))
                 } else {
                     promise(.failure(.userNotFound))

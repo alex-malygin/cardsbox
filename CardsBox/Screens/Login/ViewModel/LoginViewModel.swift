@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class LoginViewModel: ObservableObject {
+    //Properties
     @Published var userModel = RegisterModel()
     @Published var isActive = false
     @Published var showLoader = false
@@ -18,7 +19,7 @@ class LoginViewModel: ObservableObject {
     
     private var cancellable = Set<AnyCancellable>()
     private let keychain = KeychainManager()
-    var isBiomericAvailable: Bool { return DataManager.shared.isBiometriAvialable }
+    var isBiomericAvailable: Bool { return dataManager.isBiometriAvialable }
     var emailIcon: UIImage? {
         switch keychain.biometricType {
         case .none: return nil
@@ -27,12 +28,18 @@ class LoginViewModel: ObservableObject {
         }
     }
     
-    init() {
+    //Protocols
+    private var dataManager: DataManagerProtocol
+    private let authManager: AuthManagerProtocol
+    
+    init(dataManager: DataManagerProtocol, authManager: AuthManagerProtocol) {
+        self.dataManager = dataManager
+        self.authManager = authManager
     }
     
     func login() {
         showLoader = true
-        AuthManager.shared.login(user: userModel).sink { [weak self] completion in
+        authManager.login(user: userModel).sink { [weak self] completion in
             switch completion {
             case .finished: break
             case let .failure(error):
@@ -60,7 +67,7 @@ class LoginViewModel: ObservableObject {
     
     private func saveUserData() {
         keychain.saveCredentials(email: userModel.email, pass: userModel.password)
-        DataManager.shared.isBiometriAvialable = true
+        dataManager.isBiometriAvialable = true
     }
     
 }

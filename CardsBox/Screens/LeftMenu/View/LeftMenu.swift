@@ -9,17 +9,18 @@ import SwiftUI
 
 struct LeftMenu: View {
     @EnvironmentObject var settings: MainContentViewModel
+    @EnvironmentObject var viewModels: ViewModelsFactory
     @ObservedObject var viewModel: LeftMenuViewModel
     
     var body: some View {
         VStack(alignment: .center) {
-            WebImageView(imageURL: viewModel.profile?.avatar, placeholder: viewModel.image)
+            WebImageView(imageURL: viewModel.imageURL, placeholder: viewModel.image)
             Text(viewModel.profile?.userName.bound ?? "")
                 .font(Font.title2)
                 .fontWeight(.semibold)
             
             List {
-                SettingsMenuItemView(title: Strings.leftMenuChangeProfile, image: nil, destination: SettingsView())
+                SettingsMenuItemView(title: Strings.leftMenuChangeProfile, image: nil, destination: SettingsView(viewModel: viewModels.makeSettingsViewModel()))
                     .listRowBackground(Color.grayBackgroundView)
                 SettingsMenuItemView(title: Strings.leftMenuAboutApp, image: nil, destination: AboutView())
                     .listRowBackground(Color.grayBackgroundView)
@@ -33,9 +34,6 @@ struct LeftMenu: View {
             .buttonStyle(LogoutButtonStyle(text: Strings.logoutButton))
             .padding(.bottom, 40)
         }
-        .onAppear(perform: {
-            viewModel.setUserProfile()
-        })
         .border(width: 0.5, edges: [.trailing], color: .opaqueSeparator)
         .background(Color.systemBackground)
         .ignoresSafeArea(.container, edges: .bottom)
@@ -44,7 +42,7 @@ struct LeftMenu: View {
 
 struct LeftMenu_Previews: PreviewProvider {
     static var previews: some View {
-        LeftMenu(viewModel: LeftMenuViewModel())
+        LeftMenu(viewModel: LeftMenuViewModel(dataManager: DataManager.shared))
     }
 }
 

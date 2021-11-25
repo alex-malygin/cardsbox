@@ -10,21 +10,29 @@ import Combine
 import UIKit
 
 class SignUpViewModel: ObservableObject {
+    enum AlertType {
+        case error, biometrical
+    }
+    //Properties
     @Published var userModel = RegisterModel()
-    @Published var isActive = false
     @Published var image = UIImage(named: "avatar") ?? UIImage()
     @Published var selectedImage: UIImage?
     @Published var showSheet = false
-    @Published var showBiometricalAlert = false
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var errorText = ""
+    @Published var alertType: AlertType = .error
     
     private var cancellable = Set<AnyCancellable>()
     private let keychain = KeychainManager()
     
-    init() {
-        
+    //Protocols
+    private var dataManager: DataManagerProtocol
+    private let authManager: AuthManagerProtocol
+    
+    init(dataManager: DataManagerProtocol, authManager: AuthManagerProtocol) {
+        self.dataManager = dataManager
+        self.authManager = authManager
     }
     
     func setNewImage(image: UIImage) {
@@ -35,26 +43,28 @@ class SignUpViewModel: ObservableObject {
     
     func registration() {
         showLoader = true
-        AuthManager.shared.registration(user: userModel)
+        authManager.registration(user: userModel)
             .sink { [weak self] completion in
                 switch completion {
                 case .finished: break
                 case let .failure(error):
                     debugPrint("Error register", error.errorMessage ?? "")
+                    self?.showLoader = false
                     self?.errorText = error.errorMessage ?? ""
                     self?.showAlert = true
-                    self?.showLoader = false
+                    self?.alertType = .error
                 }
             } receiveValue: { [weak self] _ in
                 self?.showLoader = false
-                self?.showBiometricalAlert = true
                 self?.errorText = self?.keychain.biometricType.localized ?? ""
+                self?.showAlert = true
+                self?.alertType = .biometrical
             }.store(in: &self.cancellable)
     }
     
     func saveUserData() {
         keychain.saveCredentials(email: userModel.email, pass: userModel.password)
-        DataManager.shared.isBiometriAvialable = true
-        isActive = true
+        dataManager.isBiometriAvialable = true
+        
     }
 }
