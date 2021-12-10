@@ -15,7 +15,7 @@ struct HomeView: View {
         
     var body: some View {
         ZStack {
-            List(viewModel.cardList, id: \.id) { card in
+            List(searchResults, id: \.id) { card in
                 Button(action: {
                     viewModel.selectedCard = card
                     viewModel.mode = .edit
@@ -37,6 +37,7 @@ struct HomeView: View {
                 .listRowSeparator(.hidden)
                 .buttonStyle(PlainButtonStyle())
             }
+            .searchable(text: $searchText)
             .listStyle(PlainListStyle())
             
             ActivityIndicator(shouldAnimate: $viewModel.showLoader)
@@ -51,6 +52,14 @@ struct HomeView: View {
             CardDetailView(viewModel: detailViewModel, viewMode: $viewModel.mode)
         }
         .ignoresSafeArea(.container, edges: .bottom)
+    }
+    
+    var searchResults: [CardModel] {
+        if searchText.isEmpty {
+            return viewModel.cardList
+        } else {
+            return viewModel.cardList.filter { $0.userName.contains(searchText) }
+        }
     }
 }
 
