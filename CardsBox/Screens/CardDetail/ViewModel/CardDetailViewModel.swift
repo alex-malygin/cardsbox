@@ -42,6 +42,7 @@ final class CardDetailViewModel: ObservableObject {
     }
     
     func updateCard() {
+        cardModel.date = Date().currentTimeMillis()
         FirestoreManager.shared.updateCard(model: cardModel)
             .sink { [weak self] completion in
                 switch completion {

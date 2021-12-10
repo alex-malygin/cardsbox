@@ -64,7 +64,7 @@ extension FirestoreManager {
                         case .finished: break
                             case let .failure(error): promise(.failure(error)) }
                     }, receiveValue: { url in
-                        profileInfo.url = url
+                        profileInfo.url = url.absoluteString
                         group.leave()
                     }).store(in: &self.cancellable)
             }

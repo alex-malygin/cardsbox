@@ -15,10 +15,15 @@ class SignUpViewModel: ObservableObject {
     @Published var image = UIImage(named: "avatar") ?? UIImage()
     @Published var selectedImage: UIImage?
     @Published var showSheet = false
-    @Published var showBiometricalAlert = false
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var errorText = ""
+    @Published var alertType: AlertType = .error
+    
+    enum AlertType {
+        case error
+        case biometrical
+    }
     
     private var cancellable = Set<AnyCancellable>()
     private let keychain = KeychainManager()
@@ -41,13 +46,15 @@ class SignUpViewModel: ObservableObject {
                 case .finished: break
                 case let .failure(error):
                     debugPrint("Error register", error.errorMessage ?? "")
-                    self?.errorText = error.errorMessage ?? ""
-                    self?.showAlert = true
                     self?.showLoader = false
+                    self?.showAlert = true
+                    self?.alertType = .error
+                    self?.errorText = error.errorMessage ?? ""
                 }
             } receiveValue: { [weak self] _ in
                 self?.showLoader = false
-                self?.showBiometricalAlert = true
+                self?.showAlert = true
+                self?.alertType = .biometrical
                 self?.errorText = self?.keychain.biometricType.localized ?? ""
             }.store(in: &self.cancellable)
     }

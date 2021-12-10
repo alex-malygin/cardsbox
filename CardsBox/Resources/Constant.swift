@@ -8,9 +8,9 @@
 import UIKit
 import SwiftUI
 
-func updateNavigationAppearance(main: Bool) {
+func updateNavigationAppearance(main: Bool, clear: Bool = false) {
     if #available(iOS 15.0, *) {
-        let appearance = main ? opaqueAppearance(backgroundColor: .navBarColor) : opaqueAppearance()
+        let appearance = main ? opaqueAppearance(backgroundColor: .navBarColor) : opaqueAppearance(clear: clear)
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
@@ -19,11 +19,11 @@ func updateNavigationAppearance(main: Bool) {
     }
 }
 
-func opaqueAppearance(backgroundColor: UIColor = .clear) -> UINavigationBarAppearance {
+func opaqueAppearance(backgroundColor: UIColor = .systemBackground, clear: Bool = false) -> UINavigationBarAppearance {
     let appearance = UINavigationBarAppearance()
     appearance.configureWithOpaqueBackground()
-    appearance.backgroundColor = backgroundColor
-    appearance.shadowColor = backgroundColor == .clear ? .clear : .separator
+    appearance.backgroundColor = clear ? .clear : backgroundColor
+    appearance.shadowColor = clear ? .clear : nil
     appearance.shadowImage = nil
     return appearance
 }

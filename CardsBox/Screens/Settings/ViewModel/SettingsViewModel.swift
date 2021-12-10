@@ -52,9 +52,9 @@ class ProfileInfo {
     var email: String?
     var password: String?
     var selectedImage: UIImage?
-    var url: URL?
+    var url: String?
     
-    init(id: String?, userName: String?, email: String?, selectedImage: UIImage?, url: URL?) {
+    init(id: String?, userName: String?, email: String?, selectedImage: UIImage?, url: String?) {
         self.id = id
         self.userName = userName
         self.email = email
@@ -67,7 +67,7 @@ class ProfileInfo {
             "id": id ?? "",
             "user_name": userName ?? "",
             "email": email ?? "",
-            "avatar": url?.absoluteString ?? ""
+            "avatar": url ?? ""
         ]
     }
 }

@@ -1,7 +1,7 @@
 
 // MARK: - Main
 
-"mainTitle" = "Home";
+"mainTitle" = "";
 "mainAddNewButton" = "Add New";
 "cardDetailCardNumberPlaceholder" = "Card Number";
 "cardDetailEnterNamePlaceholder" = "Enter name";
@@ -22,5 +22,5 @@
 "placeholderPassword" = "Password";
 "placeholderUsername" = "Username";
 "registerTitle" = "Create new account";
-"loginTitle" = "Login account";
+"loginTitle" = "Welcome to CardsBox 👋";
 "loginSubtitle" = "Don't have an account?";

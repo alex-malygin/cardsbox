@@ -32,13 +32,13 @@ internal enum Strings {
   internal static let loginButton = Strings.tr("Localizable", "loginButton")
   /// Don't have an account?
   internal static let loginSubtitle = Strings.tr("Localizable", "loginSubtitle")
-  /// Login account
+  /// Welcome to CardsBox 👋
   internal static let loginTitle = Strings.tr("Localizable", "loginTitle")
   /// Logout
   internal static let logoutButton = Strings.tr("Localizable", "logoutButton")
   /// Add New
   internal static let mainAddNewButton = Strings.tr("Localizable", "mainAddNewButton")
-  /// Home
+  /// 
   internal static let mainTitle = Strings.tr("Localizable", "mainTitle")
   /// Email
   internal static let placeholderEmail = Strings.tr("Localizable", "placeholderEmail")

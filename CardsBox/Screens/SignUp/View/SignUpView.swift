@@ -34,23 +34,10 @@ struct SignUpView: View {
             })
         }
         .onAppear(perform: {
-            updateNavigationAppearance(main: false)
+            updateNavigationAppearance(main: false, clear: true)
         })
         .alert(isPresented: $viewModel.showAlert, content: {
-            Alert(title: Text("Error"),
-                  message: Text(viewModel.errorText),
-                  dismissButton: .cancel())
-        })
-        .alert(isPresented: $viewModel.showBiometricalAlert, content: {
-            Alert(title: Text(""),
-                  message: Text(viewModel.errorText),
-                  primaryButton: .cancel({
-                viewModel.isActive = true
-            }),
-                  secondaryButton: .default(Text(Strings.actionOkTitle),
-                                            action: {
-                viewModel.saveUserData()
-            }))
+            showAlert()
         })
         .navigationBarTitleDisplayMode(.inline)
         .onTapGesture {
@@ -114,6 +101,27 @@ struct SignUpView: View {
                    alignment: .center)
             .position(x: UIScreen.screenWidth / 2,
                       y: 0)
+    }
+}
+
+extension SignUpView {
+    private func showAlert() -> Alert {
+        switch viewModel.alertType {
+        case .error:
+           return Alert(title: Text("Error"),
+                  message: Text(viewModel.errorText),
+                  dismissButton: .cancel())
+        case .biometrical:
+           return Alert(title: Text(""),
+                  message: Text(viewModel.errorText),
+                  primaryButton: .cancel({
+                viewModel.isActive = true
+            }),
+                  secondaryButton: .default(Text(Strings.actionOkTitle),
+                                            action: {
+                viewModel.saveUserData()
+            }))
+        }
     }
 }
 

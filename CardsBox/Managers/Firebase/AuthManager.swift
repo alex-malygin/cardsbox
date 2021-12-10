@@ -45,7 +45,7 @@ final class AuthManager {
                             case .finished: break
                                 case let .failure(error): promise(.failure(error)) }
                         } receiveValue: { url in
-                            userProfile.avatar = url
+                            userProfile.avatar = url.absoluteString
                             group.leave()
                         }.store(in: &self.cancellable)
                 }

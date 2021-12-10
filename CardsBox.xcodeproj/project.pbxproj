@@ -247,8 +247,9 @@
 		F25471872731937100AD90AB /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				F254718B2731955400AD90AB /* SettingsView.swift */,
-				F2E57A7727355B83001FEEB9 /* SettingsViewModel.swift */,
+				F2982CAC276398F80038A820 /* Model */,
+				F2982CAB276398BA0038A820 /* ViewModel */,
+				F2982CAA276398B40038A820 /* View */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -345,6 +346,46 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		F2982CA7276398550038A820 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F2D8A2F127391492008F3861 /* LeftMenuViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F2982CA9276398860038A820 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F2D8A2EF27391214008F3861 /* LeftMenu.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F2982CAA276398B40038A820 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F254718B2731955400AD90AB /* SettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F2982CAB276398BA0038A820 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F2E57A7727355B83001FEEB9 /* SettingsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F2982CAC276398F80038A820 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F2E87B3C272AC91400B029BB /* UserProfileModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		F298567B267280B500488327 /* CardView */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,6 +427,7 @@
 				F27C097E2726D71800989B1B /* Login */,
 				F22915192722AEC4000370E2 /* MainContainer */,
 				F278DE6F2678F90100042F38 /* CardDetail */,
+				F298567B267280B500488327 /* CardView */,
 				F2B6C1402667EC3400EC9025 /* Home */,
 			);
 			path = Screens;
@@ -394,7 +436,6 @@
 		F2B6C1402667EC3400EC9025 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F2B6C1442667EC9100EC9025 /* Model */,
 				F2B6C1422667EC8200EC9025 /* View */,
 				F2B6C1432667EC8800EC9025 /* ViewModel */,
 			);
@@ -413,7 +454,6 @@
 		F2B6C1422667EC8200EC9025 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F298567B267280B500488327 /* CardView */,
 				F2029D2C26660EE600B2293B /* HomeView.swift */,
 			);
 			path = View;
@@ -427,18 +467,11 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		F2B6C1442667EC9100EC9025 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		F2D8A2EE273911E6008F3861 /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
-				F2D8A2EF27391214008F3861 /* LeftMenu.swift */,
-				F2D8A2F127391492008F3861 /* LeftMenuViewModel.swift */,
+				F2982CA9276398860038A820 /* View */,
+				F2982CA7276398550038A820 /* ViewModel */,
 			);
 			path = LeftMenu;
 			sourceTree = "<group>";
@@ -470,7 +503,6 @@
 		F2E87B3B272AC90300B029BB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F2E87B3C272AC91400B029BB /* UserProfileModel.swift */,
 				F225E8EE273BADB400904C81 /* RegisterModel.swift */,
 			);
 			path = Model;
@@ -824,7 +856,7 @@
 				DEVELOPMENT_TEAM = ACK684Q2U7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CardsBox/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -847,7 +879,7 @@
 				DEVELOPMENT_TEAM = ACK684Q2U7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CardsBox/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

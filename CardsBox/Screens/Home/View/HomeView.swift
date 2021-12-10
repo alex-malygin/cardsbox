@@ -15,33 +15,29 @@ struct HomeView: View {
         
     var body: some View {
         ZStack {
-            ScrollView(showsIndicators: false) {
-                LazyVStack {
-                    ForEach(viewModel.cardList, id: \.id) { card in
-                        Button(action: {
-                            viewModel.selectedCard = card
-                            viewModel.mode = .edit
-                            viewModel.isShowingDetails = true
-                        }) {
-                            CardView(cardType: .constant(card.cardType),
-                                     cardNumber: .constant(card.cardNumber),
-                                     cardHolderName: .constant(card.userName),
-                                     backgroundType: .constant(card.bgType))
-                                .contextMenu {
-                                    Button {
-                                        viewModel.deleteCard(cardID: card.id)
-                                    } label: {
-                                        Text("Delete")
-                                    }
-                                }
+            List(viewModel.cardList, id: \.id) { card in
+                Button(action: {
+                    viewModel.selectedCard = card
+                    viewModel.mode = .edit
+                    viewModel.isShowingDetails = true
+                }) {
+                    CardView(cardType: .constant(card.cardType),
+                             cardNumber: .constant(card.cardNumber),
+                             cardHolderName: .constant(card.userName),
+                             backgroundType: .constant(card.bgType))
+                        .contextMenu {
+                            Button {
+                                viewModel.deleteCard(cardID: card.id)
+                            } label: {
+                                Text("Delete")
+                            }
                         }
-                        .buttonStyle(PlainButtonStyle())
-                        .padding([.top, .bottom], 0)
-                        .padding([.trailing, .leading], 8)
-                    }
-                    .padding(.top, 10)
                 }
+                .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
+                .buttonStyle(PlainButtonStyle())
             }
+            .listStyle(PlainListStyle())
             
             ActivityIndicator(shouldAnimate: $viewModel.showLoader)
         }

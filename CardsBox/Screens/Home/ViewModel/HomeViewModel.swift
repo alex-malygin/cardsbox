@@ -38,7 +38,7 @@ final class HomeViewModel: ObservableObject {
                 }
             } receiveValue: { [weak self] cards in
                 self?.showLoader = false
-                self?.cardList = cards ?? []
+                self?.cardList = cards?.sorted(by: { $0.date > $1.date }) ?? []
             }.store(in: &cancellable)
     }
     

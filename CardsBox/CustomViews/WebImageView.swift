@@ -9,11 +9,11 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct WebImageView: View {
-    var imageURL: URL?
+    var imageURL: String?
     var placeholder: UIImage
     
     var body: some View {
-        WebImage(url: imageURL)
+        WebImage(url: URL(string: imageURL ?? ""))
             .placeholder(content: {
                 Image(uiImage: placeholder)
                     .resizable()
