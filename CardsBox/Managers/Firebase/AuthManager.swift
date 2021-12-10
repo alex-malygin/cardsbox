@@ -37,16 +37,18 @@ final class AuthManager {
                     userProfile.userName = user.userName
                 }
                 
-                group.enter()
-                self.storage.uploadImage(image: user.avatar, path: "avatars/\(user.id ?? "")")
-                    .sink { completion in
-                        switch completion {
-                        case .finished: break
-                            case let .failure(error): promise(.failure(error)) }
-                    } receiveValue: { url in
-                        userProfile.avatar = url
-                        group.leave()
-                    }.store(in: &self.cancellable)
+                if user.avatar != nil {
+                    group.enter()
+                    self.storage.uploadImage(image: user.avatar, path: "avatars/\(user.id ?? "")")
+                        .sink { completion in
+                            switch completion {
+                            case .finished: break
+                                case let .failure(error): promise(.failure(error)) }
+                        } receiveValue: { url in
+                            userProfile.avatar = url
+                            group.leave()
+                        }.store(in: &self.cancellable)
+                }
                 
                 group.notify(queue: .main) {
                     self.firestore.saveProfile(user: userProfile)
