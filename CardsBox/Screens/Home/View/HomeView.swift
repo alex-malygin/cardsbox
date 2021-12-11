@@ -37,11 +37,11 @@ struct HomeView: View {
                 .listRowSeparator(.hidden)
                 .buttonStyle(PlainButtonStyle())
             }
-            .searchable(text: $searchText)
             .listStyle(PlainListStyle())
             
             ActivityIndicator(shouldAnimate: $viewModel.showLoader)
         }
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
         .navigationTitle(Strings.mainTitle)
         .background(Color.mainGrayColor)
         .alert(isPresented: $viewModel.showAlert, content: {

@@ -15,12 +15,24 @@ final class SettingsViewModel: ObservableObject {
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var errorText = ""
+    @Published var alertType: AlertType = .error
     
     private var cancellable = Set<AnyCancellable>()
     private let userProfile = DataManager.shared.userProfile
     
+    enum AlertType {
+        case error
+        case disableField
+    }
+    
     init() {
         self.profileInfo = ProfileInfo(id: userProfile?.id, userName: userProfile?.userName, email: userProfile?.email, selectedImage: nil, url: userProfile?.avatar)
+    }
+    
+    func showDisabledAlert() {
+        errorText = "Not available in this version"
+        alertType = .disableField
+        showAlert = true
     }
     
     func setNewImage(image: UIImage) {
@@ -37,6 +49,7 @@ final class SettingsViewModel: ObservableObject {
                 case let .failure(error):
                     debugPrint("Error register", error.errorMessage ?? "")
                     self?.errorText = error.errorMessage ?? ""
+                    self?.alertType = .error
                     self?.showAlert = true
                     self?.showLoader = false
                 }

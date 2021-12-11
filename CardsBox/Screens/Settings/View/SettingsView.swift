@@ -21,6 +21,11 @@ struct SettingsView: View {
                         }
                     
                     TextFieldView(placeholder: "Username", text: $viewModel.profileInfo.userName.bound)
+                    TextFieldView(placeholder: "Email", text: $viewModel.profileInfo.email.bound)
+                        .disabled(true)
+                        .onTapGesture {
+                            viewModel.showDisabledAlert()
+                        }
                     
                     Button {
                         viewModel.save()
@@ -47,7 +52,7 @@ struct SettingsView: View {
             })
         }
         .alert(isPresented: $viewModel.showAlert, content: {
-            Alert(title: Text("Error"), message: Text($viewModel.errorText.wrappedValue), dismissButton: .cancel())
+            showAlert()
         })
     }
     
@@ -58,6 +63,15 @@ struct SettingsView: View {
             } else {
                 AvatarView(image: viewModel.image)
             }
+        }
+    }
+    
+    private func showAlert() -> Alert {
+        switch viewModel.alertType {
+        case .error:
+            return Alert(title: Text("Error"), message: Text(viewModel.errorText), dismissButton: .cancel())
+        case .disableField:
+            return Alert(title: Text("Sorry 🤷‍♂️"), message: Text(viewModel.errorText), dismissButton: .cancel())
         }
     }
 }
