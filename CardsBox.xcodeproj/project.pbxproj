@@ -29,7 +29,18 @@
 		F25177F3272D3881005F105B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25177F2272D3881005F105B /* DataManager.swift */; };
 		F254718A2731938A00AD90AB /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25471892731938A00AD90AB /* AboutView.swift */; };
 		F254718C2731955400AD90AB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254718B2731955400AD90AB /* SettingsView.swift */; };
+		F25FB7542764EDA6004E4220 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25FB7532764EDA6004E4220 /* LoginRouter.swift */; };
+		F25FB7562764F1C2004E4220 /* SignUpConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25FB7552764F1C2004E4220 /* SignUpConfigurator.swift */; };
+		F25FB7582764F1CC004E4220 /* SignUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25FB7572764F1CC004E4220 /* SignUpRouter.swift */; };
+		F25FB75A2764F4AA004E4220 /* MainContainerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25FB7592764F4AA004E4220 /* MainContainerConfigurator.swift */; };
+		F25FB75C2764F6B3004E4220 /* HomeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25FB75B2764F6B3004E4220 /* HomeConfigurator.swift */; };
+		F25FB75E2764F6BB004E4220 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25FB75D2764F6BB004E4220 /* HomeRouter.swift */; };
+		F25FB7602764F940004E4220 /* CardDetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25FB75F2764F940004E4220 /* CardDetailConfigurator.swift */; };
+		F25FB7622765FFC2004E4220 /* LeftMenuConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25FB7612765FFC2004E4220 /* LeftMenuConfigurator.swift */; };
+		F25FB7642765FFCE004E4220 /* LeftMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25FB7632765FFCE004E4220 /* LeftMenuRouter.swift */; };
 		F26F194926791A7F0070C148 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26F194826791A7F0070C148 /* CustomTextFieldView.swift */; };
+		F27016A82764C89100E4BDB2 /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27016A72764C89100E4BDB2 /* LoginConfigurator.swift */; };
+		F27016AA2764CA7C00E4BDB2 /* ServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27016A92764CA7C00E4BDB2 /* ServiceConfigurator.swift */; };
 		F278DE692678DFFD00042F38 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F278DE682678DFFD00042F38 /* Localizable.strings */; };
 		F278DE6B2678E0A800042F38 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F278DE6A2678E0A800042F38 /* Localization.swift */; };
 		F278DE742678F94B00042F38 /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F278DE732678F94B00042F38 /* CardDetailView.swift */; };
@@ -89,7 +100,18 @@
 		F25177F2272D3881005F105B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F25471892731938A00AD90AB /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		F254718B2731955400AD90AB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F25FB7532764EDA6004E4220 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		F25FB7552764F1C2004E4220 /* SignUpConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpConfigurator.swift; sourceTree = "<group>"; };
+		F25FB7572764F1CC004E4220 /* SignUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRouter.swift; sourceTree = "<group>"; };
+		F25FB7592764F4AA004E4220 /* MainContainerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerConfigurator.swift; sourceTree = "<group>"; };
+		F25FB75B2764F6B3004E4220 /* HomeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeConfigurator.swift; sourceTree = "<group>"; };
+		F25FB75D2764F6BB004E4220 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		F25FB75F2764F940004E4220 /* CardDetailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailConfigurator.swift; sourceTree = "<group>"; };
+		F25FB7612765FFC2004E4220 /* LeftMenuConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuConfigurator.swift; sourceTree = "<group>"; };
+		F25FB7632765FFCE004E4220 /* LeftMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuRouter.swift; sourceTree = "<group>"; };
 		F26F194826791A7F0070C148 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
+		F27016A72764C89100E4BDB2 /* LoginConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
+		F27016A92764CA7C00E4BDB2 /* ServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfigurator.swift; sourceTree = "<group>"; };
 		F278DE682678DFFD00042F38 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		F278DE6A2678E0A800042F38 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		F278DE732678F94B00042F38 /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
@@ -172,12 +194,13 @@
 		F2029D2926660EE600B2293B /* CardsBox */ = {
 			isa = PBXGroup;
 			children = (
+				F2B6C1412667EC3D00EC9025 /* Application */,
+				F27016A12764C0CC00E4BDB2 /* Presentation */,
+				F27016A22764C12500E4BDB2 /* Business Logic */,
+				F27016A32764C13D00E4BDB2 /* Core */,
 				F2948C5B26C6B66400F6881C /* Extensions */,
 				F26F1945267913EA0070C148 /* CustomViews */,
 				F29A47E12677CD32009BCDD1 /* Resources */,
-				F2B6C1412667EC3D00EC9025 /* Application */,
-				F2E87B3E272AC93500B029BB /* Managers */,
-				F2B6C13F2667EC2500EC9025 /* Screens */,
 				F2029D3826660EE800B2293B /* Info.plist */,
 				F2E87B37272AB70800B029BB /* GoogleService-Info.plist */,
 				F2029D3526660EE800B2293B /* CardsBox.xcdatamodeld */,
@@ -195,19 +218,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		F225E8EB273AEA6C00904C81 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				F225E8EC273AEA7F00904C81 /* MainContainerViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		F22915192722AEC4000370E2 /* MainContainer */ = {
 			isa = PBXGroup;
 			children = (
-				F225E8EB273AEA6C00904C81 /* ViewModel */,
-				F2D8A2F527396F88008F3861 /* View */,
+				F225E8EC273AEA7F00904C81 /* MainContainerViewModel.swift */,
+				F229151A2722AEDD000370E2 /* MainContainer.swift */,
+				F25FB7592764F4AA004E4220 /* MainContainerConfigurator.swift */,
 			);
 			path = MainContainer;
 			sourceTree = "<group>";
@@ -218,22 +234,6 @@
 				F22915202722C1A4000370E2 /* BackgroundCardView.swift */,
 			);
 			path = BackgroundCard;
-			sourceTree = "<group>";
-		};
-		F25177E9272C8127005F105B /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F27C097F2726D72C00989B1B /* LoginView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		F25177EA272C8146005F105B /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				F25177EB272C8152005F105B /* LoginViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F25177ED272C81F9005F105B /* ActivityView */ = {
@@ -284,6 +284,65 @@
 			path = TextFields;
 			sourceTree = "<group>";
 		};
+		F27016A12764C0CC00E4BDB2 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				F27C097E2726D71800989B1B /* Login */,
+				F2FD36F427285ECF00A3DEC6 /* SignUp */,
+				F22915192722AEC4000370E2 /* MainContainer */,
+				F2B6C1402667EC3400EC9025 /* Home */,
+				F278DE6F2678F90100042F38 /* CardDetail */,
+				F2D8A2EE273911E6008F3861 /* LeftMenu */,
+				F25471882731937A00AD90AB /* About */,
+				F25471872731937100AD90AB /* Settings */,
+				F298567B267280B500488327 /* CardView */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		F27016A22764C12500E4BDB2 /* Business Logic */ = {
+			isa = PBXGroup;
+			children = (
+				F27016A42764C19E00E4BDB2 /* Services */,
+				F27016A52764C1A800E4BDB2 /* Models */,
+				F27016A62764C1B700E4BDB2 /* Endpoints */,
+			);
+			path = "Business Logic";
+			sourceTree = "<group>";
+		};
+		F27016A32764C13D00E4BDB2 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F2E87B3E272AC93500B029BB /* Managers */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F27016A42764C19E00E4BDB2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F2E87B3F272AC94600B029BB /* Firebase */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F27016A52764C1A800E4BDB2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F225E8EE273BADB400904C81 /* RegisterModel.swift */,
+				F2E87B3C272AC91400B029BB /* UserProfileModel.swift */,
+				F2DA622526D804A80080C72B /* CardModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F27016A62764C1B700E4BDB2 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
 		F278DE672678DDA100042F38 /* SwiftGen */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,42 +354,20 @@
 		F278DE6F2678F90100042F38 /* CardDetail */ = {
 			isa = PBXGroup;
 			children = (
-				F278DE702678F91800042F38 /* Model */,
-				F278DE722678F92D00042F38 /* View */,
-				F278DE712678F91E00042F38 /* ViewModel */,
+				F278DE732678F94B00042F38 /* CardDetailView.swift */,
+				F2DA621F26D7FA330080C72B /* CardDetailViewModel.swift */,
+				F25FB75F2764F940004E4220 /* CardDetailConfigurator.swift */,
 			);
 			path = CardDetail;
-			sourceTree = "<group>";
-		};
-		F278DE702678F91800042F38 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F2DA622526D804A80080C72B /* CardModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		F278DE712678F91E00042F38 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				F2DA621F26D7FA330080C72B /* CardDetailViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		F278DE722678F92D00042F38 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F278DE732678F94B00042F38 /* CardDetailView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		F27C097E2726D71800989B1B /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				F25177EA272C8146005F105B /* ViewModel */,
-				F25177E9272C8127005F105B /* View */,
+				F25177EB272C8152005F105B /* LoginViewModel.swift */,
+				F27C097F2726D72C00989B1B /* LoginView.swift */,
+				F27016A72764C89100E4BDB2 /* LoginConfigurator.swift */,
+				F25FB7532764EDA6004E4220 /* LoginRouter.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -344,22 +381,6 @@
 				F27C09812726D91700989B1B /* ScreenSize+Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		F2982CA7276398550038A820 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				F2D8A2F127391492008F3861 /* LeftMenuViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		F2982CA9276398860038A820 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F2D8A2EF27391214008F3861 /* LeftMenu.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		F2982CAA276398B40038A820 /* View */ = {
@@ -381,7 +402,6 @@
 		F2982CAC276398F80038A820 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F2E87B3C272AC91400B029BB /* UserProfileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -417,27 +437,13 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		F2B6C13F2667EC2500EC9025 /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				F2D8A2EE273911E6008F3861 /* LeftMenu */,
-				F25471882731937A00AD90AB /* About */,
-				F25471872731937100AD90AB /* Settings */,
-				F2FD36F427285ECF00A3DEC6 /* SignUp */,
-				F27C097E2726D71800989B1B /* Login */,
-				F22915192722AEC4000370E2 /* MainContainer */,
-				F278DE6F2678F90100042F38 /* CardDetail */,
-				F298567B267280B500488327 /* CardView */,
-				F2B6C1402667EC3400EC9025 /* Home */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
 		F2B6C1402667EC3400EC9025 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F2B6C1422667EC8200EC9025 /* View */,
-				F2B6C1432667EC8800EC9025 /* ViewModel */,
+				F2029D2C26660EE600B2293B /* HomeView.swift */,
+				F29A47D12677B0D8009BCDD1 /* HomeViewModel.swift */,
+				F25FB75B2764F6B3004E4220 /* HomeConfigurator.swift */,
+				F25FB75D2764F6BB004E4220 /* HomeRouter.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -447,71 +453,25 @@
 			children = (
 				F2029D2A26660EE600B2293B /* CardsBoxApp.swift */,
 				F2FD36F72728655700A3DEC6 /* MainContentView.swift */,
+				F27016A92764CA7C00E4BDB2 /* ServiceConfigurator.swift */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		F2B6C1422667EC8200EC9025 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F2029D2C26660EE600B2293B /* HomeView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		F2B6C1432667EC8800EC9025 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				F29A47D12677B0D8009BCDD1 /* HomeViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F2D8A2EE273911E6008F3861 /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
-				F2982CA9276398860038A820 /* View */,
-				F2982CA7276398550038A820 /* ViewModel */,
+				F2D8A2EF27391214008F3861 /* LeftMenu.swift */,
+				F2D8A2F127391492008F3861 /* LeftMenuViewModel.swift */,
+				F25FB7612765FFC2004E4220 /* LeftMenuConfigurator.swift */,
+				F25FB7632765FFCE004E4220 /* LeftMenuRouter.swift */,
 			);
 			path = LeftMenu;
-			sourceTree = "<group>";
-		};
-		F2D8A2F527396F88008F3861 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F229151A2722AEDD000370E2 /* MainContainer.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		F2E87B39272AC8D900B029BB /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F2FD36F527285EFA00A3DEC6 /* SignUpView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		F2E87B3A272AC8E300B029BB /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				F2E87B44272AE31700B029BB /* SignUpViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		F2E87B3B272AC90300B029BB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F225E8EE273BADB400904C81 /* RegisterModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		F2E87B3E272AC93500B029BB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				F2E87B3F272AC94600B029BB /* Firebase */,
 				F29A47D32677B2A9009BCDD1 /* CoreData */,
 				F25177E7272C7B93005F105B /* ImagePickerManager.swift */,
 				F25177F2272D3881005F105B /* DataManager.swift */,
@@ -534,9 +494,10 @@
 		F2FD36F427285ECF00A3DEC6 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				F2E87B3B272AC90300B029BB /* Model */,
-				F2E87B39272AC8D900B029BB /* View */,
-				F2E87B3A272AC8E300B029BB /* ViewModel */,
+				F2FD36F527285EFA00A3DEC6 /* SignUpView.swift */,
+				F2E87B44272AE31700B029BB /* SignUpViewModel.swift */,
+				F25FB7552764F1C2004E4220 /* SignUpConfigurator.swift */,
+				F25FB7572764F1CC004E4220 /* SignUpRouter.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -675,6 +636,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F27016A82764C89100E4BDB2 /* LoginConfigurator.swift in Sources */,
 				F278DE6B2678E0A800042F38 /* Localization.swift in Sources */,
 				F2DA622326D7FB320080C72B /* Card+CoreDataClass.swift in Sources */,
 				F22915212722C1A4000370E2 /* BackgroundCardView.swift in Sources */,
@@ -697,25 +659,35 @@
 				F25177E8272C7B93005F105B /* ImagePickerManager.swift in Sources */,
 				F29A47D22677B0D8009BCDD1 /* HomeViewModel.swift in Sources */,
 				F29A47DF2677C562009BCDD1 /* ObservableCoreData.swift in Sources */,
+				F25FB7542764EDA6004E4220 /* LoginRouter.swift in Sources */,
 				F22915232722C211000370E2 /* Gradients.swift in Sources */,
+				F25FB7602764F940004E4220 /* CardDetailConfigurator.swift in Sources */,
 				F2029D2D26660EE600B2293B /* HomeView.swift in Sources */,
 				F2DA622026D7FA330080C72B /* CardDetailViewModel.swift in Sources */,
 				F25177EC272C8152005F105B /* LoginViewModel.swift in Sources */,
 				F2E87B45272AE31700B029BB /* SignUpViewModel.swift in Sources */,
+				F25FB75C2764F6B3004E4220 /* HomeConfigurator.swift in Sources */,
+				F25FB7642765FFCE004E4220 /* LeftMenuRouter.swift in Sources */,
 				F254718C2731955400AD90AB /* SettingsView.swift in Sources */,
 				F225E8EF273BADB400904C81 /* RegisterModel.swift in Sources */,
 				F2D8A2F227391492008F3861 /* LeftMenuViewModel.swift in Sources */,
 				F2FD36F82728655700A3DEC6 /* MainContentView.swift in Sources */,
 				F2D8A2F027391214008F3861 /* LeftMenu.swift in Sources */,
+				F25FB7622765FFC2004E4220 /* LeftMenuConfigurator.swift in Sources */,
 				F2FD36F627285EFA00A3DEC6 /* SignUpView.swift in Sources */,
 				F27C09822726D91700989B1B /* ScreenSize+Extension.swift in Sources */,
+				F25FB75E2764F6BB004E4220 /* HomeRouter.swift in Sources */,
 				F2E57A9C2736F4EE001FEEB9 /* WebImageView.swift in Sources */,
 				F2DA622426D7FB320080C72B /* Card+CoreDataProperties.swift in Sources */,
+				F25FB7582764F1CC004E4220 /* SignUpRouter.swift in Sources */,
 				F2242FBB26D5604200ED980E /* String+Extension.swift in Sources */,
 				F2E57A7C2736E705001FEEB9 /* FirestoreManager.swift in Sources */,
+				F25FB75A2764F4AA004E4220 /* MainContainerConfigurator.swift in Sources */,
 				F2948C5D26C6B67700F6881C /* UIColor+Extension.swift in Sources */,
+				F27016AA2764CA7C00E4BDB2 /* ServiceConfigurator.swift in Sources */,
 				F254718A2731938A00AD90AB /* AboutView.swift in Sources */,
 				F298567D267280DA00488327 /* CardView.swift in Sources */,
+				F25FB7562764F1C2004E4220 /* SignUpConfigurator.swift in Sources */,
 				F225E8F3273D0EA600904C81 /* SecureFieldView.swift in Sources */,
 				F25177EF272C820B005F105B /* ActivityIndicator.swift in Sources */,
 				F2029D2B26660EE600B2293B /* CardsBoxApp.swift in Sources */,

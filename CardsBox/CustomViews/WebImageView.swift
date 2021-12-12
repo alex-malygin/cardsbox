@@ -11,6 +11,7 @@ import SDWebImageSwiftUI
 struct WebImageView: View {
     var imageURL: String?
     var placeholder: UIImage
+    var lineWidth: CGFloat
     
     var body: some View {
         WebImage(url: URL(string: imageURL ?? ""))
@@ -20,7 +21,6 @@ struct WebImageView: View {
                     .aspectRatio(contentMode: .fit)
             })
             .resizable()
-            .frame(width: 150, height: 150, alignment: .center)
             .clipShape(Circle())
             .shadow(radius: 8)
             .scaledToFit()
@@ -29,7 +29,7 @@ struct WebImageView: View {
                                                 Gradient(colors: Gradients().defaultCardBackground),
                                                startPoint: .bottom,
                                                endPoint: .top),
-                                lineWidth: 8))
+                                lineWidth: lineWidth))
             .padding()
     }
 }

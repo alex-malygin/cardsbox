@@ -24,6 +24,10 @@ extension Color {
     static var label: Color {
         return Color(UIColor{ $0.userInterfaceStyle == .dark ? .white : .black } )
     }
+    
+    static var headerLabel: Color {
+        return Color(UIColor{ $0.userInterfaceStyle == .dark ? .white : .opaqueSeparator } )
+    }
 
     static let mainGrayColor = Color(.systemGroupedBackground)
     static let opaqueSeparator = Color(.opaqueSeparator)
