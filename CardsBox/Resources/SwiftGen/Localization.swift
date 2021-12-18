@@ -46,6 +46,8 @@ internal enum Strings {
   internal static let placeholderPassword = Strings.tr("Localizable", "placeholderPassword")
   /// Username
   internal static let placeholderUsername = Strings.tr("Localizable", "placeholderUsername")
+  /// You need to fill in all the fields to complete the registration
+  internal static let registerFieldError = Strings.tr("Localizable", "registerFieldError")
   /// Create new account
   internal static let registerTitle = Strings.tr("Localizable", "registerTitle")
   /// Registration

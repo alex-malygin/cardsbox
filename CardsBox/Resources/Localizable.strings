@@ -24,3 +24,6 @@
 "registerTitle" = "Create new account";
 "loginTitle" = "Welcome to CardsBox 👋";
 "loginSubtitle" = "Don't have an account?";
+
+
+"registerFieldError" = "You need to fill in all the fields to complete the registration";

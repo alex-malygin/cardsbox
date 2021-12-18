@@ -23,6 +23,7 @@ class SignUpViewModel: ObservableObject {
     enum AlertType {
         case error
         case biometrical
+        case fieldEmpty
     }
     
     private var cancellable = Set<AnyCancellable>()
@@ -41,6 +42,32 @@ class SignUpViewModel: ObservableObject {
     }
     
     func registration() {
+        handleError()
+    }
+    
+    func saveUserData() {
+        keychain.saveCredentials(email: userModel.email, pass: userModel.password)
+        DataManager.shared.isBiometriAvialable = true
+        isActive = true
+    }
+    
+    private func handleError() {
+        guard let userName = userModel.userName, let email = userModel.email, let password = userModel.password else {
+            showAlert = true
+            alertType = .fieldEmpty
+            errorText = Strings.registerFieldError
+            
+            return
+        }
+        
+        if userName.isEmpty && email.isEmpty && password.isEmpty {
+            showAlert = true
+            alertType = .fieldEmpty
+            errorText = Strings.registerFieldError
+
+            return
+        }
+        
         showLoader = true
         authService.registration(user: userModel)
             .sink { [weak self] completion in
@@ -59,11 +86,5 @@ class SignUpViewModel: ObservableObject {
                 self?.alertType = .biometrical
                 self?.errorText = self?.keychain.biometricType.localized ?? ""
             }.store(in: &self.cancellable)
-    }
-    
-    func saveUserData() {
-        keychain.saveCredentials(email: userModel.email, pass: userModel.password)
-        DataManager.shared.isBiometriAvialable = true
-        isActive = true
     }
 }

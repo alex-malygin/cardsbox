@@ -121,6 +121,11 @@ extension SignUpView {
                                             action: {
                 viewModel.saveUserData()
             }))
+            
+        case .fieldEmpty:
+            return Alert(title: Text("Oops🤷‍♂️"),
+                   message: Text(viewModel.errorText),
+                   dismissButton: .cancel())
         }
     }
 }
