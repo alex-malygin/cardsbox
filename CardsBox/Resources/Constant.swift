@@ -16,6 +16,7 @@ func updateNavigationAppearance(main: Bool, clear: Bool = false) {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().tintColor = .mainPurpure
     }
 }
 

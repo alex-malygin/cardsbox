@@ -2,7 +2,7 @@
 // MARK: - Main
 
 "mainTitle" = "";
-"mainAddNewButton" = "Add New";
+"mainAddNewButton" = "Add New 💳";
 "cardDetailCardNumberPlaceholder" = "Card Number";
 "cardDetailEnterNamePlaceholder" = "Enter name";
 "actionSaveTitle" = "Save";

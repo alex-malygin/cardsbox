@@ -22,7 +22,7 @@ struct AvatarView: View {
                                                 Gradient(colors: Gradients().defaultCardBackground),
                                                startPoint: .bottomLeading,
                                                endPoint: .topTrailing),
-                                lineWidth: 8))
+                                lineWidth: 5))
             .padding()
     }
 }

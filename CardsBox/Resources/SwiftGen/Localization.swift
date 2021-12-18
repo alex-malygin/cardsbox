@@ -36,7 +36,7 @@ internal enum Strings {
   internal static let loginTitle = Strings.tr("Localizable", "loginTitle")
   /// Logout
   internal static let logoutButton = Strings.tr("Localizable", "logoutButton")
-  /// Add New
+  /// Add New 💳
   internal static let mainAddNewButton = Strings.tr("Localizable", "mainAddNewButton")
   /// 
   internal static let mainTitle = Strings.tr("Localizable", "mainTitle")

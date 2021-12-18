@@ -14,7 +14,7 @@ struct LeftMenu: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                WebImageView(imageURL: viewModel.profile?.avatar, placeholder: viewModel.image, lineWidth: 8)
+                WebImageView(imageURL: viewModel.profile?.avatar, placeholder: viewModel.image, lineWidth: 5)
                     .frame(width: 150, height: 150, alignment: .center)
                 Text(viewModel.profile?.userName ?? "")
                     .font(Font.title2)
@@ -22,18 +22,19 @@ struct LeftMenu: View {
                 
                 List {
                     SettingsMenuItemView(title: Strings.leftMenuChangeProfile, image: nil, destination: SettingsView())
-                        .listRowBackground(Color.grayBackgroundView)
+                        .listRowBackground(Color.mainGrayColor)
                     SettingsMenuItemView(title: Strings.leftMenuAboutApp, image: nil, destination: AboutView())
-                        .listRowBackground(Color.grayBackgroundView)
+                        .listRowBackground(Color.mainGrayColor)
                 }
                 .listStyle(.insetGrouped)
+                
+                Spacer()
                 
                 Button {
                     viewModel.logout()
                     settings.isLogin = false
                 } label: { }
                 .buttonStyle(LogoutButtonStyle(text: Strings.logoutButton))
-                .padding(.bottom, 40)
             }
             .onAppear(perform: {
                 viewModel.setUserProfile()
@@ -45,7 +46,7 @@ struct LeftMenu: View {
         }
         .navigationViewStyle(.stack)
         .border(width: 0.5, edges: [.trailing], color: .opaqueSeparator)
-        .background(Color.systemBackground)
+        .background(Color.mainGrayColor)
         .ignoresSafeArea(.container, edges: .bottom)
     }
 }

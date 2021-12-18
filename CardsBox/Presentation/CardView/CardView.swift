@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CreditCardValidator
 
 struct CardView: View {
     @Binding var cardType: String
@@ -14,15 +15,16 @@ struct CardView: View {
     @Binding var backgroundType: BackgroundCardType
     @State private var backgroundCard: [Color] = []
     @State private var textColor: Color = .white
+    @State private var cardImage = "visa"
     
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
             HStack {
-                Text("")
-                    .foregroundColor(textColor)
-                    .font(.system(size: 15))
-                    .fontWeight(.semibold)
+               Image(cardImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 40, height: 15, alignment: .leading)
                 Spacer()
             }
             Spacer()
@@ -34,6 +36,7 @@ struct CardView: View {
                     .padding([.top, .bottom])
                     .frame(height: 50)
                     .opacity(cardNumber.isEmpty ? 0.2 : 0)
+                
                 Text(cardNumber.separate(every: 4, with: " "))
                     .foregroundColor(textColor)
                     .font(.system(size: 17))
@@ -51,7 +54,6 @@ struct CardView: View {
             }
             Spacer()
         }
-        
         .onChange(of: backgroundType, perform: { newValue in
             switch newValue {
             case .ohhappiness:
@@ -71,6 +73,9 @@ struct CardView: View {
                 backgroundCard = Gradients().defaultCardBackground
             }
         })
+        .onChange(of: cardNumber, perform: { _ in
+            checkType()
+        })
         .onAppear(perform: {
             switch backgroundType {
             case .ohhappiness:
@@ -89,6 +94,7 @@ struct CardView: View {
                 textColor = .white
                 backgroundCard = Gradients().defaultCardBackground
             }
+            checkType()
         })
         .padding([.top, .bottom], 5)
         .padding([.leading, .trailing], 25)
@@ -103,11 +109,20 @@ struct CardView: View {
         .cornerRadius(20.0)
         .frame(height: 200)
     }
+    
+    private func checkType() {
+        let type = CreditCardValidator(cardNumber)
+        if type.type == .visa {
+            cardImage = "visa"
+        } else if type.type == .masterCard {
+            cardImage = "mastercard"
+        }
+    }
 }
 
 struct CardViewCell_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(cardType: .constant("VISA"),
+        CardView(cardType: .constant("visa"),
                  cardNumber: .constant(""),
                  cardHolderName: .constant(""),
                  backgroundType: .constant(.ohhappiness))

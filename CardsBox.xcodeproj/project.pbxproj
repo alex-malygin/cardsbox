@@ -53,6 +53,7 @@
 		F298567D267280DA00488327 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298567C267280DA00488327 /* CardView.swift */; };
 		F29A47D22677B0D8009BCDD1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29A47D12677B0D8009BCDD1 /* HomeViewModel.swift */; };
 		F29A47DF2677C562009BCDD1 /* ObservableCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29A47DE2677C562009BCDD1 /* ObservableCoreData.swift */; };
+		F2AACADC276E2615009859FD /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AACADB276E2615009859FD /* SearchBar.swift */; };
 		F2D8A2F027391214008F3861 /* LeftMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8A2EF27391214008F3861 /* LeftMenu.swift */; };
 		F2D8A2F227391492008F3861 /* LeftMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8A2F127391492008F3861 /* LeftMenuViewModel.swift */; };
 		F2D8A2F4273917FA008F3861 /* LogoutButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8A2F3273917FA008F3861 /* LogoutButtonStyle.swift */; };
@@ -124,6 +125,7 @@
 		F298567C267280DA00488327 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F29A47D12677B0D8009BCDD1 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F29A47DE2677C562009BCDD1 /* ObservableCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableCoreData.swift; sourceTree = "<group>"; };
+		F2AACADB276E2615009859FD /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		F2D8A2EF27391214008F3861 /* LeftMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenu.swift; sourceTree = "<group>"; };
 		F2D8A2F127391492008F3861 /* LeftMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuViewModel.swift; sourceTree = "<group>"; };
 		F2D8A2F3273917FA008F3861 /* LogoutButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButtonStyle.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				F2E57A992736F478001FEEB9 /* AvatarView.swift */,
 				F2E57A9B2736F4EE001FEEB9 /* WebImageView.swift */,
 				F2D8A2F3273917FA008F3861 /* LogoutButtonStyle.swift */,
+				F2AACADB276E2615009859FD /* SearchBar.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				F2E57A9A2736F478001FEEB9 /* AvatarView.swift in Sources */,
 				F2E57A7A2736E6D8001FEEB9 /* StorageManager.swift in Sources */,
 				F2DA622626D804A80080C72B /* CardModel.swift in Sources */,
+				F2AACADC276E2615009859FD /* SearchBar.swift in Sources */,
 				F21DF8992747D6AA005A5715 /* ActiveSessionManager.swift in Sources */,
 				F2029D3426660EE800B2293B /* Persistence.swift in Sources */,
 				F225E8F1273C192000904C81 /* KeychainManager.swift in Sources */,

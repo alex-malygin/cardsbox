@@ -26,14 +26,20 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                VStack {
+                VStack(spacing: 0) {
                     header
-                    content()
+                    SearchBar(text: $searchText)
+                        .padding(.bottom, 10)
+                        .padding(.horizontal, 3)
+                    content
+                    addCard
                 }
+                
                 ActivityIndicator(shouldAnimate: $viewModel.showLoader)
             }
             .background(Color.mainGrayColor)
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
+            .searchable(text: $searchText,
+                        placement: .navigationBarDrawer(displayMode: .automatic))
             .navigationBarHidden(true)
         }
         .navigationViewStyle(.stack)
@@ -42,7 +48,7 @@ struct HomeView: View {
             viewModel.getCards()
             viewModel.getProfile()
         }
-        .ignoresSafeArea(.container, edges: .bottom)
+        .ignoresSafeArea(.all)
         .navigationTitle(Strings.mainTitle)
         .alert(isPresented: $viewModel.showAlert, content: {
             Alert(title: Text("Error"), message: Text($viewModel.errorText.wrappedValue), dismissButton: .cancel())
@@ -72,20 +78,50 @@ extension HomeView {
                     .fontWeight(.bold)
             }
             Spacer()
-            WebImageView(imageURL: viewModel.profile?.avatar, placeholder: viewModel.image, lineWidth: 4)
+            WebImageView(imageURL: viewModel.profile?.avatar, placeholder: viewModel.image, lineWidth: 3)
                 .frame(width: 80, height: 80, alignment: .center)
                 .onTapGesture {
                     sheetType = .profile
                     viewModel.isShowingDetails = true
                 }
         }
-        .padding(.horizontal)
+        .padding(.leading)
+        .padding(.vertical, 3)
         .redacted(reason: viewModel.profile == nil ? .placeholder : [])
     }
 }
 
 extension HomeView {
-    private func content() -> some View {
+    private var addCard: some View {
+        VStack {
+            HStack {
+                
+            }
+            .frame(width: UIScreen.screenWidth, height: 1, alignment: .center)
+            .background(Color.opaqueSeparator)
+            
+            Text(Strings.mainAddNewButton)
+                .font(Font.system(size: 17))
+                .fontWeight(.semibold)
+                .frame(width: UIScreen.screenWidth - 30,
+                       height: 50,
+                       alignment: .center)
+                .foregroundColor(.white)
+                .background(Color.sky)
+                .cornerRadius(10)
+                .padding(.top, 10)
+                .onTapGesture {
+                    viewModel.mode = .create
+                    viewModel.selectedCard = nil
+                    viewModel.isShowingDetails = true
+                    sheetType = .cardDetail
+                }
+        }
+    }
+}
+
+extension HomeView {
+    private var content: some View {
         List(searchResults, id: \.id) { card in
             Button(action: {
                 viewModel.selectedCard = card
@@ -123,32 +159,6 @@ extension HomeView {
         }
     }
 }
-
-//extension HomeView {
-//    private var trailingButton: some View {
-//        Button(action: {
-//            viewModel.mode = .create
-//            viewModel.selectedCard = nil
-//            viewModel.isShowingDetails = true
-//        }, label: {
-//            Image(systemName: "plus")
-//                .font(.system(size: 20.0, weight: .medium))
-//        })
-//    }
-//
-//    private var leadingButton: some View {
-//        Button(action: {
-//            withAnimation(.spring(response: 0.3)) {
-//                showMenu.toggle()
-//            }
-//        }, label: {
-//            Image(systemName: "line.3.horizontal")
-//                .font(.system(size: 20.0, weight: .medium))
-//        })
-//    }
-//}
-
-
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

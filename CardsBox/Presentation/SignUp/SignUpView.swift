@@ -82,7 +82,7 @@ struct SignUpView: View {
             }
             .padding()
             
-//            NavigationLink(destination: MainContainer(), isActive: $viewModel.isActive) { }
+            NavigationLink(destination: HomeConfigurator.configureHomeView(), isActive: $viewModel.isActive) { }
         }
         .background(Color.formColor)
         .cornerRadius(25.0)

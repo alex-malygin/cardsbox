@@ -86,8 +86,9 @@ struct CardDetailView: View {
                     }, label: {
                         Text( viewMode == .create ? Strings.mainAddNewButton : Strings.actionSaveTitle)
                             .fontWeight(.semibold)
-                            .frame(width: 250, height: 50)
-                            .background(Color.mainSkyBlue)
+                            .frame(width: UIScreen.screenWidth - 30,
+                                   height: 50)
+                            .background(Color.sky)
                             .foregroundColor(.white)
                             .cornerRadius(8.0)
                     })

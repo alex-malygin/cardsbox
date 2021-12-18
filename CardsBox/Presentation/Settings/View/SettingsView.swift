@@ -59,7 +59,7 @@ struct SettingsView: View {
     private var avatarImage: some View {
         VStack {
             if viewModel.profileInfo.selectedImage == nil {
-                WebImageView(imageURL: viewModel.profileInfo.url, placeholder: viewModel.image, lineWidth: 8)
+                WebImageView(imageURL: viewModel.profileInfo.url, placeholder: viewModel.image, lineWidth: 5)
                     .frame(width: 150, height: 150, alignment: .center)
             } else {
                 AvatarView(image: viewModel.image)
