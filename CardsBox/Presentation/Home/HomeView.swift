@@ -41,6 +41,7 @@ struct HomeView: View {
             .searchable(text: $searchText,
                         placement: .navigationBarDrawer(displayMode: .automatic))
             .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
         .navigationViewStyle(.stack)
         .onAppear {

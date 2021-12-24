@@ -18,12 +18,12 @@ struct WebImageView: View {
             .placeholder(content: {
                 Image(uiImage: placeholder)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .scaledToFill()
             })
             .resizable()
             .clipShape(Circle())
             .shadow(radius: 8)
-            .scaledToFit()
+            .scaledToFill()
             .overlay(Circle()
                         .stroke(LinearGradient(gradient:
                                                 Gradient(colors: Gradients().defaultCardBackground),

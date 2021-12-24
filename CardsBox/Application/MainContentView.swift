@@ -21,6 +21,7 @@ struct MainContentView: View {
             HomeConfigurator.configureHomeView()
         } else {
             LoginConfigurator.configureLoginView()
+                .environmentObject(settings)
         }
     }
 }

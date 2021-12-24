@@ -63,6 +63,7 @@ struct SettingsView: View {
                     .frame(width: 150, height: 150, alignment: .center)
             } else {
                 AvatarView(image: viewModel.image)
+                    .frame(width: 150, height: 150, alignment: .center)
             }
         }
     }

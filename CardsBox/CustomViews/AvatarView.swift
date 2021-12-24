@@ -13,8 +13,9 @@ struct AvatarView: View {
     var body: some View {
         Image(uiImage: image)
             .resizable()
-            .frame(width: 150, height: 150, alignment: .center)
             .cornerRadius(70)
+            .scaledToFill()
+            .clipped()
             .clipShape(Circle())
             .shadow(radius: 8)
             .overlay(Circle()

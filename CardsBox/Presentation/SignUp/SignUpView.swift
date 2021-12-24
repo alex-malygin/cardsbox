@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
+    @EnvironmentObject var settings: MainContentViewModel
     @ObservedObject var viewModel: SignUpViewModel
     
     var body: some View {
@@ -48,6 +49,7 @@ struct SignUpView: View {
     var avatarImage: some View {
         VStack {
             AvatarView(image: viewModel.image)
+                .frame(width: 200, height: 200, alignment: .center)
         }
         .padding()
     }
@@ -81,9 +83,8 @@ struct SignUpView: View {
                     .cornerRadius(8.0)
             }
             .padding()
-            
-            NavigationLink(destination: HomeConfigurator.configureHomeView(), isActive: $viewModel.isActive) { }
         }
+        .onChange(of: viewModel.isActive, perform: { _ in settings.isLogin = true })
         .background(Color.formColor)
         .cornerRadius(25.0)
         .shadow(radius: 10)
