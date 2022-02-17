@@ -74,6 +74,7 @@ struct LoginView: View {
                 .padding([.top, .bottom], 5)
             
             Button {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
                 viewModel.login()
             } label: {
                 Text(Strings.loginButton)
@@ -126,6 +127,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(viewModel: LoginViewModel(authService: ServiceConfigurator.makeAuthService()) )
+        LoginView(viewModel: LoginViewModel())
     }
 }

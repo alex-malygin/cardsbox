@@ -21,7 +21,8 @@ final class AuthManager: AuthServiceProtocol {
     let firestoreService: FirestoreServiceProtocol
     let storageService: StorageServiceProtocol
     
-    init(firestoreService: FirestoreServiceProtocol, storageService: StorageServiceProtocol) {
+    init(firestoreService: FirestoreServiceProtocol = FirestoreManager(),
+         storageService: StorageServiceProtocol = StorageManager()) {
         self.firestoreService = firestoreService
         self.storageService = storageService
     }

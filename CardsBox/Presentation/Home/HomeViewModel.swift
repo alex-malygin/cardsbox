@@ -20,13 +20,14 @@ final class HomeViewModel: ObservableObject {
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var errorText = ""
+    @Published var shareItems = [String]()
     
     private var cancellable = Set<AnyCancellable>()
     
     private let firestoreService: FirestoreServiceProtocol
     
     // MARK: - Init
-    init(firestoreService: FirestoreServiceProtocol) {
+    init(firestoreService: FirestoreServiceProtocol = FirestoreManager()) {
         self.firestoreService = firestoreService
         DataManager.shared.subject.sink { [weak self] profile in
             self?.profile = profile

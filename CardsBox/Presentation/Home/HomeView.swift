@@ -12,15 +12,13 @@ import Combine
 private enum SheetType {
     case cardDetail
     case profile
+    case shareCard
 }
 
 struct HomeView: View {
     @ObservedObject var viewModel: HomeViewModel
-    
     @State private var searchText = ""
-    @State private var isShowingDetails = false
     @State private var showMenu = false
-    @State private var isSelected: String? = nil
     @State private var sheetType: SheetType = .cardDetail
     
     var body: some View {
@@ -59,7 +57,7 @@ struct HomeView: View {
         }
     }
     
-    var searchResults: [CardModel] {
+    private var searchResults: [CardModel] {
         if searchText.isEmpty {
             return viewModel.cardList
         } else {
@@ -112,6 +110,7 @@ extension HomeView {
                 .cornerRadius(10)
                 .padding(.top, 10)
                 .onTapGesture {
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     viewModel.mode = .create
                     viewModel.selectedCard = nil
                     viewModel.isShowingDetails = true
@@ -136,9 +135,24 @@ extension HomeView {
                          backgroundType: .constant(card.bgType))
                     .contextMenu {
                         Button {
+                            UINotificationFeedbackGenerator().notificationOccurred(.success)
+                            UIPasteboard.general.setValue(card.cardNumber, forPasteboardType: "public.plain-text")
+                        } label: {
+                            Label("Copy", systemImage: "doc.text.fill")
+                        }
+
+                        Button {
+                            viewModel.shareItems = [card.userName, card.cardNumber]
+                            sheetType = .shareCard
+                            viewModel.isShowingDetails = true
+                        } label: {
+                            Label("Share", systemImage: "square.and.arrow.up.fill")
+                        }
+                        
+                        Button(role: .destructive) {
                             viewModel.deleteCard(cardID: card.id)
                         } label: {
-                            Text("Delete")
+                            Label("Delete", systemImage: "trash.fill")
                         }
                     }
             }
@@ -157,6 +171,8 @@ extension HomeView {
             return AnyView(HomeRouter.showCardDetail(cardModel: viewModel.selectedCard, viewMode: $viewModel.mode))
         case .profile:
             return AnyView(LeftMenuConfigurator.configureLeftMenu())
+        case .shareCard:
+            return AnyView(ShareCardController(activityItems: viewModel.shareItems))
         }
     }
 }

@@ -20,6 +20,7 @@ struct CardDetailView: View {
     @State private var selectedBG: BackgroundCardType = .default
     @Binding var viewMode: CardDetailMode
     @Environment(\.presentationMode) var presentationMode
+    @State private var isShowingSheet = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -27,10 +28,24 @@ struct CardDetailView: View {
             ScrollView() {
                 VStack(spacing: 25) {
                     Spacer()
-                    CardView(cardType: .constant(viewModel.cardModel.cardType),
-                             cardNumber: $cardNumber,
-                             cardHolderName: $userName,
-                             backgroundType: $selectedBG)
+
+                    ZStack(alignment: .trailing) {
+                        CardView(cardType: .constant(viewModel.cardModel.cardType),
+                                 cardNumber: $cardNumber,
+                                 cardHolderName: $userName,
+                                 backgroundType: $selectedBG)
+                        
+                        Button {
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            isShowingSheet = true
+                        } label: {
+                            Image(systemName: "camera.circle.fill")
+                                .font(.system(size: 40.0, weight: .regular))
+                                .foregroundColor(Color.mainGrayColor)
+                        }
+                        .padding(.trailing, 20)
+                    }
+                    
                     Spacer()
                     
                     VStack(spacing: 15) {
@@ -77,10 +92,13 @@ struct CardDetailView: View {
                     }
                     
                     Button(action: {
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         viewMode == .create ? viewModel.addCard() : viewModel.updateCard()
                         
-                        viewModel.$isPresented.sink { success in
-                            presentationMode.wrappedValue.dismiss()
+                        viewModel.$isPresented.sink { presented in
+                            if !presented {
+                                presentationMode.wrappedValue.dismiss()
+                            }
                         }.store(in: &viewModel.cancellable)
                         
                     }, label: {
@@ -99,6 +117,20 @@ struct CardDetailView: View {
                 hideKeyboard()
             }
         }
+        .alert(isPresented: $viewModel.showAlert, content: {
+            Alert(title: Text("Error"),
+                  message: Text(viewModel.errorText),
+                  dismissButton: .cancel())
+        })
+        .sheet(isPresented: $isShowingSheet) {
+            CardReaderView() { cardDetails in
+                print(cardDetails ?? "")
+                viewModel.cardModel.cardNumber = cardDetails?.number ?? ""
+                cardNumber = cardDetails?.number?.components(separatedBy: .whitespaces).joined() ?? ""
+                isShowingSheet.toggle()
+            }
+            .edgesIgnoringSafeArea(.all)
+        }
         .background(Color.mainGrayColor)
         .onAppear {
             selectedBG = viewModel.cardModel.bgType
@@ -108,8 +140,7 @@ struct CardDetailView: View {
 
 struct CardDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CardDetailView(viewModel: CardDetailViewModel(firestoreService: ServiceConfigurator.makeFirestoreService(),
-                                                      cardModel: nil),
+        CardDetailView(viewModel: CardDetailViewModel(cardModel: nil),
                        viewMode: .constant(.create))
     }
 }
@@ -124,6 +155,7 @@ struct HeaderCardDetailView: View {
                 .font(.system(size: 27.0, weight: .semibold))
             Spacer()
             Button(action: {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
                 presentationMode.wrappedValue.dismiss()
             }, label: {
                 Image(systemName: "xmark")

@@ -73,6 +73,7 @@ struct SignUpView: View {
                 .padding([.top, .bottom], 5)
             
             Button {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
                 viewModel.registration()
             } label: {
                 Text(Strings.signUpButton)

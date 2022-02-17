@@ -19,6 +19,8 @@ final class StorageManager: StorageServiceProtocol {
     private var cancellable = Set<AnyCancellable>()
     private let storage = Storage.storage().reference()
     
+    init() { }
+    
     func uploadImage(image: UIImage?, path: String) -> Future<URL, StorageError> {
         return Future<URL, StorageError> { [weak self] promise in
             guard let self = self,

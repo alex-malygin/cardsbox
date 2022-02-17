@@ -9,7 +9,7 @@ import Foundation
 
 final class HomeConfigurator {
     public static func configureHomeView() -> HomeView {
-        let viewModel = HomeViewModel(firestoreService: ServiceConfigurator.makeFirestoreService())
+        let viewModel = HomeViewModel()
         let view = HomeView(viewModel: viewModel)
         return view
     }

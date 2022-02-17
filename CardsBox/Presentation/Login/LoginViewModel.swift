@@ -29,7 +29,7 @@ class LoginViewModel: ObservableObject {
     
     private let authService: AuthServiceProtocol
     
-    init(authService: AuthServiceProtocol) {
+    init(authService: AuthServiceProtocol = AuthManager()) {
         self.authService = authService
     }
     

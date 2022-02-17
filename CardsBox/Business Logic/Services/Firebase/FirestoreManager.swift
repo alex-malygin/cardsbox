@@ -28,7 +28,7 @@ final class FirestoreManager: FirestoreServiceProtocol {
     
     let storageService: StorageServiceProtocol
     
-    init(storageService: StorageServiceProtocol) {
+    init(storageService: StorageServiceProtocol = StorageManager()) {
         self.storageService = storageService
     }
     

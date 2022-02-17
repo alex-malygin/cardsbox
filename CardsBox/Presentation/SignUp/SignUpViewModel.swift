@@ -56,7 +56,6 @@ class SignUpViewModel: ObservableObject {
             showAlert = true
             alertType = .fieldEmpty
             errorText = Strings.registerFieldError
-            
             return
         }
         

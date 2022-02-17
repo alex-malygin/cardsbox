@@ -10,9 +10,7 @@ import SwiftUI
 
 final class CardDetailConfigurator {
     public static func configureCardDetail(cardModel: CardModel?, viewMode: Binding<CardDetailMode>) -> CardDetailView {
-        let viewModel = CardDetailViewModel(firestoreService: ServiceConfigurator.makeFirestoreService(),
-                                            cardModel: cardModel)
-        
+        let viewModel = CardDetailViewModel(cardModel: cardModel)
         let view = CardDetailView(viewModel: viewModel, viewMode: viewMode)
         return view
     }

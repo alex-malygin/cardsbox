@@ -31,6 +31,7 @@ struct TextFieldView: View {
                     }
                 if showButton {
                     Button {
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         buttonAction?()
                     } label: {
                         Image(uiImage: buttonImage ?? UIImage())
