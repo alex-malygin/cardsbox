@@ -13,8 +13,9 @@ struct AvatarView: View {
     var body: some View {
         Image(uiImage: image)
             .resizable()
-            .frame(width: 150, height: 150, alignment: .center)
             .cornerRadius(70)
+            .scaledToFill()
+            .clipped()
             .clipShape(Circle())
             .shadow(radius: 8)
             .overlay(Circle()
@@ -22,7 +23,7 @@ struct AvatarView: View {
                                                 Gradient(colors: Gradients().defaultCardBackground),
                                                startPoint: .bottomLeading,
                                                endPoint: .topTrailing),
-                                lineWidth: 8))
+                                lineWidth: 5))
             .padding()
     }
 }

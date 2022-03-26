@@ -2,7 +2,7 @@
 // MARK: - Main
 
 "mainTitle" = "";
-"mainAddNewButton" = "Add New";
+"mainAddNewButton" = "Add New 💳";
 "cardDetailCardNumberPlaceholder" = "Card Number";
 "cardDetailEnterNamePlaceholder" = "Enter name";
 "actionSaveTitle" = "Save";
@@ -24,3 +24,6 @@
 "registerTitle" = "Create new account";
 "loginTitle" = "Welcome to CardsBox 👋";
 "loginSubtitle" = "Don't have an account?";
+
+
+"registerFieldError" = "You need to fill in all the fields to complete the registration";

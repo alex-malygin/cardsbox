@@ -10,16 +10,19 @@ import FirebaseAuth
 
 struct MainContentView: View {
     @EnvironmentObject var settings: MainContentViewModel
- 
+    
+    init() {
+        UITableView.appearance().backgroundColor = .clear
+        UITableView.appearance().showsVerticalScrollIndicator = false
+    }
+    
     var body: some View {
-        NavigationView {
-            if settings.isLogin {
-                MainContainer()
-            } else {
-                LoginView()
-            }
+        if settings.isLogin {
+            HomeConfigurator.configureHomeView()
+        } else {
+            LoginConfigurator.configureLoginView()
+                .environmentObject(settings)
         }
-        .navigationViewStyle(.stack)
     }
 }
 

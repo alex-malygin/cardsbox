@@ -15,5 +15,6 @@ pod 'Firebase/Database'
 pod 'Firebase/Firestore'
 pod 'SDWebImageSwiftUI'
 pod 'FirebaseFirestoreSwift', '> 7.0-beta'
+pod "CreditCardValidator"
 
 end

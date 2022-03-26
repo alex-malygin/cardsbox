@@ -11,25 +11,25 @@ import SDWebImageSwiftUI
 struct WebImageView: View {
     var imageURL: String?
     var placeholder: UIImage
+    var lineWidth: CGFloat
     
     var body: some View {
         WebImage(url: URL(string: imageURL ?? ""))
             .placeholder(content: {
                 Image(uiImage: placeholder)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .scaledToFill()
             })
             .resizable()
-            .frame(width: 150, height: 150, alignment: .center)
             .clipShape(Circle())
             .shadow(radius: 8)
-            .scaledToFit()
+            .scaledToFill()
             .overlay(Circle()
                         .stroke(LinearGradient(gradient:
                                                 Gradient(colors: Gradients().defaultCardBackground),
                                                startPoint: .bottom,
                                                endPoint: .top),
-                                lineWidth: 8))
+                                lineWidth: lineWidth))
             .padding()
     }
 }

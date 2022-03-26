@@ -22,7 +22,11 @@ extension View {
     
     func border(width: CGFloat, edges: [Edge], color: Color) -> some View {
            overlay(EdgeBorder(width: width, edges: edges).foregroundColor(color))
-       }
+    }
+    
+    func interactionReader(longPressFinished: Binding<Bool>, longPressSensitivity: Int, tapAction: @escaping () -> Void, longPressAction: @escaping () -> Void, scaleEffect: Bool = true) -> some View {
+        return self.modifier(InteractionReaderViewModifier(longPressSensitivity: longPressSensitivity, tapAction: tapAction, longPressAction: longPressAction, scaleEffect: scaleEffect, longPressFinished: longPressFinished))
+    }
 }
 
 struct EdgeBorder: Shape {
