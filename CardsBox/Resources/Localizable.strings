@@ -14,7 +14,7 @@
 "logoutButton" = "Logout";
 "signUpButton" = "Sign Up";
 "loginButton" = "Login";
-"registrationButton" = "Registration";
+"registrationButton" = "Create account";
 
 "leftMenuChangeProfile" = "Change profile";
 "leftMenuAboutApp" = "About app";

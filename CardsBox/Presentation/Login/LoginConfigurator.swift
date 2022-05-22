@@ -9,7 +9,7 @@ import Foundation
 
 final class LoginConfigurator {
     public static func configureLoginView() -> LoginView {
-        let viewModel = LoginViewModel(authService: ServiceConfigurator.makeAuthService())
+        let viewModel = OldLoginViewModel(authService: ServiceConfigurator.makeAuthService())
         let view = LoginView(viewModel: viewModel)
         return view
     }

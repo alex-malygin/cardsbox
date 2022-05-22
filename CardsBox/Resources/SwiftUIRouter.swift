@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-class Router {
+class SwiftUIRouter {
     
     static func showMain() {
         let window = UIApplication

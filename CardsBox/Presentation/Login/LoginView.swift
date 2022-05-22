@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var settings: MainContentViewModel
-    @ObservedObject var viewModel: LoginViewModel
+    @ObservedObject var viewModel: OldLoginViewModel
     
     var body: some View {
         NavigationView {
@@ -122,11 +122,5 @@ struct LoginView: View {
                    alignment: .center)
             .position(x: UIScreen.screenWidth / 2,
                       y: 0)
-    }
-}
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView(viewModel: LoginViewModel())
     }
 }

@@ -9,7 +9,6 @@ import SwiftUI
 import Firebase
 import FirebaseAuth
 
-@main
 struct CardsBoxApp: App {
     @StateObject var mainViewModel = MainContentViewModel()
     @Environment(\.scenePhase) private var scenePhase

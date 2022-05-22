@@ -50,7 +50,7 @@ internal enum Strings {
   internal static let registerFieldError = Strings.tr("Localizable", "registerFieldError")
   /// Create new account
   internal static let registerTitle = Strings.tr("Localizable", "registerTitle")
-  /// Registration
+  /// Create account
   internal static let registrationButton = Strings.tr("Localizable", "registrationButton")
   /// Sign Up
   internal static let signUpButton = Strings.tr("Localizable", "signUpButton")

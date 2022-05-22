@@ -9,7 +9,7 @@ import Combine
 import Foundation
 import UIKit
 
-class LoginViewModel: ObservableObject {
+class OldLoginViewModel: ObservableObject {
     @Published var userModel = RegisterModel()
     @Published var isActive = false
     @Published var showLoader = false

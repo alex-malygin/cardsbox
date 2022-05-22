@@ -66,4 +66,12 @@ extension UIColor {
     }
     
     static let mainPurpure = UIColor(hexString: "#4B2DBD")
+    
+    static let mainSkyBlue = UIColor(hexString: "#86A8E7")
+    static let sky = UIColor(hexString: "#7F7FD5")
+    static let imperialRed = UIColor(hexString: "#e63946")
+    static let honeydew = UIColor(hexString: "#F1FAEE")
+    static let powderBlue = UIColor(hexString: "#A8DADC")
+    static let celadonBlue = UIColor(hexString: "#457B9D")
+    static let prussianBlue = UIColor(hexString: "#1D3557")
 }
