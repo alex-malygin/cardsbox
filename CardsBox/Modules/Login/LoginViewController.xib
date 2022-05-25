@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vh8-2K-KSO">
-                    <rect key="frame" x="12" y="797" width="390" height="40"/>
+                    <rect key="frame" x="12" y="802" width="390" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="VLe-Pw-mrV"/>
                     </constraints>
@@ -32,7 +32,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c47-S3-ALJ">
-                    <rect key="frame" x="16" y="761.5" width="382" height="20.5"/>
+                    <rect key="frame" x="16" y="776.5" width="382" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -43,8 +43,8 @@
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="c47-S3-ALJ" secondAttribute="trailing" constant="16" id="72u-ob-WiZ"/>
                 <constraint firstItem="c47-S3-ALJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="9my-nG-miV"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Vh8-2K-KSO" secondAttribute="bottom" constant="25" id="GMz-01-Xft"/>
-                <constraint firstItem="Vh8-2K-KSO" firstAttribute="top" secondItem="c47-S3-ALJ" secondAttribute="bottom" constant="15" id="LDc-in-nqz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Vh8-2K-KSO" secondAttribute="bottom" constant="20" id="GMz-01-Xft"/>
+                <constraint firstItem="Vh8-2K-KSO" firstAttribute="top" secondItem="c47-S3-ALJ" secondAttribute="bottom" constant="5" id="LDc-in-nqz"/>
                 <constraint firstItem="Vh8-2K-KSO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="RcT-Gc-AuP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Vh8-2K-KSO" secondAttribute="trailing" constant="12" id="w5o-LS-x9p"/>
             </constraints>

@@ -22,8 +22,8 @@
 "placeholderPassword" = "Password";
 "placeholderUsername" = "Username";
 "registerTitle" = "Create new account";
-"loginTitle" = "Welcome to CardsBox 👋";
+"loginTitle" = "Welcome to CardsBox 🇺🇦";
 "loginSubtitle" = "Don't have an account?";
 
-
+"loginFieldError" = "You need to fill in all the fields to complete the login";
 "registerFieldError" = "You need to fill in all the fields to complete the registration";

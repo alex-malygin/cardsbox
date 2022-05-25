@@ -21,6 +21,7 @@ class LoginViewController: BaseViewController<LoginViewModelType> {
     private var formLabel: UILabel!
     private var emailTextField: BaseTextFieldView!
     private var passwordTextField: BaseTextFieldView!
+    private var loginButton: BaseButtonView!
     
     private var backgroundCircle: UIView!
     private var gradient: CAGradientLayer = {
@@ -44,6 +45,7 @@ class LoginViewController: BaseViewController<LoginViewModelType> {
         setupFormConstraints()
         
         setupUIElements()
+        actions()
         
         viewModel.input.viewDidLoad()
     }
@@ -53,7 +55,56 @@ class LoginViewController: BaseViewController<LoginViewModelType> {
         gradient.frame = backgroundCircle.bounds
     }
     
+    private func actions() {
+        viewModel.output.showLoader.bind { [weak self] show in
+            self?.loader(show: show)
+        }
+        
+        viewModel.output.setPasswordImageName = { [weak self] imageName in
+            self?.passwordTextField.setTrailingElementImage(UIImage(systemName: imageName))
+        }
+        
+        emailTextField.handleText.bind(listener: { [weak self] text in
+            self?.viewModel.input.handleEmailField(text: text)
+        })
+        
+        passwordTextField.handleText.bind(listener: { [weak self] text in
+            self?.viewModel.input.handlePasswordlField(text: text)
+        })
+        
+        passwordTextField.trailingElementAction = { [weak self] in
+            self?.passwordTextField.isSecurity.toggle()
+            self?.viewModel.input.changePasswordImage()
+        }
+        
+        loginButton.action = { [weak self] in
+            self?.viewModel.input.login()
+        }
+    }
+    
     @IBAction func registerButtonAction(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1,
+                       animations: {
+            self.registerButton.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
+        },
+                       completion: { _ in
+            UIView.animate(withDuration: 0.1) {
+                self.registerButton.transform = CGAffineTransform.identity
+            }
+        })
+        
+        viewModel.input.showRegisterScreen()
+    }
+}
+
+extension LoginViewController {
+    private func alertHandler(_ errors: [LoginViewModel.Alert]) {
+        errors.forEach {
+            switch $0 {
+            case .other:
+                print("mess", $0.message)
+            }
+        }
     }
 }
 
@@ -71,7 +122,7 @@ private extension LoginViewController {
         formBackgroundView = UIView()
         formBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         formBackgroundView.layer.cornerRadius = 25
-        formBackgroundView.backgroundColor = .white
+        formBackgroundView.backgroundColor = .formColor
         formBackgroundView.layer.shadowColor = UIColor.black.cgColor
         formBackgroundView.layer.shadowOffset = CGSize(width: 3, height: 3)
         formBackgroundView.layer.shadowOpacity = 0.3
@@ -81,17 +132,31 @@ private extension LoginViewController {
         formLabel = UILabel()
         formLabel.translatesAutoresizingMaskIntoConstraints = false
         formLabel.text = Strings.loginTitle
-        formLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+        formLabel.font = .boldSystemFont(ofSize: 17)
         formLabel.textAlignment = .center
         formBackgroundView.addSubview(formLabel)
         
         emailTextField = BaseTextFieldView()
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        emailTextField.placeholder = Strings.placeholderEmail
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.textContentType = .emailAddress
+        emailTextField.capitalization = .none
+        emailTextField.correction = false
         formBackgroundView.addSubview(emailTextField)
         
         passwordTextField = BaseTextFieldView()
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.placeholder = Strings.placeholderPassword
+        passwordTextField.keyboardType = .default
+        passwordTextField.isSecurity = true
+        passwordTextField.setTrailingElement(image: UIImage(systemName: "eye.slash"))
         formBackgroundView.addSubview(passwordTextField)
+        
+        loginButton = BaseButtonView()
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.title = Strings.loginButton
+        formBackgroundView.addSubview(loginButton)
     }
     
     private func setupBackgroundCircleConstraints() {
@@ -102,10 +167,10 @@ private extension LoginViewController {
     }
     
     private func setupFormConstraints() {
-        formBackgroundView.topAnchor.constraint(equalTo: view.topAnchor, constant: calculateSize(with: 30)).isActive = true
+        formBackgroundView.topAnchor.constraint(equalTo: view.topAnchor, constant: calculateSize(with: 25)).isActive = true
         formBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        formBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        formBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        formBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+        formBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
         formBackgroundView.bottomAnchor.constraint(lessThanOrEqualTo: accountLabel.topAnchor, constant: 15).isActive = true
         
         formLabel.topAnchor.constraint(equalTo: formBackgroundView.topAnchor, constant: 15).isActive = true
@@ -121,7 +186,12 @@ private extension LoginViewController {
         passwordTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         passwordTextField.leadingAnchor.constraint(equalTo: formBackgroundView.leadingAnchor, constant: 15).isActive = true
         passwordTextField.trailingAnchor.constraint(equalTo: formBackgroundView.trailingAnchor, constant: -15).isActive = true
-        passwordTextField.bottomAnchor.constraint(equalTo: formBackgroundView.bottomAnchor, constant: -15).isActive = true
+        passwordTextField.bottomAnchor.constraint(equalTo: loginButton.topAnchor, constant: -35).isActive = true
+        
+        loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loginButton.leadingAnchor.constraint(equalTo: formBackgroundView.leadingAnchor, constant: 15).isActive = true
+        loginButton.trailingAnchor.constraint(equalTo: formBackgroundView.trailingAnchor, constant: -15).isActive = true
+        loginButton.bottomAnchor.constraint(equalTo: formBackgroundView.bottomAnchor, constant: -15).isActive = true
     }
 }
 

@@ -30,9 +30,11 @@ internal enum Strings {
   internal static let leftMenuChangeProfile = Strings.tr("Localizable", "leftMenuChangeProfile")
   /// Login
   internal static let loginButton = Strings.tr("Localizable", "loginButton")
+  /// You need to fill in all the fields to complete the login
+  internal static let loginFieldError = Strings.tr("Localizable", "loginFieldError")
   /// Don't have an account?
   internal static let loginSubtitle = Strings.tr("Localizable", "loginSubtitle")
-  /// Welcome to CardsBox 👋
+  /// Welcome to CardsBox 🇺🇦
   internal static let loginTitle = Strings.tr("Localizable", "loginTitle")
   /// Logout
   internal static let logoutButton = Strings.tr("Localizable", "logoutButton")

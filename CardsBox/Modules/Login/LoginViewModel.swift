@@ -16,10 +16,17 @@ protocol LoginViewModelType {
 protocol LoginViewModelInputs {
     func viewDidLoad()
     func login()
+    func showRegisterScreen()
+    func changePasswordImage()
+    func handleEmailField(text: String?)
+    func handlePasswordlField(text: String?)
 }
 
 protocol LoginViewModelOutputs: AnyObject {
-    
+    var showLoader: Observer<Bool> { get set }
+    var setPasswordImageName: ItemClosure<String>? { get set }
+    var showRegisterScreenAction: VoidClosure? { get set }
+    var showAlert: ItemClosure<[LoginViewModel.Alert]>? { get set }
 }
 
 //MARK: - LoginViewModel Alert
@@ -35,15 +42,24 @@ extension LoginViewModel {
     }
 }
 
-final class LoginViewModel: LoginViewModelType {
+final class LoginViewModel: LoginViewModelType, LoginViewModelOutputs {
     //MARK: - Setup ViewModelType Properties
     var input: LoginViewModelInputs { return self }
     var output: LoginViewModelOutputs { return self }
     
+    //MARK: - Private properties
+    private var showPassword = false
+    private var email: String?
+    private var password: String?
+    
     //MARK: - Init
-    init() {
-        
-    }
+    init() { }
+    
+    //MARK: - LoginViewModelOutputs
+    var showLoader: Observer<Bool> = .init(false)
+    var setPasswordImageName: ItemClosure<String>?
+    var showRegisterScreenAction: VoidClosure?
+    var showAlert: ItemClosure<[LoginViewModel.Alert]>?
 }
 
 //MARK: - LoginViewModelInputs
@@ -52,12 +68,38 @@ extension LoginViewModel: LoginViewModelInputs {
         
     }
     
-    func login() {
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+    func handleEmailField(text: String?) {
+        email = text
     }
-}
-
-//MARK: - LoginViewModelOutputs
-extension LoginViewModel: LoginViewModelOutputs {
     
+    func handlePasswordlField(text: String?) {
+        password = text
+    }
+    
+    func login() {
+        guard let email = email, let password = password else {
+            showAlert?([.other(message: Strings.loginFieldError)])
+            return
+        }
+        
+        showLoader.value = true
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        if email.isEmpty, password.isEmpty {
+            showLoader.value = false
+            showAlert?([.other(message: Strings.loginFieldError)])
+            return
+        }
+        
+        showLoader.value = false
+        //add requst
+    }
+    
+    func showRegisterScreen() {
+        showRegisterScreenAction?()
+    }
+    
+    func changePasswordImage() {
+        showPassword.toggle()
+        setPasswordImageName?(showPassword ? "eye" : "eye.slash")
+    }
 }

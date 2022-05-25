@@ -65,6 +65,10 @@ extension UIColor {
         return UIColor { $0.userInterfaceStyle == .dark ? .systemGray6 : UIColor(hexString: "fafafa") }
     }
     
+    static var formColor: UIColor {
+        return UIColor{ $0.userInterfaceStyle == .dark ? .systemGray6 : .white }
+    }
+    
     static let mainPurpure = UIColor(hexString: "#4B2DBD")
     
     static let mainSkyBlue = UIColor(hexString: "#86A8E7")
