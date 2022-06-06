@@ -63,9 +63,16 @@
 		F26F194926791A7F0070C148 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26F194826791A7F0070C148 /* CustomTextFieldView.swift */; };
 		F27016A82764C89100E4BDB2 /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27016A72764C89100E4BDB2 /* LoginConfigurator.swift */; };
 		F27016AA2764CA7C00E4BDB2 /* ServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27016A92764CA7C00E4BDB2 /* ServiceConfigurator.swift */; };
-		F278DE692678DFFD00042F38 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F278DE682678DFFD00042F38 /* Localizable.strings */; };
 		F278DE6B2678E0A800042F38 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F278DE6A2678E0A800042F38 /* Localization.swift */; };
 		F278DE742678F94B00042F38 /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F278DE732678F94B00042F38 /* CardDetailView.swift */; };
+		F27C015D283FE99100B60017 /* SubscribeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C0159283FE99100B60017 /* SubscribeCoordinator.swift */; };
+		F27C015E283FE99100B60017 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C015A283FE99100B60017 /* SubscribeViewController.swift */; };
+		F27C015F283FE99100B60017 /* SubscribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C015B283FE99100B60017 /* SubscribeViewModel.swift */; };
+		F27C0160283FE99100B60017 /* SubscribeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27C015C283FE99100B60017 /* SubscribeViewController.xib */; };
+		F27C0165283FEA9800B60017 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C0161283FEA9800B60017 /* OnboardingCoordinator.swift */; };
+		F27C0166283FEA9800B60017 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C0162283FEA9800B60017 /* OnboardingViewController.swift */; };
+		F27C0167283FEA9800B60017 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C0163283FEA9800B60017 /* OnboardingViewModel.swift */; };
+		F27C0168283FEA9800B60017 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27C0164283FEA9800B60017 /* OnboardingViewController.xib */; };
 		F27C097D2726D44500989B1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F27C097C2726D44500989B1B /* Assets.xcassets */; };
 		F27C09802726D72C00989B1B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C097F2726D72C00989B1B /* LoginView.swift */; };
 		F27C09822726D91700989B1B /* ScreenSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C09812726D91700989B1B /* ScreenSize+Extension.swift */; };
@@ -87,6 +94,9 @@
 		F2DA622326D7FB320080C72B /* Card+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA622126D7FB320080C72B /* Card+CoreDataClass.swift */; };
 		F2DA622426D7FB320080C72B /* Card+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA622226D7FB320080C72B /* Card+CoreDataProperties.swift */; };
 		F2DA622626D804A80080C72B /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA622526D804A80080C72B /* CardModel.swift */; };
+		F2DEF3CB283FE15B00E7F5D3 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DEF3CA283FE15B00E7F5D3 /* UIViewController+Extension.swift */; };
+		F2DEF3CE283FE23D00E7F5D3 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DEF3CD283FE23D00E7F5D3 /* AlertService.swift */; };
+		F2DEF3CF283FE3BC00E7F5D3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F2DEF3D1283FE3BC00E7F5D3 /* Localizable.strings */; };
 		F2E57A7627342B27001FEEB9 /* SwiftUIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E57A7527342B27001FEEB9 /* SwiftUIRouter.swift */; };
 		F2E57A7827355B83001FEEB9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E57A7727355B83001FEEB9 /* SettingsViewModel.swift */; };
 		F2E57A7A2736E6D8001FEEB9 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E57A792736E6D8001FEEB9 /* StorageManager.swift */; };
@@ -163,9 +173,16 @@
 		F26F194826791A7F0070C148 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		F27016A72764C89100E4BDB2 /* LoginConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
 		F27016A92764CA7C00E4BDB2 /* ServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfigurator.swift; sourceTree = "<group>"; };
-		F278DE682678DFFD00042F38 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		F278DE6A2678E0A800042F38 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		F278DE732678F94B00042F38 /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
+		F27C0159283FE99100B60017 /* SubscribeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeCoordinator.swift; sourceTree = "<group>"; };
+		F27C015A283FE99100B60017 /* SubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
+		F27C015B283FE99100B60017 /* SubscribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewModel.swift; sourceTree = "<group>"; };
+		F27C015C283FE99100B60017 /* SubscribeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubscribeViewController.xib; sourceTree = "<group>"; };
+		F27C0161283FEA9800B60017 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		F27C0162283FEA9800B60017 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		F27C0163283FEA9800B60017 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		F27C0164283FEA9800B60017 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		F27C097C2726D44500989B1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F27C097F2726D72C00989B1B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F27C09812726D91700989B1B /* ScreenSize+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenSize+Extension.swift"; sourceTree = "<group>"; };
@@ -188,6 +205,10 @@
 		F2DA622126D7FB320080C72B /* Card+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F2DA622226D7FB320080C72B /* Card+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F2DA622526D804A80080C72B /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		F2DEF3CA283FE15B00E7F5D3 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		F2DEF3CD283FE23D00E7F5D3 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
+		F2DEF3D0283FE3BC00E7F5D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F2DEF3D2283FE3BD00E7F5D3 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F2E57A7527342B27001FEEB9 /* SwiftUIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIRouter.swift; sourceTree = "<group>"; };
 		F2E57A7727355B83001FEEB9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		F2E57A792736E6D8001FEEB9 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -284,7 +305,8 @@
 		F21F371027F36F550082CDF4 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				F2A84EE8283EA71400F8B0A8 /* Onboard */,
+				F2DEF3D3283FE5F500E7F5D3 /* Onboarding */,
+				F2DEF3D4283FE60C00E7F5D3 /* Subscribe */,
 				F21F371127F36F760082CDF4 /* Login */,
 			);
 			path = Modules;
@@ -304,6 +326,7 @@
 		F21F371227F370310082CDF4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F2DEF3CC283FE20D00E7F5D3 /* AlertService */,
 				F2C32B0D282ADE88008D58FC /* AuthService */,
 			);
 			path = Services;
@@ -544,6 +567,7 @@
 				F24D32C727FB38E4006445EE /* AppDelegate+Extension.swift */,
 				F24D32D427FB3F9F006445EE /* UIView+Extension.swift */,
 				F2A84EE3283E852100F8B0A8 /* UITextField+Extension.swift */,
+				F2DEF3CA283FE15B00E7F5D3 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -594,19 +618,12 @@
 			isa = PBXGroup;
 			children = (
 				F278DE672678DDA100042F38 /* SwiftGen */,
-				F278DE682678DFFD00042F38 /* Localizable.strings */,
+				F2DEF3D1283FE3BC00E7F5D3 /* Localizable.strings */,
 				F2948C5E26C6B8FD00F6881C /* Constant.swift */,
 				F2E57A7527342B27001FEEB9 /* SwiftUIRouter.swift */,
 				F22915222722C211000370E2 /* Gradients.swift */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		F2A84EE8283EA71400F8B0A8 /* Onboard */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Onboard;
 			sourceTree = "<group>";
 		};
 		F2B6C1402667EC3400EC9025 /* Home */ = {
@@ -652,6 +669,36 @@
 				F25FB7632765FFCE004E4220 /* LeftMenuRouter.swift */,
 			);
 			path = LeftMenu;
+			sourceTree = "<group>";
+		};
+		F2DEF3CC283FE20D00E7F5D3 /* AlertService */ = {
+			isa = PBXGroup;
+			children = (
+				F2DEF3CD283FE23D00E7F5D3 /* AlertService.swift */,
+			);
+			path = AlertService;
+			sourceTree = "<group>";
+		};
+		F2DEF3D3283FE5F500E7F5D3 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F27C0161283FEA9800B60017 /* OnboardingCoordinator.swift */,
+				F27C0162283FEA9800B60017 /* OnboardingViewController.swift */,
+				F27C0164283FEA9800B60017 /* OnboardingViewController.xib */,
+				F27C0163283FEA9800B60017 /* OnboardingViewModel.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		F2DEF3D4283FE60C00E7F5D3 /* Subscribe */ = {
+			isa = PBXGroup;
+			children = (
+				F27C0159283FE99100B60017 /* SubscribeCoordinator.swift */,
+				F27C015A283FE99100B60017 /* SubscribeViewController.swift */,
+				F27C015C283FE99100B60017 /* SubscribeViewController.xib */,
+				F27C015B283FE99100B60017 /* SubscribeViewModel.swift */,
+			);
+			path = Subscribe;
 			sourceTree = "<group>";
 		};
 		F2E87B3E272AC93500B029BB /* Managers */ = {
@@ -733,6 +780,7 @@
 			knownRegions = (
 				en,
 				Base,
+				uk,
 			);
 			mainGroup = F2029D1E26660EE600B2293B;
 			packageReferences = (
@@ -754,8 +802,10 @@
 				F24D32CE27FB3CDB006445EE /* LoginViewController.xib in Resources */,
 				F2029D3226660EE800B2293B /* Preview Assets.xcassets in Resources */,
 				F27C097D2726D44500989B1B /* Assets.xcassets in Resources */,
+				F27C0168283FEA9800B60017 /* OnboardingViewController.xib in Resources */,
+				F27C0160283FE99100B60017 /* SubscribeViewController.xib in Resources */,
 				F2E87B38272AB70800B029BB /* GoogleService-Info.plist in Resources */,
-				F278DE692678DFFD00042F38 /* Localizable.strings in Resources */,
+				F2DEF3CF283FE3BC00E7F5D3 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -872,16 +922,20 @@
 				F25177EC272C8152005F105B /* OldLoginViewModel.swift in Sources */,
 				F2E87B45272AE31700B029BB /* SignUpViewModel.swift in Sources */,
 				F25FB75C2764F6B3004E4220 /* HomeConfigurator.swift in Sources */,
+				F27C0165283FEA9800B60017 /* OnboardingCoordinator.swift in Sources */,
 				F25FB7642765FFCE004E4220 /* LeftMenuRouter.swift in Sources */,
 				F2F793E3282F987000C1701E /* GradientLayer.swift in Sources */,
 				F254718C2731955400AD90AB /* SettingsView.swift in Sources */,
+				F27C0167283FEA9800B60017 /* OnboardingViewModel.swift in Sources */,
 				F225E8EF273BADB400904C81 /* RegisterModel.swift in Sources */,
 				F2F2B2FB283A203900D20787 /* BaseTextFieldView.swift in Sources */,
 				F24D32C427FB3757006445EE /* Drawable.swift in Sources */,
 				F2D8A2F227391492008F3861 /* LeftMenuViewModel.swift in Sources */,
+				F27C015F283FE99100B60017 /* SubscribeViewModel.swift in Sources */,
 				F2FD36F82728655700A3DEC6 /* MainContentView.swift in Sources */,
 				F2D8A2F027391214008F3861 /* LeftMenu.swift in Sources */,
 				F25FB7622765FFC2004E4220 /* LeftMenuConfigurator.swift in Sources */,
+				F2DEF3CB283FE15B00E7F5D3 /* UIViewController+Extension.swift in Sources */,
 				F2FD36F627285EFA00A3DEC6 /* SignUpView.swift in Sources */,
 				F24D32D527FB3F9F006445EE /* UIView+Extension.swift in Sources */,
 				F24D32C227FB3720006445EE /* Router.swift in Sources */,
@@ -894,6 +948,7 @@
 				F24D32C627FB3789006445EE /* ModalRouter.swift in Sources */,
 				F25FB7582764F1CC004E4220 /* SignUpRouter.swift in Sources */,
 				F2242FBB26D5604200ED980E /* String+Extension.swift in Sources */,
+				F2DEF3CE283FE23D00E7F5D3 /* AlertService.swift in Sources */,
 				F2E57A7C2736E705001FEEB9 /* FirestoreManager.swift in Sources */,
 				F25FB75A2764F4AA004E4220 /* MainContainerConfigurator.swift in Sources */,
 				F2948C5D26C6B67700F6881C /* UIColor+Extension.swift in Sources */,
@@ -907,9 +962,12 @@
 				F25177EF272C820B005F105B /* ActivityIndicator.swift in Sources */,
 				F2029D2B26660EE600B2293B /* CardsBoxApp.swift in Sources */,
 				F26A1C2F27BACAEA00BDC826 /* ShareCardController.swift in Sources */,
+				F27C0166283FEA9800B60017 /* OnboardingViewController.swift in Sources */,
 				F225E8EA273ABAE900904C81 /* AuthManager.swift in Sources */,
 				F2C32B0F282ADEAA008D58FC /* AuthService.swift in Sources */,
+				F27C015D283FE99100B60017 /* SubscribeCoordinator.swift in Sources */,
 				F278DE742678F94B00042F38 /* CardDetailView.swift in Sources */,
+				F27C015E283FE99100B60017 /* SubscribeViewController.swift in Sources */,
 				F2029D3726660EE800B2293B /* CardsBox.xcdatamodeld in Sources */,
 				F225E8ED273AEA7F00904C81 /* MainContainerViewModel.swift in Sources */,
 				F26A1C3927BADBE400BDC826 /* CardDetails.swift in Sources */,
@@ -917,6 +975,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F2DEF3D1283FE3BC00E7F5D3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2DEF3D0283FE3BC00E7F5D3 /* en */,
+				F2DEF3D2283FE3BD00E7F5D3 /* uk */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F2029D3926660EE800B2293B /* Debug */ = {

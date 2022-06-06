@@ -17,6 +17,11 @@ final class BaseTextFieldView: ReusableView {
     var trailingElementAction: VoidClosure?
     
     //MARK: - PROPERTIES FOR SETUP TEXT FIELD
+    var text: String? {
+        get { textField.text }
+        set { textField.text = newValue }
+    }
+    
     var placeholder: String? {
         get { textField.placeholder }
         set { textField.placeholder = newValue }
@@ -105,8 +110,8 @@ extension BaseTextFieldView {
         addSubview(trailingButton)
         
         textFieldTrailingConstrint?.isActive = false
-        trailingButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        trailingButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        trailingButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        trailingButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
         trailingButton.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: 2).isActive = true
         trailingButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2).isActive = true
     }

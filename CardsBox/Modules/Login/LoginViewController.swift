@@ -17,6 +17,7 @@ private extension LoginViewController {
 class LoginViewController: BaseViewController<LoginViewModelType> {
     @IBOutlet private var registerButton: UIButton!
     @IBOutlet private var accountLabel: UILabel!
+    
     private var formBackgroundView: UIView!
     private var formLabel: UILabel!
     private var emailTextField: BaseTextFieldView!
@@ -60,8 +61,17 @@ class LoginViewController: BaseViewController<LoginViewModelType> {
             self?.loader(show: show)
         }
         
-        viewModel.output.setPasswordImageName = { [weak self] imageName in
-            self?.passwordTextField.setTrailingElementImage(UIImage(systemName: imageName))
+        viewModel.output.showAlert = { [weak self] alerts in
+            self?.alertHandler(alerts)
+        }
+        
+        viewModel.output.setPasswordImage = { [weak self] image in
+            self?.passwordTextField.setTrailingElementImage(image)
+        }
+        
+        viewModel.output.reloadTextFields = { [weak self] in
+            self?.emailTextField.text = "123"
+            self?.passwordTextField.text = "321"
         }
         
         emailTextField.handleText.bind(listener: { [weak self] text in
@@ -75,6 +85,10 @@ class LoginViewController: BaseViewController<LoginViewModelType> {
         passwordTextField.trailingElementAction = { [weak self] in
             self?.passwordTextField.isSecurity.toggle()
             self?.viewModel.input.changePasswordImage()
+        }
+        
+        emailTextField.trailingElementAction = { [weak self] in
+            self?.viewModel.input.authWithBiometricalData()
         }
         
         loginButton.action = { [weak self] in
@@ -102,7 +116,7 @@ extension LoginViewController {
         errors.forEach {
             switch $0 {
             case .other:
-                print("mess", $0.message)
+                showAlert(message: $0.message)
             }
         }
     }
@@ -143,6 +157,9 @@ private extension LoginViewController {
         emailTextField.textContentType = .emailAddress
         emailTextField.capitalization = .none
         emailTextField.correction = false
+        if viewModel.output.isBiomericAvailable {
+            emailTextField.setTrailingElement(image: viewModel.output.emailIcon)
+        }
         formBackgroundView.addSubview(emailTextField)
         
         passwordTextField = BaseTextFieldView()

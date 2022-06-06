@@ -8,6 +8,8 @@
 "actionSaveTitle" = "Save";
 "actionAddTitle" = "Add";
 "actionOkTitle" = "OK";
+"alertCancelButtonTitle" = "Cancel";
+"alertNoText" = "NO";
 "createModeTitle" = "Create";
 "editModeTitle" = "Edit";
 

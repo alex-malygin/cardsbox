@@ -1,0 +1,31 @@
+
+// MARK: - Main
+
+"mainTitle" = "";
+"mainAddNewButton" = "Додати нову картку 💳";
+"cardDetailCardNumberPlaceholder" = "Номер картки";
+"cardDetailEnterNamePlaceholder" = "Імʼя власника";
+"actionSaveTitle" = "Зберегти";
+"actionAddTitle" = "Додати";
+"actionOkTitle" = "Добре";
+"alertCancelButtonTitle" = "Відмінити";
+"alertNoText" = "Ні";
+"createModeTitle" = "Створити";
+"editModeTitle" = "Редагувати";
+
+"logoutButton" = "Вихід";
+"signUpButton" = "Реєстрація";
+"loginButton" = "Вхід";
+"registrationButton" = "Створити профіль";
+
+"leftMenuChangeProfile" = "Редагувати профіль";
+"leftMenuAboutApp" = "Про додаток";
+"placeholderEmail" = "Пошта";
+"placeholderPassword" = "Пароль";
+"placeholderUsername" = "Імʼя";
+"registerTitle" = "Створити новий профіль";
+"loginTitle" = "Вітаємо у CardsBox 🇺🇦";
+"loginSubtitle" = "Немає профілю?";
+
+"loginFieldError" = "Вибачте, але треба заповнити усі поля для входу";
+"registerFieldError" = "Вибачте, але треба заповнити усі поля для реєстрації";

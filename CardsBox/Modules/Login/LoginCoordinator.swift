@@ -10,7 +10,7 @@ import UIKit
 final class LoginCoordinator: BaseCoordinator {
     private let router: RouterProtocol
     private let controller: LoginViewController
-    private let viewModel: LoginViewModel
+    private let viewModel: LoginViewModelType
     
     init(router: RouterProtocol) {
         self.router = router
@@ -19,7 +19,14 @@ final class LoginCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        
+        viewModel.output.showMain = { [weak self] in
+            self?.showMain()
+        }
+    }
+    
+    private func showMain() {
+        let app = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+        app?.appCoordinator?.start()
     }
 }
 

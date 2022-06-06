@@ -16,6 +16,10 @@ internal enum Strings {
   internal static let actionOkTitle = Strings.tr("Localizable", "actionOkTitle")
   /// Save
   internal static let actionSaveTitle = Strings.tr("Localizable", "actionSaveTitle")
+  /// Cancel
+  internal static let alertCancelButtonTitle = Strings.tr("Localizable", "alertCancelButtonTitle")
+  /// NO
+  internal static let alertNoText = Strings.tr("Localizable", "alertNoText")
   /// Card Number
   internal static let cardDetailCardNumberPlaceholder = Strings.tr("Localizable", "cardDetailCardNumberPlaceholder")
   /// Enter name

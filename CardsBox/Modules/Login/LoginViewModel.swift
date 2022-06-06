@@ -16,6 +16,7 @@ protocol LoginViewModelType {
 protocol LoginViewModelInputs {
     func viewDidLoad()
     func login()
+    func authWithBiometricalData()
     func showRegisterScreen()
     func changePasswordImage()
     func handleEmailField(text: String?)
@@ -23,10 +24,14 @@ protocol LoginViewModelInputs {
 }
 
 protocol LoginViewModelOutputs: AnyObject {
+    var isBiomericAvailable: Bool { get }
+    var emailIcon: UIImage? { get }
     var showLoader: Observer<Bool> { get set }
-    var setPasswordImageName: ItemClosure<String>? { get set }
+    var setPasswordImage: ItemClosure<UIImage?>? { get set }
     var showRegisterScreenAction: VoidClosure? { get set }
     var showAlert: ItemClosure<[LoginViewModel.Alert]>? { get set }
+    var reloadTextFields: VoidClosure? { get set }
+    var showMain: VoidClosure? { get set }
 }
 
 //MARK: - LoginViewModel Alert
@@ -52,14 +57,27 @@ final class LoginViewModel: LoginViewModelType, LoginViewModelOutputs {
     private var email: String?
     private var password: String?
     
+    private let keychain = KeychainManager()
+    
     //MARK: - Init
     init() { }
     
     //MARK: - LoginViewModelOutputs
+    var isBiomericAvailable: Bool { return DataManager.shared.isBiometriAvialable }
+    var emailIcon: UIImage? {
+        switch keychain.biometricType {
+        case .none: return nil
+        case .touch: return UIImage(systemName: "touchid")
+        case .face: return UIImage(systemName: "faceid")
+        }
+    }
+    
     var showLoader: Observer<Bool> = .init(false)
-    var setPasswordImageName: ItemClosure<String>?
+    var setPasswordImage: ItemClosure<UIImage?>?
     var showRegisterScreenAction: VoidClosure?
     var showAlert: ItemClosure<[LoginViewModel.Alert]>?
+    var reloadTextFields: VoidClosure?
+    var showMain: VoidClosure?
 }
 
 //MARK: - LoginViewModelInputs
@@ -74,6 +92,17 @@ extension LoginViewModel: LoginViewModelInputs {
     
     func handlePasswordlField(text: String?) {
         password = text
+    }
+    
+    func authWithBiometricalData() {
+        let creds = keychain.getCredentials(message: "Access your password on the keychain")
+
+        email = creds.email
+        password = creds.pass
+        
+        reloadTextFields?()
+        
+        login()
     }
     
     func login() {
@@ -91,7 +120,9 @@ extension LoginViewModel: LoginViewModelInputs {
         }
         
         showLoader.value = false
+        saveUserData()
         //add requst
+        showMain?()
     }
     
     func showRegisterScreen() {
@@ -100,6 +131,11 @@ extension LoginViewModel: LoginViewModelInputs {
     
     func changePasswordImage() {
         showPassword.toggle()
-        setPasswordImageName?(showPassword ? "eye" : "eye.slash")
+        setPasswordImage?(showPassword ? UIImage(systemName: "eye") : UIImage(systemName: "eye.slash"))
+    }
+    
+    private func saveUserData() {
+        keychain.saveCredentials(email: email, pass: password)
+        DataManager.shared.isBiometriAvialable = true
     }
 }
